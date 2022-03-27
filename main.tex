@@ -1,0 +1,170 @@
+\documentclass[11pt,landscape]{article}
+\usepackage[a3paper]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{amsmath, amssymb}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{hyperref}
+\usepackage[parfill]{parskip}
+\usepackage{glossaries}
+\usepackage{amsmath}
+\usepackage{mdframed}
+\usepackage{caption}
+\geometry{margin=2.5cm}
+
+\graphicspath{{./images/}}
+
+\pagestyle{fancy}
+\setlength{\headheight}{24pt}
+\fancyhead[L]{GDP Group}
+\fancyhead[R]{Design of Smart Autonomous Golf caddy}
+\fancyfoot[C]{\thepage}
+
+
+\title{GDP Draft Report}
+\author{GDP Group}
+
+
+
+\begin{document}
+\pagenumbering{arabic}
+\maketitle
+\newpage
+\begin{multicols}{3}
+\section{Introduction}
+The primary goal of this project is to construct a fully autonomous golf caddy.
+There are caddies with varying ranges of autonomy available on the market
+alread, from just having a motor so that no pushing from the golfer is required,
+to being able to automatically following the golfer. There is currently no
+product available that requires no operation from the golfer after the power up
+phase. The currently available models that can follow the golfer would follow
+them into a bunker, onto the green, or onto water if not prevented by a remote
+control operated by the golfer.
+
+Currently it is against golf association rules for any tools which indicate
+which club should be used to be employed by golfers. Our sponsor James Siabati
+indicates that this may change in the near future, so including this ability in
+our autonomous caddy is a good decision.
+\section{Project Aim and Objectives}
+\section{Design Criteria}
+\section{Mechanical Design}
+\section{GUI}
+\section{Software}
+In this section all software required for the operating cycle of the AGC is
+discussed. The AGC main computer is a Raspberry Pi 4 running a 64-bit Debian port,
+the same is true for the Raspberry Pi used in the tracking pod. The GPS
+navigation system requires high precision decimal storage to operate properly.
+Data type \verb|float32| can store 23 significant bits, compared to data type
+\verb|float64| which can store 52 significant
+bits\cite{floating_point_goldberg}. 
+The calulcations shown below in Fig. (\ref{fig:float_calcs}) show the
+physical significance of which datatype is chosen.
+\begin{figure}[H]
+    \begin{mdframed}
+        Only $180\deg$ need to be accounted for because sign bit is separate, so to
+        represent $180\deg$ the bits required is:
+        \begin{center}
+            \begin{equation*}
+                \log_2{180} \approx 7.49185 bits
+            \end{equation*}
+        \end{center}
+        This leaves the $n - 7.49185$ significant bits left for sub degree
+        representation, the physical precision in meters we can then derive from each
+        data type of a longitude value at the equator can be calculated as shown in
+        Eqs. () respectively.\newline
+        \begin{center}
+            \begin{minipage}{0.45\textwidth}
+                \begin{mdframed}
+                    For \verb|float32| $n=23$:
+                    \begin{center}
+                        \begin{equation*}
+                            \frac{\frac{R_e \cdot \pi}{180}}{2^{\left(52 - \log_2{180}\right)}} \approx 2.386m
+                            \label{eq}
+                        \end{equation*}
+                    \end{center}
+                \end{mdframed}
+                \end{minipage}
+                \begin{minipage}{0.45\textwidth}
+                    \begin{mdframed}
+                For \verb|float64| $n=52$:
+                \begin{center}
+                    \begin{equation*}
+                        \frac{\frac{R_e \cdot \pi}{180}}{2^{\left(52 - \log_2{180}\right)}} \approx 4.44nm
+                    \end{equation*}
+                \end{center}
+            \end{mdframed}
+            \end{minipage}
+        \end{center}
+        \center The radius of Earth. $R_e$, value used was $6371000m$. 
+    \end{mdframed} 
+    \captionof{figure}{Calculations showing physics precision of single vs double
+    precision floats}
+    \label{fig:float_calcs}
+\end{figure}
+The $180\deg$ is normalised to a power of two so we are able to use the non
+integer value of bits in the calculation for physical precision, were we to not
+perform this normalisation then $7.4918\rightarrow8$ full bits and the final
+precision is slightly less for each datatype. To ensure this calculated
+precision is representative of our system all GPS coordinates are normalised to
+a power of two. We can see from the calculations that a significantly higher
+precision is achieved using double precision floating point data type to store
+GPS values. The precision yielded by the double precision floating point is
+unnecessary, however the precision of the single precision floating point is too
+low as our GPS module is capable of providing more accurate GPS measurements as
+discussed in section \ref{electronics}. Therefore double precision floating
+point datatypes will be used to store GPS data, which requires us to use a
+64-bit compatible operating system which is why the 64-bit debian port was
+chosen. The higher precision achieved comes at the cost of slightly higher
+compte time for calculations, however as most of the algorithms onboard operate
+only on small amounts of data, this effect is unnoticable when operating the
+AGC.
+
+\subsection{Control Software}
+\label{control_software}
+All of the control software apart from the elctronics specific code, such as
+motor controller communication, was written first using the OpenGL simulator
+that was built throughout the year. Building and using a simulator allowed us to 
+write and test all the control software / algorithms that would be required to make 
+the AGC follow the golfer as intended while avoiding hazard regions.
+
+All of the control software tested in the simulator was written in C as this was
+easiest to use with OpenGL, however we decided to change to PyQt5 for designing
+the onboard GUI. As the ACG software was now to be written in Python the control
+algorithms were re-written in Python, however upon testing it was found that
+their performance was significantly slower than the C implementations. This is
+most likely a large number of array passing and manipulations are required,
+which is significantly slower in Python where function arguments are passed as
+object reference instead of pointers in C. Therefore the original C control
+algorithms were compiled as a dynamic link library (DLL) and the Python ``C
+Types'' library was used to load the DLL and create Python wrappers for the control
+algorithms. This significantly improved the performance as all of the resource
+intensive calculations were now performed with a compiled C program.
+\subsubsection{Communications}
+The EMG30 motors we are using are controlled by the MD25 motor controller board
+via and $I^2C$ interface. The communication interface for this was written in C
+and is capable of handling multiple $I^2C$ devices. Currently the only device we
+have on the communications network is the MD25. The GPS in the golfer's pod communicates to the main Raspberry Pi via Bluetooth,
+which is written in Python using the PyBluez library. The GPSs communicate with
+the Raspberry Pis via serial commuication implemented using the Pyserial library.
+
+
+\newpage
+\subsection{Automatic Following}
+\subsection{Ray Casting}
+\section{Electronics}
+\label{electronics}
+\subsection{Motors and Controller}
+\newpage
+\nocite{*}
+\bibliographystyle{ieeetr}
+\bibliography{./ref}
+\end{multicols}
+
+
+
+\end{document}
