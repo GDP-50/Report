@@ -36,6 +36,8 @@
 \maketitle
 \newpage
 \begin{multicols}{3}
+\tableofcontents
+\newpage
 \section{Introduction}
 The primary goal of this project is to construct a fully autonomous golf caddy.
 There are caddies with varying ranges of autonomy available on the market
@@ -54,7 +56,9 @@ our autonomous caddy is a good decision.
 \section{Design Criteria}
 \section{Mechanical Design}
 \section{GUI}
+
 \section{Software}
+\label{software}
 In this section all software required for the operating cycle of the AGC is
 discussed. The AGC main computer is a Raspberry Pi 4 running a 64-bit Debian port,
 the same is true for the Raspberry Pi used in the tracking pod. The GPS
@@ -66,8 +70,8 @@ The calulcations shown below in Fig. (\ref{fig:float_calcs}) show the
 physical significance of which datatype is chosen.
 \begin{figure}[H]
     \begin{mdframed}
-        Only $180\deg$ need to be accounted for because sign bit is separate, so to
-        represent $180\deg$ the bits required is:
+        Only $180^{\circ}$ need to be accounted for because sign bit is separate, so to
+        represent $180^{\circ}$ the bits required is:
         \begin{center}
             \begin{equation*}
                 \log_2{180} \approx 7.49185 bits
@@ -106,9 +110,10 @@ physical significance of which datatype is chosen.
     precision floats}
     \label{fig:float_calcs}
 \end{figure}
-The $180\deg$ is normalised to a power of two so we are able to use the non
+The $180^{\circ}$ is normalised to a power of two so we are able to use the non
 integer value of bits in the calculation for physical precision, were we to not
-perform this normalisation then $7.4918\rightarrow8$ full bits and the final
+perform this normalisation then $7.4918\rightarrow8$ full bits are required to
+represent the degrees and the final
 precision is slightly less for each datatype. To ensure this calculated
 precision is representative of our system all GPS coordinates are normalised to
 a power of two. We can see from the calculations that a significantly higher
@@ -118,7 +123,7 @@ unnecessary, however the precision of the single precision floating point is too
 low as our GPS module is capable of providing more accurate GPS measurements as
 discussed in section \ref{electronics}. Therefore double precision floating
 point datatypes will be used to store GPS data, which requires us to use a
-64-bit compatible operating system which is why the 64-bit debian port was
+64-bit compatible operating system which is why the 64-bit Debian port was
 chosen. The higher precision achieved comes at the cost of slightly higher
 compte time for calculations, however as most of the algorithms onboard operate
 only on small amounts of data, this effect is unnoticable when operating the
@@ -126,6 +131,7 @@ AGC.
 
 \subsection{Control Software}
 \label{control_software}
+This section discusses the software used to make the AGC follow the golfer.
 All of the control software apart from the elctronics specific code, such as
 motor controller communication, was written first using the OpenGL simulator
 that was built throughout the year. Building and using a simulator allowed us to 
@@ -144,7 +150,145 @@ algorithms were compiled as a dynamic link library (DLL) and the Python ``C
 Types'' library was used to load the DLL and create Python wrappers for the control
 algorithms. This significantly improved the performance as all of the resource
 intensive calculations were now performed with a compiled C program.
-\subsubsection{Communications}
+
+The main control loop that determines the AGC's behaviour is shown below in
+Fig. (\ref{fig:control_loop}).
+\begin{figure}[H]
+\begin{mdframed}
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{control_loop.png}
+    \end{center}
+\end{mdframed}
+\captionof{figure}{Main AGC control loop}
+\label{fig:control_loop}
+\end{figure}
+\subsubsection{Ray Casting}
+The ray casting algorithm is used to determine whether a point falls within a
+polygon. The algorithm can only accept polygons with straight edges; our polygons are
+represented by a series of GPS points along their perimeter, and so our polygons
+are defined by a series of small straight edges. The concept of this algorithm
+is that given a point you wish to test, if you cast a ray from the point in one
+direction to infinity, the number of intersections the ray has with the polygon
+in question indicates whether the point falls in the polygon or not. If an even
+number of intersections are found, then the point lies outside the polygon, and
+if an odd number of intersections are found the point lies within the polygon.
+A visual of this concept can be seen below in Fig. (\ref{fig:raycasting}).
+\begin{figure}[H]
+    \begin{mdframed}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{raycasting.png}
+        \end{center}
+    \end{mdframed}
+    \captionof{figure}{Raycasting Example}
+    \label{fig:raycasting}
+\end{figure}
+
+The figure shows two points which are to be tested to determine if they lie
+within the polygon. Casting the ray to the right, towards $x\rightarrow\inf$ in
+our implementation, we can count the intersections each ray has with the
+polygon. Point A has five intersections and so lies outside the polygon, point B
+has four intersections and lies within the polygon. 
+
+There are additional considerations in our implementation to accout for the ray
+intersecting a vertex or for the ray being collinear with a polygon edge. If a
+vertex is intersected then two intersections are counted, one for each edge
+forming the vertex, and the result is not affected. If the ray is collinear
+with a polygon edge then only a single intersection is counted, but the ray will
+undoubtedly also intersect at least one of the vertices on the collinear edge
+which will be appropriately accounted for.
+The algorithm has been tested and does not fail in either of these cases.
+
+\subsubsection{Segment Polygon Intersection}
+Before the AGC starts moving towards any target destination, it first checks
+that it's intended translation vector joining it's location to the target
+location does not pass through
+any hazard zones. It does this by checking that it's intended translation vector
+doesn't intersect any edges of polygons. The diagram shown below in Fig.
+(\ref{fig:segment_intersection}) depicts two finite length line segments
+intersecting.
+\begin{figure}[H]
+    \begin{mdframed}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{segment_intersection.png}
+        \end{center}
+    \end{mdframed}
+    \captionof{figure}{Line Segment Intersection Diagram}
+    \label{fig:segment_intersection}
+\end{figure}
+ 
+The edges of polygons are defined only by the positions of two vertices, as is
+the AGC intended translation vector. To calculate where the intersection point
+of these two line segments are a mathematical equation for a line must be
+constructed for each segment as shown in Eqs. (\ref{eq:line_a} and
+\ref{eq:line_b}) respectively, then these equations can be solved simultaneously
+to determine the location of the intersection as shown in Fig.
+(\ref{fig:segment_calculations}).
+
+After the intersection point is calculated we ensure that the intersection point
+falls within the smallest rectangle bounded by one point from the first and
+second coordinates of either segment. We do this because the equation for a line is infinite, and
+any lines with non equal gradient will intersect, but we are only interested if
+the intersection occurs between points the AGC intends to travel. The bounding
+rectangle is demonstrated by the green rectangle in Fig. (\ref{fig:segment_intersection}).
+
+\begin{figure}[H]
+    \begin{mdframed}
+        \begin{center}
+            \begin{equation}
+                ay_1-y = \frac{ay_2 - ay_1}{ax_2 - ax_1} \times (x - ax_1)
+                \label{eq:line_a}
+            \end{equation}
+            \begin{equation}
+                by_1-y = \frac{by_2 - by_1}{bx_2 - bx_1} \times (x - bx_1)
+                \label{eq:line_b}
+            \end{equation}
+        \end{center}
+    In our implementation, before this system is solved, we check
+    if the lines have equal gradient, and if they are collinear or not. If they
+    have equal graident, defined by:
+    \begin{center}
+        \begin{equation*}
+            \frac{ay_2 - ay_1}{ax_2 - ax_1} = \frac{by_2 - by_1}{bx_2 - bx_1}
+        \end{equation*}
+    \end{center}
+    Then we check if they are collinear, defined by:
+    \begin{center}
+        \begin{equation*}
+            (x - ax_1) = (x - bx_1)
+        \end{equation*}
+    \end{center}
+    If they are collinear then they intersect, if the have equal gradient but
+    are not collinear then they do not intersect. If one or both of the lines
+    are vertical, $(y_1 = y_2)$ then the system is not solved as below but
+    trivially using the $x$ position of the line.\vspace{0.5cm}
+    \newline
+    For simplification:
+    \begin{center}
+        \begin{equation*}
+            m_a = \frac{ay_2 - ay_1}{ax_2 - ax_1} \hspace{1cm} m_b = \frac{by_2 - by_1}{bx_2 - bx_1}
+        \end{equation*}
+    \end{center}
+    Now we solve the system defined by Eqs. (\ref{eq:line_a} and
+    \ref{eq:line_b}) to determine the point of intersection resulting in the $x$
+    coordinate given by Eq. (\ref{eq:x}) and $y$ coordinate given by Eq. (\ref{eq:y}).
+    \begin{center}
+        \begin{equation}
+            x = \frac{ax_{1} m_{a} - ay_{1} - bx_{1} m_{b} + by_{1}}{m_{a} - m_{b}}
+            \label{eq:x}
+        \end{equation}
+        \begin{equation}
+            y = \frac{ax_{1} m_{a} m_{b} - ay_{1} m_{b} - bx_{1} m_{a} m_{b} + by_{1} m_{a}}{m_{a} - m_{b}}
+            \label{eq:y}
+        \end{equation}
+    \end{center}
+    \end{mdframed}
+    \captionof{figure}{Calculation of Line Segment Intersection Point}
+    \label{fig:segment_calculations}
+\end{figure}
+
+
+
+\subsection{Communications}
 The EMG30 motors we are using are controlled by the MD25 motor controller board
 via and $I^2C$ interface. The communication interface for this was written in C
 and is capable of handling multiple $I^2C$ devices. Currently the only device we
@@ -154,11 +298,8 @@ the Raspberry Pis via serial commuication implemented using the Pyserial library
 
 
 \newpage
-\subsection{Automatic Following}
-\subsection{Ray Casting}
 \section{Electronics}
 \label{electronics}
-\subsection{Motors and Controller}
 \newpage
 \nocite{*}
 \bibliographystyle{ieeetr}
