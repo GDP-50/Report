@@ -286,7 +286,144 @@ rectangle is demonstrated by the green rectangle in Fig. (\ref{fig:segment_inter
     \label{fig:segment_calculations}
 \end{figure}
 
+\subsubsection{Pathfinding}
+The pathfinding algorithm is only used if the control loop shown in Fig.
+(\ref{fig:control_loop}) determines that the AGC should move to the golfer but
+the a direct route is not possible due to the presence of a hazard zone between
+them. Initially the A* pathfinding algorithm was researched as it is a well known algorithm
+with which we could choose some heuristic function to minimise, in our case that
+heuristic function would likely be the shortest distance to reach the golfer.
+ A* is generally used
+for pathfinding on a discrete graph, we do not have a discrete graph
+available and so would have to construct one for each golf course or a local graph
+surrounding the hazard we wish to avoid. This adds unnecessary complexity in
+terms of implementation and computation to our system which we wish to avoid.
+Additionally, A* has time complexity of $O(b^d)$ if $d$ is the shortest path length
+and b is the branching factor, and the algorithm has high memory requirements as all generated
+nodes are kept in memory \cite{astar_2009}. It
+was decided we would not use A* algorithm. The next consideration was to simply
+``pad'' the perimeter of the hazard polygon and follow it all the way around
+until the AGC reaches the golfer. This concept is shown in
+the diagram below in Fig. (\ref{fig:padding}) where the red line denotes
+the path that would be taken by the AGC to avoid a hazard zone. Clearly this is
+an inefficient path the AGC will unnecessarily follow the contour of the
+polygon. Additionally, this method increases the risk that the AGC enters the
+hazard zone if our GPS system is not performing well, or if our GPS mapping of
+hazard zones is erronous.  
 
+
+\begin{figure}[H]
+    \begin{mdframed}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{padding.png}
+        \end{center}
+    \end{mdframed}
+    \captionof{figure}{Path derived by ``padding'' polygon}
+    \label{fig:padding}
+\end{figure}
+
+A custom pathfinding algorithm was designed and implemented. The path it finds
+is not the optimal solution, but it computes quickly and the path derived is
+more efficient than using the ``padding'' method. Fig.
+(\ref{fig:pathfinding_flow}) shows the main steps performed by the algorithm to
+determine where the AGC should go.
+
+\begin{figure}[H]
+    \begin{mdframed}
+        \begin{center}
+            \includegraphics[width=0.95\textwidth]{pathfinding_flow.png}
+        \end{center}
+    \end{mdframed}
+    \captionof{figure}{Pathfinding algorithm main steps}
+    \label{fig:pathfinding_flow}
+\end{figure}
+
+First the chord vector, $\overrightarrow{\mathbf{C}}$, is calculated, along with
+the angle, $\theta$, between $\overrightarrow{\mathbf{C}}$ and the Y-unit vector,
+$\hat{\mathbf{y}}$, using Eq. ().  The relevant polygon, golfer position, and AGC
+position are rotated about the z-axis with the center of rotation as the
+origin by $\theta$ using Eq. () where $\overrightarrow{p}$ is a
+three dimensional point and $\overrightarrow{p^\prime}$ is the rotated point. 
+The polygon is rotated by applying Eq. () to each
+vertex. The purpose of the rotation was to aid the design process of the
+algorithm and make the code more readable, removing the necesscity for vector
+manipulations throuhout the algorithm instead using only simple arithmetic operations.
+This results in $\overrightarrow{\mathbf{C}^\prime}$ having constant $y$. The
+value of $y^\prime$ is increment in one meter steps until no intersection
+between the translated chord vector, $\overrightarrow{\mathbf{C}^\prime_t}$, and
+the rotated polygon, $\mathbf{P}^\prime$. If any point of
+$\overrightarrow{\mathbf{C}^\prime_t}$ lies within the polygon the increment
+direction is reversed and incremented until there is no intersection and no
+points of $\overrightarrow{\mathbf{C}^\prime_t}$ lie within the polygon. This
+increment process is repeated in the $x^\prime$ direction for the vector joining
+the rotated AGC position,
+$\left(x^\prime_{AGC}, y^\prime_{AGC}\right)$, to $\left(x^\prime_{AGC},
+y^\prime_{AGC} + y^\prime_i\right)$. Once the incrementation process if finished
+such that no intersections are found, the vector joining $\left(x^\prime_{AGC},
+y^\prime_{AGC}\right)$ to $\left(x^\prime_{AGC}+x^\prime_i,
+y^\prime_{AGC} + y^\prime_i\right)$ is checked for intersections. If none are
+found then $\left(x^\prime_{AGC}+x^\prime_i,
+y^\prime_{AGC} + y^\prime_i\right)$ is rotated back to the original coordinate
+system and set as the position target for the AGC. If an intersection is found
+then $\left(x^\prime_{AGC}+x^\prime_i, y^\prime_{AGC}\right)$ is rotated back to
+the original coordinate system and set as the AGC position target. This process
+repeats until the golfer is reached. Incrementing in the $y^\prime$ direction
+is equivelant to incrementing perpendicular to
+$\overrightarrow{\mathbf{C}}$ in
+the original coordinate system, and incrementing it by $x^\prime$ is equivelant
+to incrementing in the direction of $\overrightarrow{\mathbf{C}}$.
+\subsubsection{Pathfinding Diagram}
+Fig. (\ref{fig:pathfinding_visual}) shows a visual of how the pathfinding algorithm will determine intermediary
+positions for the AGC to move it towards the golfer. For the generation of this
+figure the pathfinding algorithm was only called again after the target position
+is reached, resulting in the very wide path that can be seen in the final path
+diagram. On the AGC the pathfinding algorithm is called every time new GPS data
+is available, approximately every second, resulting in a smoother and closer
+path being found.
+\end{multicols}
+\newpage
+\begin{figure}[H]
+    \begin{mdframed}
+        \begin{center}
+            \begin{minipage}{0.3\textwidth}
+                \includegraphics[width=0.95\textwidth]{initial.png}
+            \end{minipage}
+            \begin{minipage}{0.3\textwidth}
+                \includegraphics[width=0.95\textwidth]{p1.png}
+            \end{minipage}
+            \begin{minipage}{0.3\textwidth}
+                \includegraphics[width=0.95\textwidth]{p2.png}
+            \end{minipage}
+        \end{center}
+        \begin{center}
+            \begin{minipage}{0.3\textwidth}
+                \includegraphics[width=0.95\textwidth]{p3.png}
+            \end{minipage}
+            \begin{minipage}{0.3\textwidth}
+                \includegraphics[width=0.95\textwidth]{p4.png}
+            \end{minipage}
+            \begin{minipage}{0.3\textwidth}
+                \includegraphics[width=0.95\textwidth]{p5.png}
+            \end{minipage}
+        \end{center}
+        \begin{center}
+            \begin{minipage}{0.3\textwidth}
+                \includegraphics[width=0.95\textwidth]{p6.png}
+            \end{minipage}
+            \begin{minipage}{0.3\textwidth}
+                \includegraphics[width=0.95\textwidth]{p7.png}
+            \end{minipage}
+            \begin{minipage}{0.3\textwidth}
+                \includegraphics[width=0.95\textwidth]{final.png}
+            \end{minipage}
+        \end{center}
+    \end{mdframed}
+    \captionof{figure}{Visualisation of path determined by pathfinding algorithm}
+    \label{fig:pathfinding_visual}
+\end{figure}
+\newpage
+
+\begin{multicols}{3}
 
 \subsection{Communications}
 The EMG30 motors we are using are controlled by the MD25 motor controller board
