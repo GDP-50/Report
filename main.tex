@@ -55,7 +55,7 @@ our autonomous caddy is a good decision.
 \section{Project Aim and Objectives}
 \section{Design Criteria}
 \section{Mechanical Design}
-\section{GUI}
+
 
 \section{Software}
 \label{software}
@@ -162,6 +162,32 @@ Fig. (\ref{fig:control_loop}).
 \captionof{figure}{Main AGC control loop}
 \label{fig:control_loop}
 \end{figure}
+\subsubsection{Map Processing}
+As discussed in the introduction to section \ref{software}, all GPS
+coordinates are normalised to a power of two. We also ``pad'' the hazard zone
+coordinates, before normalisation, by a safety factor of two meters, preventing innacurate GPS
+readings or hazard zone coordinates resulting in the AGC entering a hazard zone.
+We ``pad'' the hazard zones by calculating the coordinates of centroid of the
+polygon, then extending the vector from the centroid to each perimeter point by
+two meters. The centroid of a polygon can be calculated from the coordinates of
+it's perimeter points as shown in Eqs. (\ref{eq:cx} and \ref{eq:cy}).
+\begin{center}
+    \begin{equation*}
+        A=\frac{1}{2}\sum_{i=0}^{n-1}\left( x_i y_{i+1} - x_{i+1} y_i\right)
+    \end{equation*}
+\end{center}
+\begin{center}
+    \begin{equation}
+        C_x=\frac{1}{6A}\sum_{i=0}^{n-1} (x_i + x_{i+1}) (x_i y_{i+1} - x_{i+1} y_i)
+        \label{eq:cx}
+    \end{equation}
+\end{center}
+\begin{center}
+    \begin{equation}
+        C_y=\frac{1}{6A}\sum_{i=0}^{n-1} (y_i + y_{i+1}) (x_i y_{i+1} - x_{i+1} y_i)
+        \label{eq:cy}
+    \end{equation}
+\end{center}
 \subsubsection{Ray Casting}
 The ray casting algorithm is used to determine whether a point falls within a
 polygon. The algorithm can only accept polygons with straight edges; our polygons are
@@ -431,12 +457,76 @@ via and $I^2C$ interface. The communication interface for this was written in C
 and is capable of handling multiple $I^2C$ devices. Currently the only device we
 have on the communications network is the MD25. The GPS in the golfer's pod communicates to the main Raspberry Pi via Bluetooth,
 which is written in Python using the PyBluez library. The GPSs communicate with
-the Raspberry Pis via serial commuication implemented using the Pyserial library.
+the Raspberry Pis via serial commuication implemented using the Pyserial
+library.
+
+\subsection{GUI}
+\subsubsection{Course Map}
+The course map was implemented on the GUI using the map system that was used on
+the simulator. We attempted to embed a map web app called folium which looks
+better than the map developed for the simulator, however, it doesn't allow us to
+retreive coordinates for a point clicked on the map in real latitude / longitude
+coordinates or in screen coordinates. This shortfall makes it impossible to give
+the golfer the ability to click a point on the map and see how far away it is
+from the AGC, using the simulator map allows us to add that feature.
 
 
-\newpage
+
 \section{Electronics}
 \label{electronics}
+\subsection{Motors}
+The motors we decided to use for our prototype version are the EMG30 motors
+because we already have them and this will save cost. However, they are
+underpowered as they will take too long to accelerate the AGC to full speed, and
+won't work at on anything more than a slight incline; for a final version the
+EMG49 motors should be used. 
+We chose these motors
+by
+considering the top speed we wish the AGC to able to go, and how fast we want it
+to accelerate to that speed on a $10^\circ$ incline. The calculations shown below in
+Fig. (\ref{fig:motor_calcs}) show how we calculated the necessary toruqe and rpm we require from our
+motors.
+
+\begin{figure}[H]
+    \begin{mdframed}
+        The top speed we chose for the AGC was 5.0 kilometers per hour,
+        equivalent to average walking speed. 
+        The wheel radius, $W_r$ of the AGC wheels is 0.115 meters. We can
+        calculate RPM using Eq. (\ref{eq:rpm}):
+        \begin{center}
+            \begin{equation}
+                rpm = \frac{7.5 * \frac{1000}{3600}}{2\pi W_r} \cdot 60 \approx 115rpm
+                \label{eq:rpm}
+            \end{equation}
+        \end{center}
+        The AGC should be able
+        to accelerate to this speed, $V$, within $t=5$ seconds on a $10^\circ$ incline.
+        For predicted final mass, $M = 15kg$, 
+        the accelerating force, $F$, required can be calculated with Eq. (\ref{eq:accel}):
+        \begin{center}
+            \begin{equation}
+                F = \frac{V}{t} + M g_0 \sin(10^\circ)\approx 29 N
+                \label{eq:accel}
+            \end{equation}
+        \end{center}
+        Finally the torque required from each motor can bel calulated using Eq.
+        (\ref{eq:torque}):
+        \begin{center}
+            \begin{equation}
+                T = W_r * F \approx 1.7 Nm
+                \label{eq:torque} 
+            \end{equation}
+        \end{center}
+    \end{mdframed}
+    \captionof{figure}{Motor requirement calculations}
+    \label{fig:motor_calcs}
+\end{figure}
+
+According to their datasheet the EMG49 motors can provided a loaded rpm of 122
+and a torque of 1.56, close to our requirements set out above. As the torque is
+slightly lower than calulated, the AGC will accelerate slightly to top speed on
+a $10^\circ$ incline in slightly over five seconds.
+
 \newpage
 \nocite{*}
 \bibliographystyle{ieeetr}
