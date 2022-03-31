@@ -40,21 +40,48 @@
 \tableofcontents
 \newpage
 \section{Introduction}
-The primary goal of this project is to construct a fully autonomous golf AGC.
-There are caddies with varying ranges of autonomy available on the market
-alread, from just having a motor so that no pushing from the golfer is required,
-to being able to automatically following the golfer. There is currently no
-product available that requires no operation from the golfer after the power up
-phase. The currently available models that can follow the golfer would follow
-them into a bunker, onto the green, or onto water if not prevented by a remote
-control operated by the golfer.
+The main objective of the project was to design a smart and autonomous golf
+caddy. A golf caddy is a person that carries a player’s golf bag and clubs and
+gives the player advice and moral support. Our project consists in designing an
+electronic trolley that can perform to its best the caddie’s job and help
+players improve their golf game without having to pay a second person for their
+service. This means being able to follow the player and suggest the optimal golf
+club to choose in each shot. Although this idea has long been invented, we are
+aiming to produce a prototype of a product that could stand out in the market.
+Our competitive advantage over our rivals is our club release mechanism, which
+releases the suggested club when needed and the fact that the caddy will not
+follow the user if he or she enters the green or a hazard.
 
-Currently it is against golf association rules for any tools which indicate
-which club should be used to be employed by golfers. Our sponsor James Siabati
-indicates that this may change in the near future, so including this ability in
-our autonomous AGC is a good decision.
-\section{Project Aim and Objectives}
-\section{Design Criteria}
+The improvement of the existing idea was proposed by James Siabi to our primary
+supervisor Dr Mohamed Moshrefi-Torbati. James is our industrial supervisor who
+after many years of playing golf and experiencing electronic golf trolleys,
+found the gap in the market. Due to our lack of resources and time, the final
+product consists in a prototype that will not be ready to commercialise but to
+prove the possibility of a future commercialization.
+
+\section{Design Brief}
+\subsection{Project Aims}
+At the beginning of the academic year the group decided on a set of aims to
+achieve by the end of the project:
+
+\begin{itemize}
+    \item   Autonomously follow golfer
+    \item   Automatically avoid hazard areas 
+    \item   Suggest optimal club choice
+    \item   Incorporate a mechanism to release suggested club
+    \item   Incorporate a touchscreen display with a user interface
+\end{itemize}
+
+\subsection{Project objectives}
+The objectives are more specific targets set to achieve the aims. These are:
+\begin{itemize}
+    \item	Enable real time GPS communication between pod and trolley
+    \item	Design an algorithm to avoid obstacles in an efficient way
+    \item	Learn golfer`s tendencies through a machine learning algorithm
+    \item	Develop a light mechanism to release desired golf club
+    \item	Design with Python a graphical user interface
+\end{itemize}
+
 \newpage
 \end{multicols}
 \section{Mechanical Design}
@@ -849,6 +876,18 @@ which is written in Python using the PyBluez library. The GPSs communicate with
 the Raspberry Pis via serial commuication implemented using the Pyserial
 library.
 
+\subsection{GCP Elevation API}
+The elevation is needed because the height difference in golf shots is relevant
+to decide the optimal club choice. Hence, the first idea was to use a Google
+Cloud Platform (GCP) elevation application programming interface (API). The
+platform allows a free trial period and after this the price per 1000 request is
+of 4-5 USD. 
+
+Having the location of the pod, which will be carried by the user, and the
+location of the hole in the golf course, the height difference can be known by
+transforming the location into latitude and longitude coordinates.
+
+
 \subsection{GUI}
 \subsubsection{Course Map}
 The course map was implemented on the GUI using the map system that was used on
@@ -859,6 +898,19 @@ coordinates or in screen coordinates. This shortfall makes it impossible to give
 the golfer the ability to click a point on the map and see how far away it is
 from the AGC, using the simulator map allows us to add that feature.
 
+\section{Machine Learning}
+The AGC will have the option to enable optimal club choice predictions if the
+user desires it. This option is placed on the AGC because current golf
+regulations outside the United States do not permit the use of software to help
+the golfer.
+
+To determine the appropriate machine learning algorithm we first look at the
+type of data we have. The AGC will collect both input and output data. Input
+data will be mainly personal information from the user and type of club chosen
+while output data will be the result of those chosen parameters. Hence, the
+model uses supervised learning. From supervised learning we can do a regression
+or classification model. The latter one is most suitable because we are
+predicting labels and not quantities.
 
 
 \section{Electronics}
@@ -915,6 +967,22 @@ According to their datasheet the EMG49 motors can provided a loaded rpm of 122
 and a torque of 1.56, close to our requirements set out above. As the torque is
 slightly lower than calulated, the AGC will accelerate slightly to top speed on
 a $10^\circ$ incline in slightly over five seconds.
+
+\subsection{Power Supply}
+The power for the trolley will be supplied by a 12v XXXXmAh LiPo battery. The
+battery will be splitting 12v to the stepper and DC motors and 5v to the
+microcontroller. Hence, the need of a 5v voltage regulator, provided by the
+university, between the raspberry pi and the battery. The battery was supplied
+by our project sponsor for free, so it is not included in the budget. The
+battery output connector was cut and the copper wires were introduced into a
+2-pin screw terminal with an insulated and heat-shrinked plastic tube.
+
+
+\subsection{Touchscreen Display}
+The touchscreen used is a 5 inch DSI capacitive touch display. It was chosen
+because of its simple connection to the raspberry pi, which only consist of a
+ribbon, and its affordable offer. It also brings mounting holes and screws to
+fit it in a case as we have done in the AGC shown in fig X. 
 
 \newpage
 \nocite{*}
