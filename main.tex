@@ -96,6 +96,155 @@ The final design of the AGC is shown in Fig. (\ref{fig:complete_design}).
 
 \newpage
 \begin{multicols}{3}
+\subsection{Golf Bag}
+The golf bag is one of the crucial parts of the project as it holds the release
+mechanism of the golf club and the essential electronics. An old golf bag had
+been modified as manufacturing a new golf bag is unrealistic. The old golf bag
+had been dismantled to accommodate the release mechanism, compartment such as
+electrical base and mechanical base had been implemented to ensure the mechanism
+isn't disturbed by the electrical system. 
+
+\paragraph{Golf Bag Infrastructure}
+The whole bag had 3 different parts, the top base of the golf bag, the
+mechanical compartment and the electrical compartment as shown in Fig. (\ref{fig:golf_bag}). The top base of the golf bag is used as a support and segregation
+compartment for the golf clubs. The mechanical compartment consists of the motor
+compartment and the release mechanism. The motor compartment is placed in
+between of two support to ensure the motor keep in place during operation. The
+release mechanism is on top of the motor compartment. It had a support base to
+ensure the tube and the release mechanism stay aligned. All the electronics and
+the cabling are placed in the electrical compartment to ensure the cabling do
+not disturb the mechanical system and also for the ease on waterproofing all the
+electronics.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.3\textwidth]{Golfbag.png}
+        \captionof{figure}{Infrastructure of Golf Bag}
+        \label{fig:golf_bag}
+    \end{center}
+\end{figure}
+
+\paragraph{Top Part of Golf Bag}
+The initial top part had been removed due to unfriendly design; the initial top
+part had uneven spacing for all the holes. By removing the initial top part, we
+could fully utilize the available space of the bag. A new design shown in Fig.
+(\ref{fig:top_part}) had been implemented to fit 14 equal size release mechanism
+for the golf club. Each slot had equal spacing and had sufficient space between
+the slots. The new design had been initially laser cut with Plywood. The tube
+fitted the design and are well supported by it. Due to the limitation of the 3D
+printer size (250 x 210 x 210mm), the new design had a dimension of (255 x 230
+x 41 mm). It had been sliced into 4 equal pieces and been sent for 3D printing.
+The 3D printed parts had been assembled together by hot glue and glued on the
+frame of the old golf bag top frame as shown in Fig. (\ref{fig:3d_top})
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.3\textwidth]{Toppart.png}
+        \captionof{figure}{Top part of golf bag}
+        \label{fig:top_part}
+    \end{center}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.3\textwidth]{3Dparts.png}
+        \captionof{figure}{3D printed top part}
+        \label{fig:3d_top}
+    \end{center}
+\end{figure}
+
+The design in Figure 3Dparts.png had been used as the support for the release
+mechanism during testing. Due to the final changes in the of the release
+mechanism. A new top base had been designed to fit the latest release mechanism. 
+
+\paragraph{Extension of Golf Bag}
+The release mechanism used up 150mm of vertical height space of the whole golf
+bag. To prevent the golf club being extended too high in the mid air. The golf
+bag need to be extended to compensate the height used up by the mechanism.
+Therefore, the bag had been extended using rolled metal sheet. The extended
+part is used to fit in the mechanical base and the electrical base. The extended
+part is necessary as the release mechanism require an extra 90mm space.
+Therefore, the bag had been extended by 150mm. 90mm are used for the release
+mechanism, 50mm are used to fit the motor and 10mm are for the electrical base. 
+
+\paragraph{Touchscreen Casing}
+The LCD screen currently do not have any casing and all the electrical parts are
+exposed to the environment. In order to protect the LCD screen from environment
+damage such as rainwater damage and physical debris damage, a LCD screen casing
+had been made which are well compatible with the screen holder. The overall
+casing design are shown in Fig. (\ref{fig:screen_casing}). The casing contains a top casing
+and a bottom casing having the screen in between them.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.3\textwidth]{casing.png}
+        \captionof{figure}{Bottom view of the bottom casing with all the holes}
+        \label{fig:screen_casing}
+    \end{center}
+\end{figure}
+
+\paragraph{Bottom Casing}
+The bottom casing fit the LCD screen perfectly, there is a slot behind to allow
+the electrical ribbon to connect to the caddy. The bottom casing fits perfectly
+with the screen holder. All of the holes on Fig. (\ref{fig:bottom_casing}) will screw
+directly to the LCD screen except for hole A and B. The screw will go through
+the holder and the casing to the LCD screen to ensure the screen and the casing
+hold firmly on the screen holder.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.3\textwidth]{bottomcasing.png}
+        \captionof{figure}{Bottom view of the bottom casing with all the holes}
+        \label{fig:bottom_casing}
+    \end{center}
+\end{figure}
+
+\paragraph{Top Screen}
+The top screen covers the bottom casing edges and also the LCD screen as shown
+in Fig. (\ref{fig:top_casing}). The orange line represents the LCD screen, the yellow
+line represents the bottom casing while the grey line represents the top screen
+casing. There is an empty slot on the top screen to install a screen protector
+on it. The screen protector will be glued on the casing and a layer of resin
+will be added to prevent water intake. The screen protector does not affect the
+touch screen functionality yet it provide rain resistance.
+
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.3\textwidth]{topcasing.png}
+        \captionof{figure}{LCD screen (orange line), bottom casing (yellow line), top casing (grey line)}
+        \label{fig:top_casing}
+    \end{center}
+\end{figure}
+
+\paragraph{Screen Friction Hinge}
+The screen had been installed right below the caddy handle. The location of the
+screen is well placed as it utilizes the abundant space of the caddy, it does
+not affect the folding operation of the caddy. The screen can be folded and
+unfolded by using a friction hinge design as shown in Fig. (\ref{fig:fold}). The
+folding action took place by pushing the hinge 90 degree. The hinge shown in
+Fig. (\ref{fig:hinge}) relies on the friction provided from the bolts and nut. The
+tighter the bolts and nut, the harder to rotate the hinge.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.3\textwidth]{caddy.png}
+        \captionof{figure}{LCD screen fit well without affecting the caddy folding operation}
+        \label{fig:fold}
+    \end{center}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.3\textwidth]{hinge.png}
+        \captionof{figure}{Friction hinge for the LCD screen}
+        \label{fig:hinge}
+    \end{center}
+\end{figure}
+
+
+
+
 \subsection{Club Raising Mechanism}
 One of the key objectives for this project was to design and implement a release
 mechanism that will give a golf club to the user based on its position on the
@@ -471,6 +620,8 @@ all the wheels.
         \label{fig:final_wheels}
     \end{center}
 \end{figure}
+
+
 
 
 \section{Software}
@@ -889,6 +1040,24 @@ transforming the location into latitude and longitude coordinates.
 
 
 \subsection{GUI}
+
+A GUI is developed to ease communication between the golfer and the caddy. We
+installed a screen which is compatible with the Raspberry Pi which acts as the
+brain of the AGC. The screen is intended to show displays of the map and enables
+the golfer to interact with the AGC for the golf selections, i.e. the golfer can
+choose to accept the AGC`s recommended golf club or decline it. The GUI is
+developed using PyQt which is a Python binding of the cross-platform GUI toolkit
+Qt, used as a Python module. 
+
+ 
+
+PyQt is mainly used for creating GUI, developing desktop applications with
+Python. As an initial design implementation, we decided to use PyQt as the GUI
+of the AGC as the screen is able to showcase the GUI as an application through
+the Raspberry Pi. The main reason PyQt is used for this project is due to it
+being open source and provides many classes, methods and widgets. This allows us
+to make a rich app at zero cost.  
+
 \subsubsection{Course Map}
 The course map was implemented on the GUI using the map system that was used on
 the simulator. We attempted to embed a map web app called folium which looks
@@ -897,6 +1066,75 @@ retreive coordinates for a point clicked on the map in real latitude / longitude
 coordinates or in screen coordinates. This shortfall makes it impossible to give
 the golfer the ability to click a point on the map and see how far away it is
 from the AGC, using the simulator map allows us to add that feature.
+
+\section{Course Mapping}
+The coordinates of the golf map is required in order for the AGC to understand
+its movement boundaries on the golf course. The idea is for the AGC to know the
+coordinates of points where it should avoid such as bunkers, lakes and greens
+(hazards) while following the golfer throughout the golf course. The coordinates
+of the hazards are generated through a software called Mission Planner by
+drawing out polygons containing the coordinates of the hazards. Subsequently,
+these coordinates are extracted and converted into longitude and latitudes which
+are then used for the golf mapping.
+
+Mission planner is created by Michael Oborne and has some features that are
+beneficial to this project: 
+
+\begin{itemize}
+    \item Point-and-click waypoint, using Google Maps/Bing/Open street maps 
+    \item Extraction of coordinates polygons as text file enables flexibility on
+    how the data is used 
+\end{itemize}
+
+It is used mostly as a ground control station for Plane, Copter and Rover [2].
+In this project, its usefulness is its point-and-click waypoint feature which
+includes its ability to extract these coordinates. A waypoint is created by
+clicking on the map and a polygon is subsequently created. This polygon would
+have a unique coordinate (longitude and latitude) based on actual satellite
+mapping. The longitude and latitude can be extracted and saved as a text file
+which is the intention of this project enabling the coordinates to be
+implemented in other algorithms, mainly, the golf mapping and the following
+ability of the AGC. 
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.3\textwidth]{Municipal.png}
+        \captionof{figure}{Southampton Municipal Golf Course on Mission Planner}
+        \label{fig:municipal}
+    \end{center}
+\end{figure}
+
+For testing, the Southampton Municipal Golf Course shown in Fig. (\ref{fig:municipal}) is chosen due to
+practical reasons: 
+
+\begin{itemize}
+    \item Closest and most accessible golf course for the team to go for testing
+    which enables frequent testing at a low cost
+    \item Appropriate size of golf course for initial testing which includes a
+    perfect amount of hazards preventing overwhelming obstacles during testing
+    and design 
+\end{itemize}
+
+All the holes and hazards are identified and cross-checked with a golf course
+app, VPAR before drawing out the polygons. The waypoints are then created by
+drawing polygons around a parameter as in Fig. (\ref{fig:poly2}). For increased accuracy, the
+waypoints are drawn as closed as possible to each other as shown in Fig. (\ref{fig:poly1}).
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.3\textwidth]{polygon 2.png}
+        \captionof{figure}{Drawing the polygons to define the waypoints for the hazards}
+        \label{fig:poly2}
+    \end{center}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.3\textwidth]{polygon 1.png}
+        \captionof{figure}{ Increase accuracy of coordinate extraction by having the polygons drawn more closely to each other}
+        \label{fig:poly1}
+    \end{center}
+\end{figure}
 
 \section{Machine Learning}
 The AGC will have the option to enable optimal club choice predictions if the
