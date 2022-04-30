@@ -40,47 +40,157 @@
 \tableofcontents
 \newpage
 \section{Introduction}
-The main objective of the project was to design a smart and autonomous golf
-caddy. A golf caddy is a person that carries a player’s golf bag and clubs and
-gives the player advice and moral support. Our project consists in designing an
-electronic trolley that can perform to its best the caddie’s job and help
-players improve their golf game without having to pay a second person for their
-service. This means being able to follow the player and suggest the optimal golf
-club to choose in each shot. Although this idea has long been invented, we are
-aiming to produce a prototype of a product that could stand out in the market.
-Our competitive advantage over our rivals is our club release mechanism, which
-releases the suggested club when needed and the fact that the caddy will not
-follow the user if he or she enters the green or a hazard.
+In this modern era, mobile robot platforms are not strange concepts and have
+been utilised not only for transportation but also have been diversified in
+other services such as medical, industrial and even sports. Autonomous golf
+caddies are also emerging technologies in the sport; where they provide support
+by carrying their golf clubs and provide useful information such as weather
+forecast and wind trajectory throughout their round of golf. There are typically
+two modes of operation provided by current golf caddies where it can either
+follow the golfer autonomously though some type of tracking sensor is required
+such as a Bluetooth remote control, or through man powered control where the
+golfer would need to manually guide the caddy through the golf course.
+\cite{choi_2020}. These modes are of course
+interchangeable with the transition from manual to autonomous and vice versa
+made via an interaction between the golfer and the caddy. Recent improvements on
+the design concepts of autonomous golf caddies on the market have been made
+especially on the autonomous following. The M5 GPD DHC Trolley for instance,
+features a rechargeable lithium battery and secure Bluetooth connectivity remote
+control that enables the caddy to follow the golfer independently as long as the
+remote control is on-person and within 50 meters of the caddy \cite{golf_2022}.
 
-The improvement of the existing idea was proposed by James Siabi to our primary
-supervisor Dr Mohamed Moshrefi-Torbati. James is our industrial supervisor who
-after many years of playing golf and experiencing electronic golf trolleys,
-found the gap in the market. Due to our lack of resources and time, the final
-product consists in a prototype that will not be ready to commercialise but to
-prove the possibility of a future commercialization.
+However, such high-end technology leads to the product being very expensive
+where this particular product cost £950 thus not being accessible to the general
+public. In addition, the caddy although can be independent, would need some
+guidance as to where it should go considering that the golf course is full of
+hazards such as bunkers and lakes. Besides that, though current technologies are
+good and helps the golfer in ways as previously mention, there is a lot of
+potential in improving the caddy. Experienced golfers would have better
+understanding of their rounds and would have better intuitions to make decisions
+on which golf clubs that would be best used for the current round. However,
+beginner golfers do not have that luxury and there is potential there to have
+the caddy aid them in making decisions based on computational analysis of their
+rounds, weather forecast and wind trajectory. 
 
-\section{Design Brief}
-\subsection{Project Aims}
-At the beginning of the academic year the group decided on a set of aims to
-achieve by the end of the project:
+Improvements can be made to the current autonomous golf caddies so that it would
+be more affordable and accessible to the general public while aiding current
+golfers with their performance and encourage new talents to the sport. This
+project considers the design, manufacture and test of a prototype
+Autonomous Golf Caddy (AGC), that emphasise on these improvements while
+maintaining the architecture and integrity of current golf caddies following the
+required rules and regulations. Although current regulations do not permit
+computer aids for professional games as this would be an unfair advantage, the
+improvements on the information feature could be used during casual games and
+training so that golfers could analyse their performance by comparing it to
+computational analysis of their games, weather forecast and wind trajectory.  
 
+\subsection{Aims}
+The idea of this project was proposed by our client, an avid golfer who wishes
+to improve his game of golf and commercialising a new product to the market
+targeting new talents in golf. Based on the clients requirements and considering
+the requirements of the GDP, the team has set a list of aims prior to the start
+of the Group Design Project, aligning both stakeholder's requirements, to
+achieve at the end of the project: 
 \begin{itemize}
-    \item   Autonomously follow golfer
-    \item   Automatically avoid hazard areas 
-    \item   Suggest optimal club choice
-    \item   Incorporate a mechanism to release suggested club
-    \item   Incorporate a touchscreen display with a user interface
+    \item Develop a prototype of a smart autonomous golf caddy within the budget
+    provided by the university that is able to follow the golfer around the golf
+    course while avoiding unallowed locations such as the greens, bunkers and
+    waters. 
+    \item Design the caddy that could offer golf clubs to the golfer according
+    to the golfer`s needs 
 \end{itemize}
 
-\subsection{Project objectives}
-The objectives are more specific targets set to achieve the aims. These are:
+\subsection{Objectives}
+After understanding the ideas proposed by our client, the team has identified
+several objectives that needs to be fulfilled in order to achieve the aims of
+this project: 
 \begin{itemize}
-    \item	Enable real time GPS communication between pod and trolley
-    \item	Design an algorithm to avoid obstacles in an efficient way
-    \item	Learn golfer`s tendencies through a machine learning algorithm
-    \item	Develop a light mechanism to release desired golf club
-    \item	Design with Python a graphical user interface
+    \item Design and implement a system that allows autonomous tracking between
+    a golfer and the caddy 
+    \item Develop and implement machine learning algorithm into the caddy that
+    will be used to record data from the golfer’s performance 
+    \item Design and implement a system that will give out the optimum golf club
+    needed for the next shot based on the computer aided algorithm 
+    \item Design and develop a User-Interface system where the golfer is able to
+    communicate with the caddy of their needs 
 \end{itemize}
+
+\subsection{Resources}
+The team was allocated the baseline budget from the university of £850 and was
+also supported by our client where the team is provided with golf equipment to
+design the golf caddy and conduct testing. A full break down of the project our
+fundings can be seen in Table X. 
+
+\subsection{Team Roles and Work Breakdown}
+The team was structured and organised in a way that everyone`s skills and
+experiences on similar works that could make the best out of this project. The
+team`s breakdown of roles can be seen in Table X 
+
+\subsection{Ethical and Sustainability Considerations}
+The aim of the project is to design and test the prototype to improve the caddy
+by implementing new features to aid a golfer’s performance at an affordable
+commercial price. An ethical concern pertains to whether or not the caddy is
+follow the rules and regulations of standard golf. Although the implementation
+of the machine learning algorithm is not allowed as this would be an unfair
+advantage in a professional game, the intention of this feature is focused on
+training and encouraging new talents that are keen in joining the sport. Other
+than that, all of designs and implementations are acceptable within the rules
+and regulations. In terms of sustainability, the usage of a rechargeable lithium
+battery encourages greener alternative to energy consumption. Besides that, the
+design of the caddy follows standards of current products on the market with
+slight adjustments in the dimensions which does not have any significant impact
+to the golfer, people around and its surrounding. Since the implementations of
+the design and systems are on an existing caddy, this have saved the team a lot
+of material resources and cost.  
+
+\subsection{Design Process}
+The smart autonomous golf caddy consists of many sub-systems thus requires a
+structured and clear design process in order to be successful. The design
+process covers all the stages of the design and manufacturing process that the
+team followed in order to achieve a reliable and high-quality prototype. 
+
+All components of the caddy including its systems were interconnected thus a
+design process flowchart as seen in Figure X, was done to ensure all the design
+process was clear and done properly to obtain the best result for the project.
+The design process follows a 5 stage approach. The first stage consist of
+defining the problem, brainstorming possible solutions and exploring new
+concepts and possibilities for the design of the project. It was important for
+the team to cater to the requirements of the client without going astray of the
+requirements of the GDP. Initially, the request was to design and develop a
+fully functional smart autonomous golf caddy that was commercialisable. However,
+this was not possible considering the time and budget allocated for this project
+by the GDP stakeholders thus the team proposed to design and develop a
+functioning prototype that could be further improved in the future. Next, the
+team identified the design specifications of the standard caddy, research and
+explore new features and concepts, and subsequently evaluated and compared the
+ideas with current products available on the market. 
+
+The second stage was to select an approach and develop a design proposal. This
+stage consist of the team working on their roles, introduce the concepts to the
+team and client. Approaches that did not meet the requirements were rejected and
+the design proposal were refined during discussions. It was also important to
+the team that the client were presented with all the information and ideas in
+order to meet the client’s requirements. It was also found very insightful and
+helpful as the client gave feedback and new ideas to consider. 
+
+The third stage was simulation and prototyping. The algorithms and codes for the
+machine learning and golf caddy following were develop and simulated. Based on
+the design specifications, the mechanical designs, motor controls and
+electronics were tested. All components of the project were simulated or tested
+individually to ensure that individual part problems were reduced to a minimum
+before assembly. This process was important to mitigate any risk that could be
+hazardous to the team and everyone involved during the prototyping process and
+increase the efficiency of using the budget to avoid wastage. 
+
+The fourth stage is assembly and testing. After assembling all individual
+components to make the prototype caddy, testing was conducted at Southampton
+Municipal Golf Course. The testing involved the client, as an experienced
+golfer, to observe and analyse the functioning of the prototype caddy in a real
+golf course setting. The fifth and final stage is to identify further
+improvement that could be made to the design. In the case of this project, this
+could mean developing and improving the design to commercialising standards
+given the necessary time and funding. 
+
 
 \newpage
 \end{multicols}
@@ -153,7 +263,7 @@ frame of the old golf bag top frame as shown in Fig. (\ref{fig:3d_top})
     \end{center}
 \end{figure}
 
-The design in Figure 3Dparts.png had been used as the support for the release
+The design in Fig. (\ref{fig:3d_top}) had been used as the support for the release
 mechanism during testing. Due to the final changes in the of the release
 mechanism. A new top base had been designed to fit the latest release mechanism. 
 
