@@ -199,7 +199,7 @@ given the necessary time and funding.
 
     \newpage
     
-    \section{Mechanical Design}
+\section{Mechanical Design}
     In this section, several mechanical components that were designed,
     manufactured and implemented are discussed. However, considering the the
     grandscale of things, this project only places its proposed design in the
@@ -1504,16 +1504,27 @@ predicting labels and not quantities.
 
 \section{Electronics}
 \label{electronics}
-\subsection{Motors}
-The motors we decided to use for our prototype version are the EMG30 motors
-because we already have them and this will save cost. However, they are
-underpowered as they will take too long to accelerate the AGC to full speed, and
-won't work at on anything more than a slight incline; for a final version the
-EMG49 motors should be used. We chose these motors by considering the top speed
-we wish the AGC to able to go, and how fast we want it to accelerate to that
-speed on a $10^\circ$ incline. The calculations shown below in Fig.
-(\ref{fig:motor_calcs}) show how we calculated the necessary toruqe and rpm we
-require from our motors.
+\subsection{AGC On Board Electronics}
+The trolley will be having a raspberry pi as a microcontroller, two EMG49
+motors, an MD49 motor driver, three stepper motors with three A4988 stepper
+drivers, a GPS module, a 24v battery and a touchscreen display.
+
+\subsubsection{Processing Unit}
+For the trolley microcontroller, the Raspberry Pi 4B with 4 GB of RAM will be
+used. Other affordable alternatives of microcontrollers are Arduino boards.
+However, the Raspberry Pi is chosen because of its superiority in processing
+power, its easy compatibility with touchscreen displays and in-built Wi-Fi
+module allowing us to work with an APIs and remote access the system. The
+microcontroller will also have a set of heat sinks plus a fan that will avoid
+any overheating problems.
+
+
+\subsubsection{Motors}
+We chose to use the EMG49 motors for our prototype. We chose these motors by
+considering the top speed we wish the AGC to able to go, and how fast we want it
+to accelerate to that speed on a $10^\circ$ incline. The calculations shown
+below in Fig. (\ref{fig:motor_calcs}) show how we calculated the necessary
+toruqe and rpm we require from our motors.
 
 \begin{figure}[H]
     \begin{mdframed}
@@ -1554,21 +1565,151 @@ and a torque of 1.56, close to our requirements set out above. As the torque is
 slightly lower than calulated, the AGC will accelerate slightly to top speed on
 a $10^\circ$ incline in slightly over five seconds.
 
-\subsection{Power Supply}
-The power for the trolley will be supplied by a 12v XXXXmAh LiPo battery. The
-battery will be splitting 12v to the stepper and DC motors and 5v to the
-microcontroller. Hence, the need of a 5v voltage regulator, provided by the
-university, between the raspberry pi and the battery. The battery was supplied
-by our project sponsor for free, so it is not included in the budget. The
-battery output connector was cut and the copper wires were introduced into a
-2-pin screw terminal with an insulated and heat-shrinked plastic tube.
+Shown in Fig. (\ref{fig{emg49}}), is a 24v motor fully equipped with
+encoders and a 49:1 reduction gearbox. It is ideal for medium to large robotic
+applications, providing cost effective drive and feedback for the user. It also
+includes a standard noise suppression capacitor across the motor windings
+\cite{emg49data}.
+\begin{figure}[H]
+    \begin{center}
+    \includegraphics[]{emg49.png}
+    \label{fig:emg49}
+    \end{center}
+\end{figure}
+
+\subsubsection{MD49 Motor Controller}
+The MD49 motor driver, as shown in Fig. (\ref{fig:electrical_schematic}), is a
+robust serial dual motor driver, designed for use with the EMG49 motors. Its
+main features are \cite{md49data}:
+
+\begin{itemize}
+    \item Reads motors encoders and provides counts for determining distance traveled and direction of rotation.
+    \item Drives two motors with independent or combined control. 
+    \item Motor current is readable.
+    \item Only 24v is required to power the module.
+    \item Variable acceleration and power regulation also included
+    \item Protection against short circuit and incorrect voltage. 
+    \item An error byte can be read to aid troubleshooting.
+\end{itemize}
+
+\subsubsection{Stepper Motors}
+The release mechanism requires a low RPM and high torque (minimum of 0.13 Nm)
+motor to push harder from rest. DC motors tend to have a more sustained output
+but less are harder to initialise. Hence, the decision to use stepper motors.
+The ones used and shown in Fig. (\ref{fig:electrical_schematic}) are the NEMA 17
+stepper motors. They have a maximum holding torque of 0.53 Nm, a rated voltage
+of 12-24V and require 1.5A per phase so 3A per motor. 
+
+\subsubsection{A4988 Stepper Motor Driver}
+The A4988, shown in Fig. (\ref{fig:stepper_driver}), is a high-performance
+stepper motor driver that allows an easy control of one bipolar stepper motor up
+to 2A output current per coil. It comes with a heatsink as it can potentially
+reach 150$^{\circ}$ \cite{stepper_driver}.
+Its operating voltage lies in the range of 8 to 35V. According to the driver
+specification, the stepper motor supply requires a 100µF decoupling capacitor
+close to the driver to sustain 4A. This capacitor is shown in Fig.
+(\ref{fig:electrical_schematic}).
+
+\begin{figure}[H]
+    \begin{center}
+    \includegraphics[]{stepper_driver.jpg}
+    \captionof{figure}{A4988 Stepper Motor Driver}
+    \label{fig:stepper_driver}
+    \end{center}
+\end{figure}
+
+\subsubsection{GPS Module}
+The GPS module called NEO-6M shown in DOFIG [picture of gps module] can sense
+locations through the whole world by tracking 22 satellites. It takes 27 seconds
+to start accurately, provides GPS data in the form of NMEA sentences, and
+requires very little power with only 3.3V at 45mA necessary \cite{neo_gps}.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[]{gps_module.png}
+        \captionof{figure}{GPS Module}
+        \label{fig:gps_module}
+    \end{center}
+\end{figure}
 
 
-\subsection{Touchscreen Display}
-The touchscreen used is a 5 inch DSI capacitive touch display. It was chosen
-because of its simple connection to the raspberry pi, which only consist of a
-ribbon, and its affordable offer. It also brings mounting holes and screws to
-fit it in a case as we have done in the AGC shown in fig X. 
+\subsubsection{Power Supply}
+The power for the trolley will be supplied by four packs filled with eight AA
+1.5V 3Ah batteries. The configuration consists in two pairs of packs in
+parallel, resulting in a final configuration of 16s2p of AA cells. This is shown
+is DOFIG [electrical schematic diagram]. As a result, the total supply of
+voltage is of 24V with a capacity of 6Ah. Initially, the trolley had EMG30
+motors rated at 12V and powered by a 12V 16Ah lithium battery inherited from the
+supplied trolley. However, the late upgrade in DC motors forced the group to
+change the battery to meet the required 24V the new motors needed. Lacking in
+budget, the only alternative was to use 32 AA batteries. During testing we found
+that this configuratin was unable to supply enough current to the motors,
+resulting in the motors unable to run at maximum speed. As out goal was simply
+to demonstrate the AGC abilities, it was not necessary for the AGC to operate at
+maximum speed, and were a final product to be manufactured then a more
+appropriate solution to power the system will be required.
+
+As shown in Fig. (\ref{fig:electrical_schematic}), the first components after
+the battery are a 5A fuse and a switch to turn on/off the whole trolley. These
+are wires were soldered directly without a base, so an insulated rubber has been
+heat-shrinked to avoid short circuits. After this, a stripboard with a 5V and 5A
+voltage regulator, shown in Fig. (\ref{fig:voltage_regulator}),
+reduces the voltage to 5V. These 5V power the raspberry pi, the GPS module, the
+3 A4988 Vcc logic input and the touchscreen. The stepper and DC motors are
+powered with 24V so do not need a regulated voltage. 
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[]{voltage_regulator}
+        \captionof{figure}{Voltage Regulator}
+        \label{fig:voltage_regulator}
+        \end{center}
+\end{figure}
+
+\subsubsection{Touchscreen Display}
+The touchscreen used is a 5-inch DSI capacitive touch display. It was chosen
+because of its convenient connection to the raspberry pi, which only consist of
+a ribbon, and its affordable price. It also brings mounting holes and screws to
+fit it in a case as we have done in the AGC shown in DOFIG [a picture from Erwins
+section, if possible, showing how the screen fits the case]. 
+
+\subsection{Pod Electronics}
+The pod, which is used to make the trolley follow the user via GPS, contains
+another Raspberry Pi and a GPS module with a 9V battery.
+\subsubsection{Microcontroller}
+Again, a Raspberry Pi 4B (RP4B) will be used as a microcontroller thanks to its
+in-built Bluetooth module which easily allows a connection between two raspberry
+pi’s within a range of 240m, allowing the user to separate from the caddie no
+more than this distance \cite{raspi}.
+The size of the pod can be decreased by using a Raspberry Pi Zero as a
+microcontroller instead of the RP4B. This is because the Zero version is much
+smaller, has the same built-in Bluetooth and Wi-fi range connection and consumes
+only 120mA on idle compared to a higher 540mA for the RP4B. As a result, a
+smaller battery would be required, decreasing the overall size, and improving
+the customer experience since the smaller and more versatile the pod is, the
+more comfortable it will be to keep it in the pocket or other place. However,
+due to the worldwide microprocessor manufacturing shortage, there has not been
+any available stock for a long time, hence, the use of the groups owns Raspberry
+Pis. 
+
+\subsubsection{Power Supply}
+The power of the pod is supplied by a 9V 0.4Ah battery. It also contains a
+switch to turn on/off the whole pod.
+
+\end{multicols}
+
+\begin{figure}
+    \begin{center}
+    \includegraphics[width=0.8\textwidth]{electrical_schematic.png}
+    \captionof{figure}{Electrical Schematic}
+    \label{fig:electrical_schematic}
+    \end{center}
+\end{figure}
+
+\begin{multicols}{3}
+
+some stuff here
+
 
 \newpage
 \nocite{*}
