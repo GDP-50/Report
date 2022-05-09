@@ -1708,14 +1708,740 @@ switch to turn on/off the whole pod.
 
 \begin{multicols}{3}
 
-some stuff here
+\section{Optimal Club Prediction}
+One of the main aspects of the project that involved innovation consisted in
+building a release mechanism that could offer a single golf club to the player
+that would stand out from the rest due to its height difference in the golf bag.
+Hence, an algorithm that would suggest for every shot the best club had to be
+created. A golf game only allows fourteen golf clubs to be used and a single
+club per shot. The selection of the golf club depends on the specific
+circumstances to each shot.
 
+The AGC will have the option to enable the optimal club choice predictions if
+the user desires it. This option is placed on the AGC because current golf
+regulations outside the United States do not permit the use of software to help
+the golfer.
+
+\subsection{Big Data against simulation and empirical data}
+At the first project stages, it was assumed the data to train the algorithm
+could exist online for free. However, only paid database that contained the name
+and location of all golf courses throughout the world exists. As little as this
+database would still help to gather data, it was still not worth buying it due
+to the high price and irrelevancy to improve a golf club recommendation
+algorithm.
+
+Hence, the group was left with 3 remaining options. The first option consists in
+creating a very realistic simulation that emulates a golf shot while considering
+as many variables as possible. The second option consists in having all the team
+members to meet in a golf course and simply play the sport while gathering as
+much data as possible. Lastly, the third option consist in creating a synthetic
+database. Synthetic data is annotated information that computer simulations or
+algorithms generate as an alternative to real-world data. The group would create
+the data by researching and doing educated guesses to create relationships
+between variables that approximate to the ones in real life as much as possible.
+
+To create a real-life simulation, the physical interactions between all possible
+variables, most importantly, the material interaction between the club and the
+ball, would have to be considered. Other interactions to simulate would be how
+wind direction; wind speed and air temperature change the golfs ball trajectory
+by acting on its drag. Furthermore, the force magnitude used to hit the golf
+ball by a person based on their age and gender would also have to be known,
+hence complicating the task even more. This simulation could be done by using
+mathematical equations and performing numerical methods to solve each equation.
+However, the result of this idea would lead to an everlasting program that could
+never be perfect due to the mathematical models always being approximations to
+the real world. More importantly, the computational power and knowledge required
+to build such simulation is far out of the scope of this project. 
+
+On the other hand, using empirical data collected by us playing actual golf in a
+course would make the data as realistic as it can get. However, two main
+inconveniences stopped us from performing it. First, all the team members from
+this GDP fit into the same demographic, gender, and experience with golf. Hence,
+the collected data would have been too skewed against our averages making the
+extrapolation inaccurate. Secondly, even if the groups gender, age, and golf
+experience was more distributed, each member would have to pay to play in the
+golf course, increasing the budget of the project.
+
+As result of both options not being viable for this project, the group went on
+to build a synthetic database since it is the most practical option considering
+the resources available.
+
+\subsection{Dataset generation}
+A synthetic database was created with Python since it has very easy modules to
+handle data. The resulting database consist of thirty-three thousand rows and
+eighteen columns. Table (\ref{tab:guillermo_t3}) shows six randomly selected rows from the entire
+database with their respective values and columns.
+
+\subsection{Input Data}
+The input data will be the data used to train the model. Machine learning models
+are only as good as the data you use to train the model, hence the more data and
+the more accurate the better for the model. This is the reason the synthetic
+database must be carefully created, so that the AGC suggests for each shot the
+correct golf club eventually satisfying the customer and being able to replace a
+caddie.
+
+A list taken from the most frequent male and female English names in the UK was
+taken to create over more than 200 fake identities with their respective gender;
+random age within a sensible range of 10 to 75 years old; a random skill level,
+where the options can be beginner, average, good and excellent. As much as the
+model would improve by asking even more personal information such as the diet
+the user has, number of sleeping hours, heart rate and years of golf training, a
+point will be reach were the user becomes dissatisfies by the amount data he has
+to manually fill into the GUI or reject to fill the information as it is
+personal and private. Therefore, the gathering of personal data has been limited
+to only the basics.
+
+After the 200 identities have been created, a double for loop is used to iterate
+through all the possible golf club types and choose the number of times a person
+shot a ball with each different club. Assuming ten shots per type of club, it
+leads to a total of approximately thirty thousand different shots with each one
+being very likely to be unique. 
+
+Column number five specifies the handicap of each identity. This has been
+calculated by considering the gender, whether the user is over 19 years old and
+its skill level. Each possible combination of these three parameters will have a
+random number extracted from different normal distributions where each
+distribution has an average taken from external sources and an educated guessed
+standard deviation. From Lawrence \cite{golf_charts} two tables were imported to
+help the database approximate to reality even more. The two tables, one for male
+and another for female, consisted in the average distance a golfer hits a golf
+ball depending on a variety of sixteen clubs with different loft angles and four
+levels of skill. This can be shown in Table (\ref{tab:guillermo_t1}). By
+allocating each identity to its respective cell in Table
+(\ref{tab:tab:guillermo_t1}), where gender and type of club chosen should match,
+a random number from a normal distribution can be chosen. The normal
+distributions mean is the average distance each identity fits according to their
+gender and club, and the standard deviation is the average between the upper and
+lower cell difference to the centre cell. 
+
+In addition to the linear distance, an actual distance was also incorporated
+into the database shown by column seven in Table (\ref{tab:guillermo_t3}). In
+golf, although a player may know the exact distance, he wants to hit the ball,
+the actual distance ends up being different depending on many parameters. To
+artificially simulate how these parameters affect the ball trajectory, a
+function was developed which considers the linear distance, the mean and
+standard deviation of each identity and club, the wind speed, the temperature,
+the elevation above sea level of the golf course and the height difference
+between the player and its aimed location to hit the ball. Firstly, the better
+the skill level of the identity, the lower the coefficient that multiplies the
+standard deviation meaning that better players will show a lower range of values
+than the others. This is shown in Fig. (\ref{fig:distribution}), where the
+standard deviation of each normal distribution is seen to decrease as the player
+has higher skill level. The wind speed is also multiplied to the standard
+deviation, so that the higher the wind speed, the higher the possibility of the
+balls trajectory ending up further than expected. Moreover, according to a study
+by Trackman, a company specialising in golf simulation, atmospheric conditions
+affect the actual distance in the following ways; for every ten degree decrease
+in temperature, the ball will be carried 2.5 yards shorter and for every 1000
+feet increase above sea level, the ball will be carried an extra 4.5 yards.
+Furthermore, the elevation difference between the player position to the aimed
+location is also considered for the actual distance. This time, the elevation is
+added to the actual distance, so if there if the desired location is 4 meters
+above the players location, the actual distance will be 4 meters shorter DOREF
+INTERVIEW. All of these relationships have been use to simulate the actual
+distance each identity would hit. Fig. (\ref{fig:distribution}) shows the actual
+distance and compares it to the linear distance. 
+
+As a result of the actual distance being approximating more to real life
+conditions, another column was created in the database which corrects the club
+that the user should have taken had he not considered only the distance. 
+
+Moreover, the variables wind speed and golf course elevation are random numbers
+extracted from a gamma distribution with sensible means and standard deviation
+to increase the realism in the synthetic database, since both continuous
+variables follow this distribution in the real world \cite{wind_dist}. 
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[]{distribution.png}
+        \captionof{figure}{Frequency of shot distance with driver for adult males at different levels}
+        \label{fig:distribution}
+    \end{center}
+\end{figure}
+
+\subsection{Output Metrics}
+The main aim of the AGC is to essentially behave as close as possible to a
+real-life caddie. This means helping the user improve its game while also
+carrying its golf bag and extra equipment. As a result, the AGC should be able
+to offer data analytics for each username. These analytics should provide useful
+insights that allows the player to leverage them and improve its golf
+statistics. Furthermore, with the ever-increasing sport analytics market,
+projected to be valued at USD 5.11 billion by 2026,
+more and more users will be demanding this characteristic in the AGC \cite{analytics}. 
+
+In table[3], it can be seen two variables in the unit degrees called aimed
+direction and wind direction. Since both are bearings, the nearest angle between
+both has been calculated and created a third and fourth variable called angle of
+deviation and tendency. Angle of deviation describes the difference in angle to
+which the balls trajectory differs from the required path and tendency shows in
+words where the ball landed relative to the aimed direction. From this data, the
+performance of a player to deliver the ball where he aims can be assessed by
+creating a scatter plot with polar coordinates where $\theta$ is the angle of
+deviation and radius, $r$, is the missed distance. Together, the AGC can make the
+user visualize via the screen this plot and find hidden patterns. For example, a
+player may have tendency to hit the ball to the left side in certain holes of
+the golf course. 
+
+\subsection{Prediction Algorithm}
+\subsubsection{Introduction}
+Predictive modelling can be described as the mathematical problem of
+approximating a mapping function, $f(x)$ from input variables $x$ to output
+variables, $y$, to find the function approximation given the time and resources
+available. For the AGC model, the input variables are all of the columns from
+Table (\ref{tab:guillermo_t3}) except `actual club' and y is the actual club
+variable \cite{classvsreg}.
+
+To select the optimal algorithm to predict the optimal club choice, a series of
+characteristics from the synthetic data set must be considered. First, identify
+whether the training dataset has labelled data. Labelled data is a designation
+for pieces of data that have been tagged with one or more labels identifying
+certain properties or characteristics \cite{labeled_data}. Machine learning
+algorithms can be classified into supervised and unsupervised. If the data is
+labelled, which is the case for the synthetic database, the selected algorithm
+must be of the type supervised. The reason it is called supervised learning is
+because at least part the approach requires human oversight. On the other hand,
+unsupervised learning trains models with raw and unlabelled data to cluster and
+analyse datasets. 
+
+Supervised machine learning is used to classify unseen data into establish
+categories and forecast trends and future change as a predictive model. It will
+learn to recognise object and the features that classify them by learning
+patterns between input and output data \cite{seldon}. The two
+types of supervised models are classification and regression. 
+
+\subsubsection{Classification or Regression}
+Regression models require the prediction of a continuous quantity while
+classification require the prediction of discrete variables. Classification
+models can be divided into binary or multiclass problems, where binary predict
+only a category out of two and multiclass predicts more than one category. The
+AGC model intends to forecast the optimal type of golf club, i.e., sixteen
+different categories, so only multiclass classification algorithms are
+considered. 
+
+However, in some cases, such as the AGC case, classification algorithms can be
+converted to regression problems. As shown in Table (\ref{tab:guillermo_t3}), some data types are in
+the form of words. The data used to train the model has to be numerical. Hence,
+the data must be pre-processed before inputting it. This is done by encoding
+each variable either ordinally, nominally or binary. Ordinal encoding involves
+mapping each unique label to an integer value and will only work if there is a
+known relationship between the categories. For the club choice and skill level
+variables, an ordinal relationship exists because from the lob wedge to the
+driver the average distance increases and from beginner to expert the experience
+also increases. Other word variables such as tendency are nominally encoded
+since no relationship exist between them. Once the categorical data is encoded
+it can be converted to a continuous range. Binary encoding works with the
+variable gender, where male is 1 and female is 0.
+
+As a result, both types of supervised algorithms are tested to compare their
+performance and choose the optimal.
+
+\subsection{Performance Assessment}
+Python programming with the imported module scikit-learn was used to write all
+machine learning algorithms. The synthetic database must first be randomly
+divided into training data and test data. The model will be trained with the
+training data and validate its prediction with the test data. For all the
+algorithms, 10\% is used to test and 90\% to train. After the database has split,
+the model is trained, validated, and finally analysed for its performance.
+
+The process to choose the optimal algorithm consist in testing the most popular
+algorithms and evaluating their performance by comparing the results. Table (\ref{tab:guillermo_t2})
+shows the performance of the tested algorithms. For classifiers, the performance
+is measured by the accuracy score, which computes the ratio between true
+positives and all other predictions. If ${\hat{y}}_i$ is the predicted value of
+the $\mathcal{i}-th$ sample and $y_\mathcal{i}$ is the corresponding true value,
+then the fraction of correct predictions over $n_{samples}$ is defined as shown
+in Eq. (\ref{eq:classifier_accuracy}).
+
+\begin{equation}
+    \textrm{accuracy } (y, \hat{y})=\frac{1}{n_{samples}} \sum_{i=0}^{n_{samples} - 1} 1(\hat{y}_i=y)
+    \label{eq:classifier_accuracy}
+\end{equation}
+
+Where 1(x) is the indicator function \cite{scikit}. For
+regression, performance is measured by computing $R^2$ (coefficient of
+determination), which assesses the ability of a model to predict or explain an
+outcome in the linear regression setting. The best value is 1.0 and it can be
+negative because the model can arbitrarily be worse. If ${\hat{y}}_i$ is the
+predicted value of the $\mathcal{i}-th$ sample and $y_\mathcal{i}$ is the
+corresponding true value for n samples, the estimated $R^2$ is defined as shown in
+Eq. (\ref{eq:regression_accuracy}).
+\begin{equation}
+        R^2(y,\hat{y})=1 - \frac{\sum_{i=1}^{n}(y_i-\hat{y}_i)^2}{\sum_{i=1}^{n}(y_i-\overline{y}_i)^2}
+    \label{eq:regression_accuracy}
+\end{equation}
+
+Where:
+\begin{equation*}
+        \overline{y} = \frac{1}{n}\sum_{i=1}^{n}y_i \textrm{ and } \sum_{i=1}^{n}{y_i - \hat{y}_i} = \sum_{i=1}^{n}\epsilon^2
+\end{equation*}
+
+Also, the MAPE (mean absolute percentage error) is measured for regression. This
+metric computes the absolute error for every prediction and returns its mean. If
+${\hat{y}}_i$ is the predicted value of the $\mathcal{i}-th$ sample and
+$y_\mathcal{i}$ is the corresponding true value, then the mean absolute percentage
+error estimated over $n_{samples}$ is defined shown in Eq. (\ref{eq:mape}).
+
+\begin{equation}
+        MAPE(y,\hat{y})=\frac{1}{n_{samples}}\sum_{i=0}^{n_{samples} - 1}\frac{\left|y_i - \hat{y}_i\right|}{\max(\epsilon,|y_i|)}
+        \label{eq:mape}
+\end{equation}
+
+where $\epsilon$ is an arbitrary small yet strictly positive number to avoid
+undefined results when y is zero
+\cite{scikit}.
+
+Table[2] also shows how much time the algorithm takes to execute. As a result of
+taking all metrics into consideration, and prioritising the accuracy more than
+the execution time, the chosen model is a random forest classifier. It has the
+highest accuracy and although the execution time is of one minute, this does not
+mean the user will have to wait one minute every time he wants to get a
+suggested golf club. Hence, the AGC will recommend the optimal golf club 96% of
+the time as shown in Table (\ref{fig:guillermo_t2}).
+
+\subsection{Future Work}
+Despite the fact the model has great accuracy, in the end, the model will be as
+good as its data. In the future, before commercialising the product, empirical
+data from players with a range of abilities and identities should play with the
+AGC to gather real data and verify the synthetic database precision.
+
+\subsubsection{APIs}
+When in commercialization or in testing stage, the weather and physical
+conditions that exist in the synthetic database will be recorded thanks to two
+APIs (application programming interfaces) that require a hotspot connection from
+the users phone, which the raspberry pi easily allows.
+
+\paragraph{GCP Elevation API} 
+The elevation is needed because the height difference in golf shots is relevant
+to decide the optimal club choice. Hence, the first idea was to use a Google
+Cloud Platform (GCP) elevation application programming interface (API). The
+platform allows a free trial period and after this the price per 1000 request is
+of 4-5 US dollars \cite{google_docs}. 
+
+Having the location of the pod, which will be carried by the user, and the
+location of the hole in the golf course, the height difference can be known by
+transforming the location into latitude and longitude coordinates and requesting
+the call from the API
+
+\paragraph{Openweather API}
+Openweather is another API which enables the limited free access to all the
+atmospheric conditions and more that are relevant to the distance a golf ball
+can travel.
+
+\end{multicols}
+\begin{table}[]
+    \centering
+    \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+        \hline
+                   & Male     &         &        &           & Female   &         &        &           \\ \hline
+    Club           & Beginner & Average & Good   & Excellent & Beginner & Average & Good   & Excellent \\ \hline
+    Driver         & 137.10   & 160     & 182.80 & 210.20    & 173.70   & 201.10  & 228.50 & 255.90    \\ \hline
+    3 Wood         & 114.30   & 137.10  & 164.50 & 192       & 155.40   & 192     & 205.70 & 214.80    \\ \hline
+    5 Wood         & 100.50   & 128     & 160    & 182.80    & 137.10   & 178.20  & 187.40 & 201.10    \\ \hline
+    Hybrid         & 96       & 123.40  & 155.40 & 178.20    & 132.50   & 164.50  & 173.70 & 192       \\ \hline
+    2 Iron         & 96       & 123.40  & 155.40 & 173.70    & 132.50   & 164.50  & 173.70 & 196.50    \\ \hline
+    3 Iron         & 91.40    & 114.30  & 146.30 & 169.10    & 123.40   & 155.40  & 164.50 & 187.40    \\ \hline
+    4 Iron         & 82.30    & 109.70  & 137.10 & 164.50    & 114.30   & 146.30  & 155.40 & 178.20    \\ \hline
+    5 Iron         & 73.10    & 100.50  & 128    & 155.40    & 109.70   & 141.70  & 150.80 & 169.10    \\ \hline
+    6 Iron         & 64       & 91.40   & 118.80 & 146.30    & 105.10   & 132.50  & 146.30 & 160       \\ \hline
+    7 Iron         & 59.40    & 82.30   & 109.70 & 137.10    & 96       & 128     & 137.10 & 150.80    \\ \hline
+    8 Iron         & 54.80    & 73.10   & 100.50 & 128       & 86.80    & 118.80  & 128    & 141.70    \\ \hline
+    9 Iron         & 50.30    & 64      & 86.80  & 118.80    & 73.10    & 105.10  & 114.30 & 132.50    \\ \hline
+    Pitching Wedge & 45.70    & 54.80   & 73.10  & 105.10    & 64       & 91.40   & 100.50 & 123.40    \\ \hline
+    Gap Wedge      & 41.10    & 50.30   & 64     & 86.80     & 54.80    & 82.30   & 91.40  & 114.30    \\ \hline
+    Sand Wedge     & 36.60    & 45.70   & 54.80  & 77.70     & 50.30    & 73.10   & 86.80  & 105.10    \\ \hline
+    Lob Wedge      & 32       & 41.10   & 45.70  & 64        & 36.60    & 54.80   & 73.10  & 96        \\ \hline
+    \end{tabular}%
+    }
+    \captionof{table}{Average shot distance with different clubs for men and women of different skill levels}
+    \label{tab:guillermo_t1}
+\end{table}
+    
+\begin{table}[]
+    \centering
+    \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{lllllllll}
+    Algorithm name &       &       &          &        & Female &        &        &        \\
+    Classifiers          & Accuracy score         &                      & Execution Time (s) & Excellent & Beginner & Average & Good   & Excellent \\
+    KNN            & 0.21  &       & 1.8      & 210.20 & 173.70 & 201.10 & 228.50 & 255.90 \\
+    Decision Tree  & 0.22  &       & 0.04     & 192    & 155.40 & 192    & 205.70 & 214.80 \\
+    Naives Bayes   & 0.23  &       & 0.02     & 182.80 & 137.10 & 178.20 & 187.40 & 201.10 \\
+    Kernel SVM     & N/A   &       & Too long & 178.20 & 132.50 & 164.50 & 173.70 & 192    \\
+    Random forest  & 0.96  &       & 58.8     & 173.70 & 132.50 & 164.50 & 173.70 & 196.50 \\
+                   &       &       &          & 169.10 & 123.40 & 155.40 & 164.50 & 187.40 \\
+    Regression           & \#R\textasciicircum{}2 & R\textasciicircum{}2 & 137.10             & 164.50    & 114.30   & 146.30  & 155.40 & 178.20    \\
+    R\textasciicircum{}2 & 73.10                  & 100.50               & 128                & 155.40    & 109.70   & 141.70  & 150.80 & 169.10    \\
+    6 Iron         & 64    & 91.40 & 118.80   & 146.30 & 105.10 & 132.50 & 146.30 & 160    \\
+    7 Iron         & 59.40 & 82.30 & 109.70   & 137.10 & 96     & 128    & 137.10 & 150.80 \\
+    8 Iron         & 54.80 & 73.10 & 100.50   & 128    & 86.80  & 118.80 & 128    & 141.70 \\
+    9 Iron         & 50.30 & 64    & 86.80    & 118.80 & 73.10  & 105.10 & 114.30 & 132.50 \\
+    Pitching Wedge & 45.70 & 54.80 & 73.10    & 105.10 & 64     & 91.40  & 100.50 & 123.40 \\
+    Gap Wedge      & 41.10 & 50.30 & 64       & 86.80  & 54.80  & 82.30  & 91.40  & 114.30 \\
+    Sand Wedge     & 36.60 & 45.70 & 54.80    & 77.70  & 50.30  & 73.10  & 86.80  & 105.10 \\
+    Lob Wedge      & 32    & 41.10 & 45.70    & 64     & 36.60  & 54.80  & 73.10  & 96    
+    \end{tabular}%
+    }
+    \captionof{table}{Performance of different machine learning algorithms}
+    \label{tab:guillermo_t2}
+\end{table}
+    
+\begin{table}[]
+    \centering
+    \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{lllllllllllllllllll}
+    \multicolumn{1}{c}{} &
+      \multicolumn{1}{c}{username} &
+      \multicolumn{1}{c}{age} &
+      \multicolumn{1}{c}{gender} &
+      \multicolumn{1}{c}{skill\_level} &
+      \multicolumn{1}{c}{handicap} &
+      \multicolumn{1}{c}{linear\_dist} &
+      \multicolumn{1}{c}{actual\_dist} &
+      \multicolumn{1}{c}{missed\_dist} &
+      \multicolumn{1}{c}{club} &
+      \multicolumn{1}{c}{actual\_club} &
+      \multicolumn{1}{c}{aimed\_dir} &
+      \multicolumn{1}{c}{wind\_dir} &
+      \multicolumn{1}{c}{ws} &
+      \multicolumn{1}{c}{angle\_dev} &
+      \multicolumn{1}{c}{tendency} &
+      \multicolumn{1}{c}{temp} &
+      \multicolumn{1}{c}{height\_above\_sea\_level} &
+      \multicolumn{1}{c}{elev\_diff} \\
+    \multicolumn{1}{c}{28,701} &
+      \multicolumn{1}{c}{Kathryn} &
+      \multicolumn{1}{c}{19} &
+      \multicolumn{1}{c}{Female} &
+      \multicolumn{1}{c}{Average} &
+      \multicolumn{1}{c}{21} &
+      \multicolumn{1}{c}{96.90} &
+      \multicolumn{1}{c}{110.70} &
+      \multicolumn{1}{c}{13.80} &
+      \multicolumn{1}{c}{4 Iron} &
+      \multicolumn{1}{c}{6 Iron} &
+      \multicolumn{1}{c}{51} &
+      \multicolumn{1}{c}{191} &
+      \multicolumn{1}{c}{9.40} &
+      \multicolumn{1}{c}{94.10} &
+      \multicolumn{1}{c}{right} &
+      \multicolumn{1}{c}{29.30} &
+      \multicolumn{1}{c}{180.60} &
+      \multicolumn{1}{c}{-10} \\
+    \multicolumn{1}{c}{25,065} &
+      \multicolumn{1}{c}{Heather} &
+      \multicolumn{1}{c}{68} &
+      \multicolumn{1}{c}{Female} &
+      \multicolumn{1}{c}{Excellent} &
+      \multicolumn{1}{c}{2} &
+      \multicolumn{1}{c}{133.60} &
+      \multicolumn{1}{c}{128.30} &
+      \multicolumn{1}{c}{5.30} &
+      \multicolumn{1}{c}{8 Iron} &
+      \multicolumn{1}{c}{8 Iron} &
+      \multicolumn{1}{c}{215} &
+      \multicolumn{1}{c}{136} &
+      \multicolumn{1}{c}{3} &
+      \multicolumn{1}{c}{2.40} &
+      \multicolumn{1}{c}{top} &
+      \multicolumn{1}{c}{5.60} &
+      \multicolumn{1}{c}{356.40} &
+      \multicolumn{1}{c}{-2} \\
+    \multicolumn{1}{c}{11,524} &
+      \multicolumn{1}{c}{Roger} &
+      \multicolumn{1}{c}{51} &
+      \multicolumn{1}{c}{Male} &
+      \multicolumn{1}{c}{Average} &
+      \multicolumn{1}{c}{24} &
+      \multicolumn{1}{c}{203.50} &
+      \multicolumn{1}{c}{231.40} &
+      \multicolumn{1}{c}{27.90} &
+      \multicolumn{1}{c}{Driver} &
+      \multicolumn{1}{c}{Driver} &
+      \multicolumn{1}{c}{77} &
+      \multicolumn{1}{c}{259} &
+      \multicolumn{1}{c}{4.70} &
+      \multicolumn{1}{c}{55.50} &
+      \multicolumn{1}{c}{top right} &
+      \multicolumn{1}{c}{29.70} &
+      \multicolumn{1}{c}{473.10} &
+      \multicolumn{1}{c}{-6} \\
+    \multicolumn{1}{c}{4,838} &
+      \multicolumn{1}{c}{Edward} &
+      \multicolumn{1}{c}{68} &
+      \multicolumn{1}{c}{Male} &
+      \multicolumn{1}{c}{Good} &
+      \multicolumn{1}{c}{12} &
+      \multicolumn{1}{c}{191.10} &
+      \multicolumn{1}{c}{181.70} &
+      \multicolumn{1}{c}{9.40} &
+      \multicolumn{1}{c}{Hybrid} &
+      \multicolumn{1}{c}{5 Wood} &
+      \multicolumn{1}{c}{171} &
+      \multicolumn{1}{c}{206} &
+      \multicolumn{1}{c}{3.10} &
+      \multicolumn{1}{c}{14.90} &
+      \multicolumn{1}{c}{top right} &
+      \multicolumn{1}{c}{27.80} &
+      \multicolumn{1}{c}{435.90} &
+      \multicolumn{1}{c}{8} \\
+    \multicolumn{1}{c}{18,352} &
+      \multicolumn{1}{c}{Sarah} &
+      \multicolumn{1}{c}{44} &
+      \multicolumn{1}{c}{Female} &
+      \multicolumn{1}{c}{Excellent} &
+      \multicolumn{1}{c}{3} &
+      \multicolumn{1}{c}{100.40} &
+      \multicolumn{1}{c}{128.30} &
+      \multicolumn{1}{c}{27.90} &
+      \multicolumn{1}{c}{9 Iron} &
+      \multicolumn{1}{c}{Gap Wedge} &
+      \multicolumn{1}{c}{280} &
+      \multicolumn{1}{c}{96} &
+      \multicolumn{1}{c}{3.90} &
+      \multicolumn{1}{c}{360.60} &
+      \multicolumn{1}{c}{top} &
+      \multicolumn{1}{c}{17.50} &
+      \multicolumn{1}{c}{700.70} &
+      \multicolumn{1}{c}{0} \\
+    \multicolumn{1}{c}{22,344} &
+      \multicolumn{1}{c}{Angela} &
+      \multicolumn{1}{c}{40} &
+      \multicolumn{1}{c}{Female} &
+      \multicolumn{1}{c}{Excellent} &
+      \multicolumn{1}{c}{6} &
+      \multicolumn{1}{c}{138.30} &
+      \multicolumn{1}{c}{140.50} &
+      \multicolumn{1}{c}{2.20} &
+      \multicolumn{1}{c}{8 Iron} &
+      \multicolumn{1}{c}{7 Iron} &
+      \multicolumn{1}{c}{38} &
+      \multicolumn{1}{c}{79} &
+      \multicolumn{1}{c}{3.20} &
+      \multicolumn{1}{c}{305.70} &
+      \multicolumn{1}{c}{top left} &
+      \multicolumn{1}{c}{21.90} &
+      \multicolumn{1}{c}{779.80} &
+      \multicolumn{1}{c}{5} \\
+     &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       \\
+     &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       \\
+     &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       \\
+     &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       \\
+     &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       \\
+     &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       \\
+     &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       \\
+     &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       \\
+     &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       \\
+     &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       \\
+     &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+       &
+      
+    \end{tabular}%
+    }
+    \captionof{table}{Sample sythetic data}
+    \label{tab:guillermo_t3}
+\end{table}
+    
 
 \newpage
 \nocite{*}
 \bibliographystyle{ieeetr}
 \bibliography{./ref}
-\end{multicols}
 
 
 
