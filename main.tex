@@ -16,7 +16,7 @@
 \usepackage{mdframed}
 \usepackage{caption}
 \usepackage{siunitx}
-\geometry{margin=2.5cm}
+\geometry{margin=2cm}
 
 \graphicspath{{./images/}}
 
@@ -38,7 +38,7 @@
 \newpage
 \begin{multicols}{3}
 \tableofcontents
-\newpage
+
 \section{Introduction}
 In this modern era, mobile robot platforms are not strange concepts and have
 been utilised not only for transportation but also have been diversified in
@@ -50,14 +50,14 @@ two modes of operation provided by current golf caddies where it can either
 follow the golfer autonomously though some type of tracking sensor is required
 such as a Bluetooth remote control, or through man powered control where the
 golfer would need to manually guide the caddy through the golf course.
-\cite{choi_2020}. These modes are of course
-interchangeable with the transition from manual to autonomous and vice versa
-made via an interaction between the golfer and the caddy. Recent improvements on
-the design concepts of autonomous golf caddies on the market have been made
-especially on the autonomous following. The M5 GPD DHC Trolley for instance,
-features a rechargeable lithium battery and secure Bluetooth connectivity remote
-control that enables the caddy to follow the golfer independently as long as the
-remote control is on-person and within 50 meters of the caddy \cite{golf_2022}.
+\cite{choi_2020}. These modes are of course interchangeable with the transition
+from manual to autonomous and vice versa made via an interaction between the
+golfer and the caddy. Recent improvements on the design concepts of autonomous
+golf caddies on the market have been made especially on the autonomous
+following. The M5 GPD DHC Trolley for instance, features a rechargeable lithium
+battery and secure Bluetooth connectivity remote control that enables the caddy
+to follow the golfer independently as long as the remote control is on-person
+and within 50 meters of the caddy \cite{golf_2022}.
 
 However, such high-end technology leads to the product being very expensive
 where this particular product cost £950 thus not being accessible to the general
@@ -75,14 +75,14 @@ rounds, weather forecast and wind trajectory.
 Improvements can be made to the current autonomous golf caddies so that it would
 be more affordable and accessible to the general public while aiding current
 golfers with their performance and encourage new talents to the sport. This
-project considers the design, manufacture and test of a prototype
-Autonomous Golf Caddy (AGC), that emphasise on these improvements while
-maintaining the architecture and integrity of current golf caddies following the
-required rules and regulations. Although current regulations do not permit
-computer aids for professional games as this would be an unfair advantage, the
-improvements on the information feature could be used during casual games and
-training so that golfers could analyse their performance by comparing it to
-computational analysis of their games, weather forecast and wind trajectory.  
+project considers the design, manufacture and test of a prototype Autonomous
+Golf Caddy (AGC), that emphasise on these improvements while maintaining the
+architecture and integrity of current golf caddies following the required rules
+and regulations. Although current regulations do not permit computer aids for
+professional games as this would be an unfair advantage, the improvements on the
+information feature could be used during casual games and training so that
+golfers could analyse their performance by comparing it to computational
+analysis of their games, weather forecast and wind trajectory.  
 
 \subsection{Aims}
 The idea of this project was proposed by our client, an avid golfer who wishes
@@ -194,570 +194,812 @@ given the necessary time and funding.
 
 \newpage
 \end{multicols}
-\section{Mechanical Design}
-The final design of the AGC is shown in Fig. (\ref{fig:complete_design}).
-\begin{figure}[H]
+\begin{multicols}{2}
+
+
+    \newpage
+    
+    \section{Mechanical Design}
+    In this section, several mechanical components that were designed,
+    manufactured and implemented are discussed. However, considering the the
+    grandscale of things, this project only places its proposed design in the
+    prototype phase of this novel idea. Therefore, an emphasis was placed on
+    achieving the most effective design that will achieve the objectives set out
+    at the start of this project whilst making best use of the resources
+    available such as manufacturing workshops, material and the inherited
+    components from the golf caddy. 
+    
+    \subsection{Release Mechanism}
+    One of the key objectives for this project was to design and implement a
+    release mechanism that will raise a golf club as a form of suggestion for
+    the golfer’s next shot towards the green, based on a machine learning
+    algorithm. This is a novel idea presented by our project advisor and is one
+    of the many innovative designs that will be implemented in this project.
+    
+    \subsubsection{Design Requirement}
+    Initially, the workspace that will hold such mechanism had to be identified
+    as it will be part of the design requirements before making any prototypes.
+    Three feasible locations were considered which were to either be integrated
+    in the golf bag, to be integrated on the golf caddy such that the golf bag
+    will rest on top of it, or to be in a separate compartment that will need to
+    be attached to the golf bag and golf caddy. The selected option was for the
+    mechanism to be integrated in the golf bag as this reduces the likeliness of
+    errors occurring since the mechanism does not have to be removed and
+    reconnected after every game from the golf bag. The design requirements are
+    listed as follows:
+    
+    
+    \begin{itemize}
+    \item Need to lift at least 10 cm above other golf clubs to make it clear
+    which club is being suggested
+    \item Needs to withstand the weight of the golf club which produces an axial
+    loading
+    \item Needs to be lightweight since the golf bag will be carried by the user
+    before it is mounted on the caddy
+    \item Needs to be a robust design since it will be used multiple times
+    during a game
+    \item Needs to fit inside the designated workspace that is inside the golf
+    bag
+    \end{itemize}
+    
+    \subsubsection{Concept Design}
+    Various mechanism that provides linear translation motion, which are similar
+    to what is desired, were explored. However due to the design requirements,
+    two main concept ideas were considered to be the most suitable and they are
+    shown in Figure \ref{fig:design}.
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.5\textwidth]{Figure19.jpg}
+            \captionof{figure}{Concept design for release mechanism}
+            \label{fig:design}
+        \end{center}
+    \end{figure}
+    
+    
+    Idea 1 consisted of an umbrella type mechanism which uses a compression
+    spring, and with the use of a stepper motor and cam, the system can be
+    released from a “loaded” state to elevate the component. Idea 2 was more
+    innovative as it made use of the bolt and nut analogy. A plate holder is
+    attached to a nut which is placed on a stepper motor with a threaded rod.
+    This plate holder is placed within a tube and by using the inner wall of the
+    tube as a restriction to prevent the rotation of the nut when the stepper
+    motor provides a torque, the plate holder’s only direction of motion can be
+    either up or down the tube. Idea 2 was selected as the preferred design of
+    choice due to various reasons. The most important reason was that this
+    design does not require the user to push down the golf club in order to put
+    the system in a “loaded” state compared to Idea 1. It also offers a safer
+    and more controlled way to elevate the golf club compared to the spring
+    action which will make the golf club jump upon release. Another benefit was
+    that there are less parts involve in order to make the whole mechanism
+    compared to Idea 2 and therefore there is a less chance for failure to
+    occur. To calculate the required torque for the stepper motor, the maximum
+    weight of a golf club that was measured to be 700g, was used in further
+    calculations. The torque was calculated, using a pulley analogy, with the
+    formula shown below.
+    
+    \newpage
+    
     \begin{center}
-        \includegraphics[width=\textwidth]{Complete Design.PNG}
-        \captionof{figure}{Final AGC design}
-        \label{fig:complete_design}
+        \begin{equation}
+            F = W = mg
+            \label{eq:raising_force}
+        \end{equation}
     \end{center}
-\end{figure}
+    \begin{center}
+        \begin{equation}
+            T = Fr = Mgr
+            \label{eq:raising_torque}
+        \end{equation}
+    \end{center}
+    
+    m is the mass of the golf club, g is the gravitational acceleration
+    constant, and r is the distance from the centre of the plate holder (the
+    assumed position of the golf club’s handle) to the centre of the threaded
+    rod. A torque value of 0.13 Nm was calculated, however, the closest rated
+    torque for a motor that could be obtained was the NEMA 17 stepper motor
+    which has an output of 0.42 Nm. This motor was chosen since it allows for a
+    safety factor of 3.2 This would allow for a safety factor of 3.2 which is
+    sufficient considering the previous calculations neglected the friction
+    acting between the nut and the threaded rod as well as the fiction between
+    the plate holder and the inner wall of the tube. 
+    
+    
+    \subsubsection{Testing and Improvement}
+    Idea 2 was then made into a prototype, as shown in Figure \ref{fig:release},
+    to test the effectiveness and robustness of the system. 
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.5\textwidth]{Figure20.jpg}
+            \captionof{figure}{Release Mechanism Prototype}
+            \label{fig:release}
+        \end{center}
+    \end{figure}
+    
+    The initial testing of the prototyping demonstrated that the design worked
+    well, with a time of 12.7 seconds recorded to lift the golf club by 10 cm.
+    However, a serious issue was discovered where the plate holder can get stuck
+    within the tube and thereby failing the whole system. Furthermore, there was
+    bending observed on the plate holder when the golf club was not perfectly
+    placed in the middle of the plate. Another issue was that the time taken for
+    the club to be raised was particularly long which is due to the pitch of the
+    threaded rod being short. In consequence of that, some improvements were
+    made to this design. The stepper motor with the threaded rod was changed to
+    one with a leadscrew integrated as its shaft and this will decrease the time
+    to raise the golf club.  A way of mitigating the risk for a system failure
+    due to the plate holder getting stuck inside the wall of the tube, was to
+    use a cylinder where its lower plate will have the leadscrew nut mounted on
+    using nuts and bolts. It was deemed to be a more robust design that can
+    easily support the weight of the golf club and with the implementation of
+    guiding rails, which are threaded rods in this case, the inner tube walls
+    will not be used to restrict the rotating motion of the cylinder. This tube
+    was manufactured using 3D printing with polylactic acid (PLA) filament as
+    the material. Taking into account the stair stepping effect and porosity
+    from 3D printing, the cylinder was made to be sufficiently strong enough to
+    hold the maximum weight of a golf club recorded. After incorporating these
+    improvements, the calculated time to raise the golf club by 10 cm was
+    recorded to be 3.6 seconds which is almost 3.5 times faster than the
+    prototyped version. The overall weight of this design only amounts to 400g
+    per mechanism and since only three release mechanism has been promised to be
+    implemented in this project, the total added weight amounts to 1.2 kg which
+    is only an 8\% weight increase from an original golf bag weight of 15 kg. 
+    
+    
+    \subsubsection{Final Design}
+    The final and proposed design assembly and the built design is shown in
+    Figure \ref{fig:release1}
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.3\textwidth]{Figure21.jpg}
+            \captionof{figure}{Proposed Release Mechanism (a)Assembly (b)Manufactured Product}
+            \label{fig:release1}
+        \end{center}
+    \end{figure}
+    
+    
+\end{multicols}
+\newpage
+\begin{multicols}{3}
+    \subsection{Golf Bag}
+    Golf bag are the essential tools used by the golfer. In this project, the
+    golf bag is the core of the entire club raising mechanism. All the mechanism
+    and electronics are installed on the golf bag. The golf bag is well designed
+    to ensure the entire mechanical and electrical system had sufficient work
+    space to operate. 
+    
+    \subsubsection*{Design Requirement}
+    \begin{itemize}
+        \item Need to fit all 14-golf club mechanism
+        \item Mount mechanical compartment and electrical compartment
+        \item Components able to stay still during motion
+        \item Compartment need to be easily accessible for maintenance
+        \item Lightweight 
+    \end{itemize}
+    
+    \subsubsection*{Design Process}
+    The design process started by thinking a feasible release mechanism before
+    working on the golf bag. Once the release mechanism as shown above had been
+    decided.The golf bag provided by James are dismantled to further understand
+    its infrastructure. In order to corporate the release mechanism in the golf
+    bag, a new top base design are required. We realized the segregation of the
+    golf bag didn't’t reach the bottom of the golf bag (Figure \ref{fig:cloth}
+    ). The segregation took place on the frame , a small part of the top part
+    are segregated with cloth giving a misconception of all the 14 golf clubs
+    are well segregated before dismantling the bag.A segregation is essential to
+    separate the release mechanism system and to prevent the golf clubs from
+    tangling each other at the bottom of the golf bag. Therefore, tube is
+    implemented for each golf clubs so the golf club may not interact with each
+    other. Exploration of different material of tube had been done. PVC tube had
+    been chosen as it is cheap, accessible and lightweight. The average diameter
+    of the golf club is 28mm therefore the inner diameter of the tube must be
+    greater than 28mm. The inherited design is unsymmetrical and had
+    inconsistent spacing (Figure \ref{fig:top})for all the 14 holes. By removing
+    the inherited design will provide more freedom and potential to fully
+    utilized the available space of the golf bag. Calculation of the dimension
+    had been made by scanning the top frame using a 3D scanner(Figure
+    \ref{fig:scan}). It is a innovative and efficient method to extract accurate
+    data from irregular object due to its non-linear curvature.
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.18\textwidth]{Figure15.jpg}
+            \captionof{figure}{Scan Machine}
+            \label{fig:scan}
+        \end{center}
+    \end{figure}
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.2\textwidth]{Figure3.jpg}
+            \captionof{figure}{Inherited Top Base Side View}
+            \label{fig:cloth}
+        \end{center}
+    \end{figure}
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.2\textwidth]{Figure2.jpg}
+            \captionof{figure}{Inherited Top Base Frame}
+            \label{fig:top}
+        \end{center}
+    \end{figure}
+    
+    
+    
+    By applying a fill factor of 80\%, it is feasible for each tube to have a
+    maximum of 57mm outer diameter. Based from the value, we decided a PVC tube
+    with 42mm outer diameter and 38mm inner diameter would provide ease of
+    placing the golf clubs into the tube. Using the given dimension, design had
+    been made for the top base of the golf bag.
+    
+    The design of the bag will follow along the PVC tube. With a solid
+    foundation for the 14 PVC tubes, the changes made in the release mechanism
+    wouldn’t affect the golf bag design as long the release mechanism are
+    installed in the dedicated PVC tube. Each tube had its own name as specified
+    golf clubs will be placed in it. By doing this, the machine learning will
+    release the mechanism of the specified club to the golfer based on its
+    decision with the acquired data from the golfer. 
+    
+    The next step is to design a support that could hold all the 14 PVC tubes.
+    Mechanical and electrical compartment had been implemented to ensure the
+    mechanical components are undisturbed from the electrical components. The
+    bag needs to be extended due to the implementation of the release mechanism
+    in the golf bag. The released golf clubs may injure the user if the golf bag
+    isn’t extended as the extended golf clubs are in an angle facing the user.
+    The golf bag will be unstable if the golf bag isn’t extended as the weight
+    distribution are too far from the center of mass of the golf bag. Next, a
+    mechanical and electrical compartment had been designed and implemented at
+    the bottom of the golf bag. Both designs are simple and accessible to the
+    user for future maintenance. After that, a new top base of the golf bag had
+    been designed to replace the old unsymmetrical top base as the new design
+    provide more freedom of utilizing maximum space in the bag. Once the main
+    frame of the golf bag is manufactured, the mechanical mechanism and
+    electronics will be installed. 
+    
+    
+    \subsubsection{Golf Bag innovation}
+    The golf bag is another one of our innovative creations as we manage to
+    create a fully-functioning golf bag with extremely low cost. Low cost is
+    achieved by reusing recycled items and using basics resources such as metal,
+    wood and acrylic. With manufacturing limitation, cloth and plastic had been
+    replaced by metal to extend the golf bag. Wood is used as the support for
+    the release mechanism while acrylic is used for the new top base design of
+    the golf bag. The golf bag is able to fulfil the design requirements and
+    tested to be working well with the mechanical and electrical components.
+    
+    \subsubsection{Golf Bag Infrastructure}
+    The whole bag had 3 different parts, the top base of the golf bag, the
+    mechanical compartment and the electrical compartment as shown in Figure
+    \ref{fig:golfbag} . The top base of the golf bag act as a support and
+    segregation compartment for the golf clubs. The mechanical compartment
+    consists of the motor compartment and the release mechanism. The motor is
+    placed between two support to ensure the motor keep in place during
+    operation. The release mechanism is above the motor compartment. It had a
+    support base to ensure the tube and the release mechanism stay aligned. All
+    the electronics and the cabling are placed in the electrical compartment to
+    ensure the cabling do not disturb the mechanical system and also for the
+    ease on waterproofing all the electronics.
+    
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.4\textwidth]{Figure16.jpg}
+            \captionof{figure}{Infrastructure of Golf Bag}
+            \label{fig:golfbag}
+        \end{center}
+    \end{figure}
+    
+    
+    
+    \subsubsection{Top base of Golf Bag}
+    The top base of the golf bag had been through with 2 manufacturing process
+    as shown in Figure \ref{fig:change} . Both design are able to fit 14 equal
+    size release mechanism for the golf club. Each slot had equal spacing and
+    sufficient space between the slots. PVC tube fit through each slot
+    perfectly. Design 1 had been initially laser cut with Plywood before sending
+    for 3D printing. The tube fitted the design and are well supported by it.
+    Due to the limitation of the 3D printer size (250 x 210 x 210mm), the new
+    design had a dimension of (255 x 230 x 41 mm). Therefore it is not feasible
+    to 3D print the entire design.
+    
+    Decision had been made to had the new design installed on the old golf bag
+    top frame which is more innovative as the frame could be reused. The new
+    design is drawn on Solidworks with the scanned CAD model of the top
+    frame(Figure \ref{fig:CAD}). The final design is laser cut with acrylic and
+    mounted on the frame with epoxy. The final top base is sprayed with black
+    spray to improve aesthetic.
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.18\textwidth]{Figure.png}
+            \captionof{figure}{Design Process of Top Base}
+            \label{fig:change}
+        \end{center}
+    \end{figure}
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.2\textwidth]{Figure.jpg}
+            \captionof{figure}{CAD model of Top Base}
+            \label{fig:CAD}
+        \end{center}
+    \end{figure}
+    
+    
+    \subsubsection{Extension of Golf Bag}
+    The golf bag is extended to fit the release mechanism. The release mechanism
+    contributes extra 138mm vertical height of the golf bag. The placing of the
+    release mechanism is crucial as it may affect the overall performance. Due
+    to the additional vertical height, the golf bag is extended to compensate
+    the height from the release mechanism. Without the extension, the released
+    golf clubs may injure the user since the golf clubs are released at a
+    direction toward the user. The bag had been extended using rolled metal
+    sheet. Calculation had been made for the circumference of the metal sheet.
+    The metal sheet is spot welded to make a perfect circle. The golf bag is
+    extended by 150mm. 100mm are for the release mechanism, 38mm for the motor
+    and 12mm for the electrical compartment.
+    
+    \subsubsection{Mechanical Compartment}
+    The mechanical compartment consists of the mechanism and the stepper motor.
+    As shown in Figure \ref{fig:SIDE} and \ref{fig:TOP}, the mechanism are
+    installed on top of the stepper motor. The stepper motor is placed on the
+    electrical top base. A motor base had been added to secure the motor between
+    the motor base and the electrical base. The release mechanism is mounted on
+    the motor base to ensure the mechanism stay stationary in the bag. The
+    support base provide support to the PVC tubes and ensure the release
+    mechanism remained in a vertical direction.
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.3\textwidth]{Figure6.jpg}
+            \captionof{figure}{Side view of Mechanical Compartment}
+            \label{fig:SIDE}
+        \end{center}
+    \end{figure}
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.2\textwidth]{Figure7.jpg}
+            \captionof{figure}{Top view of Mechanical Compartment}
+            \label{fig:TOP}
+        \end{center}
+    \end{figure}
+    
+    \subsubsection{Electrical Compartment}
+    The Electrical Compartment consist of a wooden laser cut top base and the
+    inherited golf bag bottom base. The wooden laser cut base had 14 small holes
+    on it as shown in Figure \ref{fig:ELECBASE}. The main function of the holes
+    is to allow the electrical cable from the mechanical compartment to connect
+    the electrical components.
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.2\textwidth]{Figure8.jpg}
+            \captionof{figure}{Electrical Top Base}
+            \label{fig:ELECBASE}
+        \end{center}
+    \end{figure}
+    
+    
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.3\textwidth]{Figure9.jpg}
+            \captionof{figure}{Electrical Top Base CAD}
+            \label{fig:ELEC}
+        \end{center}
+    \end{figure}
+\end{multicols}
+
+\begin{multicols}{2}
+    The location of the holes (Figure \ref{fig:ELEC}) is placed beside the
+    mechanical component for the ease of the cable to travel to the electrical
+    compartment. The holes are also designed to ensure none of the mechanical
+    component will obstruct the hole. The electrical compartment consists of the
+    cabling from the motor and a main cable which connects to the caddy. All the
+    electronics are placed in the electrical compartment for ease of water
+    proofing and to ensure the cabling do not disturb the mechanical system. 
+    
+    \subsubsection{Installation of release mechanism on golf bag }
+    The support base had been first mounted on the golf bag with L bracket. Once
+    the extension of the golf bag are complete. the release mechanism are
+    installed on the motor base and mounted on the circular metal sheet with L
+    bracket. The release mechanism are installed into the PVC tube and the
+    electrical top base are mounted below the stepper motor using L bracket.
+    Finally , the inherited bottom base cover are placed below the circular
+    metal sheet. Toggle latches are installed on both the circular metal sheet
+    and the bottom cover to achieve easy accessible for the user. The process is
+    shown in Figure \ref{fig:installation}.
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.4\textwidth]{Figure30.jpg}
+            \captionof{figure}{Release Mechanism installation process in golf bag}
+            \label{fig:installation}
+        \end{center}
+    \end{figure}
+\end{multicols}
+
+\newpage
+
+\begin{multicols}{3}
+    \subsection{LCD screen casing}
+    In this project, a LCD screen is implemented which will have a GUI for data
+    representation.A LCD screen casing had been manufactured to protect the LCD
+    screen from environmental damage such as rainwater and physical debris
+    damage. The overall casing design are shown in Figure \ref{fig:casing}.
+    Different location of mounting the LCD screen on the caddy had been
+    explored, The best location of mounting the LCD screen on the caddy will be
+    right below the caddy handle as it can be easily viewed by the user nearby
+    the caddy. The location do not affect the the folding operation of the caddy
+    (Figure) as it utilized the abundant space of the caddy. 
+    
+    CADDY FOLDED WITH SCREEN
+    
+    A 1 m electrical ribbon had been used to connect the LCD screen with the
+    raspberry pi located on the electrical housing of the caddy. The electrical
+    ribbon is heat shrink to provide protection for the ribbon and water
+    resistance. The ribbon travel from the electrical housing of the caddy to
+    the LCD screen through the caddy inner tube pathway as demonstrated in
+    Fig.(dlsd) main frame with ribbon
+
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.2\textwidth]{Figure10.jpg}
+            \captionof{figure}{Casing Design}
+            \label{fig:casing}
+        \end{center}
+    \end{figure}
+    
+    \subsubsection{Screen Holder}
+    As shown in Figure, the screen holder is mounted on the back of the bottom
+    casing. The screen holder is designed to allow the LCD screen to sit firmly
+    on the screen holder (Figure \ref{fig:holder}). A cylinder metal rod (Figure
+    \ref{fig:rod})had been added in between of the screen holder to ensure the
+    screen holder do not rotate more than 90 degree.
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.2\textwidth]{Figure14.jpg}
+            \captionof{figure}{LCD screen with Screen Holder}
+            \label{fig:holder}
+        \end{center}
+    \end{figure}
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.2\textwidth]{Figure31.jpg}
+            \captionof{figure}{Screen holder with metal rod support}
+            \label{fig:rod}
+        \end{center}
+    \end{figure}
+    
+    
+    
+    \subsubsection{Friction Hinge}
+    The screen can be fold and unfolded by 90 degrees using a friction hinge
+    concept (Figure\ref{fig:unfold} and Figure \ref{fig:fold}). The screen
+    holder is designed to operate along with the friction hinge operation. The
+    friction hinge relies on the friction provided from the nuts and bolts. By
+    providing sufficient friction, the screen could be fixed and folded easily.
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.2\textwidth]{Figure17.jpg}
+            \captionof{figure}{Unfold LCD screen}
+            \label{fig:unfold}
+        \end{center}
+    \end{figure}
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.2\textwidth]{Figure18.jpg}
+            \captionof{figure}{Folded LCD screen}
+            \label{fig:fold}
+        \end{center}
+    \end{figure}
+    
+    
+    \subsubsection{Bottom casing}
+    The bottom casing is designed according to the needs of installation and the
+    electrical need. The LCD screen fit the bottom casing perfectly as shown in
+    Figure \ref{fig:LCD}. From Figure \ref{fig:bottom}, there is a slot to allow
+    connection for the electrical ribbon from the screen to the caddy. Bolts are
+    used to screw directly on the LCD screen through hole 1 and hole 2. While
+    the bolts on hole 3 and 4 will go through the screen holder before screwing
+    on the LCD screen. Therefore, the bottom case will mount firmly to the
+    screen holder.
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.3\textwidth]{Figure32.jpg}
+            \captionof{figure}{Front view of LCD screen fit in casing}
+            \label{fig:LCD}
+        \end{center}
+    \end{figure}
+    
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.3\textwidth]{Figure11.jpg}
+            \captionof{figure}{Back view of Bottom casing}
+            \label{fig:bottom}
+        \end{center}
+    \end{figure}
+    
+
+    \subsubsection{Top casing}
+    The top screen covers the bottom casing edges and the LCD screen to ensure
+    no water flow to the internal screen casing. A screen protector is installed
+    on the large empty slot of the top screen. The selected screen protector is
+    made of temper glass which doesn’t affect the touch screen functionality.
+    The screen protector is glued on the casing and a layer of resin is added to
+    prevent water intake. The screen protector provides the ability of using the
+    LCD screen during rainy condition as it is well water-proofed. The top
+    casing are mounted with the bottom casing with nuts and bolts through Hole
+    C,D,E,F as shown in Figure \ref{fig:HOLE} This ensures the entire casing do
+    not drop from the screen holder during motion.
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.3\textwidth]{Figure13.jpg}
+            \captionof{figure}{Top Casing with holes}
+            \label{fig:HOLE}
+        \end{center}
+    \end{figure}
+\end{multicols}
+
+\newpage
+\begin{multicols}{2}
+    \subsection{CADDY ELECTRICAL BASE}
+    From the inherited golf caddy, there were close to no electrical systems
+    since only the wheels were motorised. However, with the addition of all the
+    newly added electrical systems from this project, an electrical base was
+    required in order to house all the electrical circuits that were made. The
+    list of components that will be in the electrical base are the EMG49 motors,
+    MD49 driver, Raspberry Pi, GPS module, battery regulation circuit and
+    release mechanism circuit.
+    
+    \subsubsection{Concept Design}
+    After investigating the inherited golf caddy for possible locations that can
+    be used to have the electrical base, it was determined that the only
+    feasible place was where the previous battery located. After removing the
+    previous motors and battery plate holder, the new allocated space was
+    measured and built on SOLIDWORKS in order to model different possible design
+    for the electrical base. Figure \ref{fig:base} shows the available space
+    from the caddy after the motors were removed.
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.4\textwidth]{Figure22.jpg}
+            \captionof{figure}{Location for electrical base}
+            \label{fig:base}
+        \end{center}
+    \end{figure}
+    
+    Three possible designs were initially made on CAD and they are shown in
+    Figure \ref{fig:box}.
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.5\textwidth]{Figure23.jpg}
+            \captionof{figure}{Concept design for electrical base}
+            \label{fig:box}
+        \end{center}
+    \end{figure}
+    
+    
+    Idea 3 was chosen as the best option since it allows for an easy access to
+    the electrical components which is beneficial for maintenance and fault
+    checking should any issues occur. It also allows the user to easily remove
+    and charge the battery when required without interfering with any of the
+    electrical circuits along the way and it provides a better airflow compared
+    to being clustered in the “box” compartment. It is also beneficial for the
+    centre of mass of the caddy as the battery, which is the heaviest amongst
+    the component on the electrical base, is as close as possible to the centre
+    of the caddy. It allows for a more stable drive whilst minimising the chance
+    of the caddy toppling over when going on a hill. The combined weight of all
+    the components that will be in the base was determined to be about 7 kg.
+    Based on this and the fact that this base is only being used for testing
+    since this project is at the prototype stage, it was determined that 6 mm
+    birch plywood was the best material of choice. It is cheap, easily
+    accessible and can provide enough strength to hold all the components as
+    well as being lightweight enough to not have an impact on the motors. Laser
+    cutting was used as the manufacturing process for time saving and due to the
+    possibility of employing box joints as well as mortise and tenon joints in
+    order to easily assemble the design. The joints were further reinforced
+    using gorilla wood glue for added reassurance of the structural integrity of
+    the design.
+    
+    
+    
+    
+    \subsection{POWERTRAIN AND WHEELS}
+    The powertrain on the inherited golf caddy consisted of a motor which was
+    powering the rear wheels on a single axle. It allowed the caddy to the
+    remotely controlled which was used to assist the user in pushing the caddy
+    around. However, a user input was still required in order to navigate the
+    caddy, for example when changing direction, since the front wheels were
+    attached in such a way that would only allow forward and backward drive.
+    Figure \ref{fig:train} shows the drivetrain of the inherited caddy.
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.5\textwidth]{Figure25.jpg}
+            \captionof{figure}{Inherited Caddy Powertrain}
+            \label{fig:train}
+        \end{center}
+    \end{figure}
+    
+    Due to the introduction of the autonomous tracking system and release
+    mechanism, new motors are required in order to propel the caddy with the
+    extra added weight. This powertrain required some changes to be made since
+    it was not designed for autonomous driving.
+    
+    \subsubsection{Design Requirement for Powertrain}
+    Two important design changes were identified. Since the caddy will have to
+    make turns when required during the autonomous tracking, a speed
+    differential between each of the rear wheel is required. Therefore, two
+    separate motors are needed to control each rear wheel individually.
+    Furthermore, a ball castor type support should be added at the front of the
+    caddy in order to facilitate the turning action of the caddy as well as
+    providing the ability for the caddy to have its own centre of rotation. 
+    
+    
+    
+    \subsubsection{Rear Wheel}
+    In order to be cost effective and time efficient instead of manufacturing or
+    buying a wheel from a third party seller, the previous rear wheels were
+    used. However, these wheels were not compatible to be attached directly to
+    the new motors since it required a locking mechnaism that is located on the
+    previous axle. Therefore, this axle was cut down at two separate locations
+    in order to retain this locking mechanism as well as a bracket that is used
+    to securely connect it to the main frame of the caddy. Figure \ref{fig:rear}
+    shows the locations that were determined to be the optimum cut off points.
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.5\textwidth]{Figure26.jpg}
+            \captionof{figure}{Rear axle from inherited golf caddy}
+            \label{fig:rear}
+        \end{center}
+    \end{figure}
+    
+    Considering the space available, where the wheels need to be mounted, and
+    the dimensions of the motors to be used, the connection between the shaft of
+    the motor and the axle needs to be close type and secure connection. Since
+    welding was not feasible due to the contact surface being too small between
+    the motor shaft and the axle, adhesive was used. In order to have more
+    contact surface when applying the adhesive, the motor’ shaft was immersed
+    inside the axle where it allows for a more robust connection. Figure
+    \ref{fig:auto} shows the rear wheels attached to the motors and mounted on
+    the base plate of the electrical base.
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.5\textwidth]{Figure27.jpg}
+            \captionof{figure}{Autonomous driving compatible powertrain}
+            \label{fig:auto}
+        \end{center}
+    \end{figure}
+    
+    
+    \subsubsection{Front Wheel}
+    The front wheel was decided that it will be incompatible to be used for
+    autonomuos driving and therefore a swivel castor wheel was chosen as its
+    best replacement. After removing the intial front wheel and its
+    restrictions, the mounting space was at an incline fo 45 degrees. Since a
+    flat surface is required to mount the swivel castor wheel, a piece of wood
+    which was cut to the appropriate dimension, was in order to fill the gap.
+    The wooden piece dimension also took into account the range of rotation of
+    the wheel. Figure \ref{fig:castor} shows the process for mounting the swviel
+    castor wheel on the caddy. 
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.5\textwidth]{Figure28.jpg}
+            \captionof{figure}{Swivel Castor Wheel installation process}
+            \label{fig:castor}
+        \end{center}
+    \end{figure}
+    The wooden piece was later wrapped in vinyl for aesthetic purposes.
+    
+    
+    \subsubsection{Wheel Assembly}
+    Figure \ref{fig:sprayed} shows the wheels mounted on the golf caddy. 
+    
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.5\textwidth]{Figure29.jpg}
+            \captionof{figure}{Full Wheel installation process}
+            \label{fig:sprayed}
+        \end{center}
+    \end{figure}
+    
+    
+    \subsection{Further Improvement}
+    
+    For the continuation of this project, to make it a commercially viable
+    product, the future team undertaking it should consider the following.
+    
+    \subsubsection{Release Mechanism}
+    For the release mechanism, one of the key improvements that could be
+    implemented would be the use of gears for the mechanism as it can save up a
+    lot of weight instead of using one stepper motor per golf club. Other
+    materials such as acrylic, wood or harder steel should be explored in order
+    to be used as the guiding rails since the current one being used are
+    threaded rods of 2 mm diameter which can easily bend. This can cause issues
+    to the release mechanism’s elevating platform since it can get stuck at the
+    point where the bending of the guiding rails occurs. Currently, the way to
+    operate the release mechanism, requires the user to connect the cable from
+    the golf bag to the caddy’s electrical base. An improvement to that could be
+    to implement a circuit within the golf bag that can communicate with the
+    circuit on the golf caddy through WIFI or Bluetooth, thus reducing the
+    possibility of the connection being loose which would not allow the system
+    to work. It also benefits the user since they will not have to worry about
+    unintentionally pulling the circuit system inside the electrical base on the
+    caddy every time they remove the golf bag form the golf caddy. 
+    
+    \subsubsection{Golf Bag}
+    The current golf bag are designed to be able to implement waterproofing. Due
+    to time constraint, the concept had not been implemented but could be done
+    easily with the current golf bag. Both Mechanical and Electrical Compartment
+    could be sealed with resin to prevent water entering the system. A water
+    sink could be implemented above the Mechanical Compartment. A tube could be
+    used to release the accumulated water from the water sink.
+    
+    \subsubsection{Golf Caddy Infrastructure}
+    The golf caddy could be more futuristic if the caddy could be redesigned.
+    Function of one button folding and unfolding could be achieved if the caddy
+    are well designed.
+    
+    \subsubsection{Caddy's Electrical Base}
+    It might be better to explore further designs since the current base is too
+    tall and it does not allow the full closure of the caddy when the golf bag
+    is removed. The need for waterproofing the “box” compartment which contains
+    all the electrical circuits should be implemented in the design stage as one
+    of the key design requirements. The current way to close the base is just a
+    sliding type of closure and it could be improved by using hinges or some
+    other component that can make the base more compact with regards to the
+    waterproofing. In terms of material selection, it might be better to use
+    acrylic for a commercially viable product since it will look better
+    aesthetically. 
+    
+    \subsubsection{Front Wheel}
+    In terms of the current connection of the swivel castor wheel, it might be
+    best to make changes to the main frame of the golf caddy instead of using
+    the piece of wood to make a flat surface. Moreover, the front wheel itself
+    should be considered to change since it might not provide enough grip to be
+    used on a golf course for a long period of time.
+    
+\end{multicols}
+
 
 \newpage
 \begin{multicols}{3}
-\subsection{Golf Bag}
-The golf bag is one of the crucial parts of the project as it holds the release
-mechanism of the golf club and the essential electronics. An old golf bag had
-been modified as manufacturing a new golf bag is unrealistic. The old golf bag
-had been dismantled to accommodate the release mechanism, compartment such as
-electrical base and mechanical base had been implemented to ensure the mechanism
-isn't disturbed by the electrical system. 
-
-\paragraph{Golf Bag Infrastructure}
-The whole bag had 3 different parts, the top base of the golf bag, the
-mechanical compartment and the electrical compartment as shown in Fig. (\ref{fig:golf_bag}). The top base of the golf bag is used as a support and segregation
-compartment for the golf clubs. The mechanical compartment consists of the motor
-compartment and the release mechanism. The motor compartment is placed in
-between of two support to ensure the motor keep in place during operation. The
-release mechanism is on top of the motor compartment. It had a support base to
-ensure the tube and the release mechanism stay aligned. All the electronics and
-the cabling are placed in the electrical compartment to ensure the cabling do
-not disturb the mechanical system and also for the ease on waterproofing all the
-electronics.
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{Golfbag.png}
-        \captionof{figure}{Infrastructure of Golf Bag}
-        \label{fig:golf_bag}
-    \end{center}
-\end{figure}
-
-\paragraph{Top Part of Golf Bag}
-The initial top part had been removed due to unfriendly design; the initial top
-part had uneven spacing for all the holes. By removing the initial top part, we
-could fully utilize the available space of the bag. A new design shown in Fig.
-(\ref{fig:top_part}) had been implemented to fit 14 equal size release mechanism
-for the golf club. Each slot had equal spacing and had sufficient space between
-the slots. The new design had been initially laser cut with Plywood. The tube
-fitted the design and are well supported by it. Due to the limitation of the 3D
-printer size (250 x 210 x 210mm), the new design had a dimension of (255 x 230
-x 41 mm). It had been sliced into 4 equal pieces and been sent for 3D printing.
-The 3D printed parts had been assembled together by hot glue and glued on the
-frame of the old golf bag top frame as shown in Fig. (\ref{fig:3d_top})
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{Toppart.png}
-        \captionof{figure}{Top part of golf bag}
-        \label{fig:top_part}
-    \end{center}
-\end{figure}
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{3Dparts.png}
-        \captionof{figure}{3D printed top part}
-        \label{fig:3d_top}
-    \end{center}
-\end{figure}
-
-The design in Fig. (\ref{fig:3d_top}) had been used as the support for the release
-mechanism during testing. Due to the final changes in the of the release
-mechanism. A new top base had been designed to fit the latest release mechanism. 
-
-\paragraph{Extension of Golf Bag}
-The release mechanism used up 150mm of vertical height space of the whole golf
-bag. To prevent the golf club being extended too high in the mid air. The golf
-bag need to be extended to compensate the height used up by the mechanism.
-Therefore, the bag had been extended using rolled metal sheet. The extended
-part is used to fit in the mechanical base and the electrical base. The extended
-part is necessary as the release mechanism require an extra 90mm space.
-Therefore, the bag had been extended by 150mm. 90mm are used for the release
-mechanism, 50mm are used to fit the motor and 10mm are for the electrical base. 
-
-\paragraph{Touchscreen Casing}
-The LCD screen currently do not have any casing and all the electrical parts are
-exposed to the environment. In order to protect the LCD screen from environment
-damage such as rainwater damage and physical debris damage, a LCD screen casing
-had been made which are well compatible with the screen holder. The overall
-casing design are shown in Fig. (\ref{fig:screen_casing}). The casing contains a top casing
-and a bottom casing having the screen in between them.
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{casing.png}
-        \captionof{figure}{Bottom view of the bottom casing with all the holes}
-        \label{fig:screen_casing}
-    \end{center}
-\end{figure}
-
-\paragraph{Bottom Casing}
-The bottom casing fit the LCD screen perfectly, there is a slot behind to allow
-the electrical ribbon to connect to the caddy. The bottom casing fits perfectly
-with the screen holder. All of the holes on Fig. (\ref{fig:bottom_casing}) will screw
-directly to the LCD screen except for hole A and B. The screw will go through
-the holder and the casing to the LCD screen to ensure the screen and the casing
-hold firmly on the screen holder.
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{bottomcasing.png}
-        \captionof{figure}{Bottom view of the bottom casing with all the holes}
-        \label{fig:bottom_casing}
-    \end{center}
-\end{figure}
-
-\paragraph{Top Screen}
-The top screen covers the bottom casing edges and also the LCD screen as shown
-in Fig. (\ref{fig:top_casing}). The orange line represents the LCD screen, the yellow
-line represents the bottom casing while the grey line represents the top screen
-casing. There is an empty slot on the top screen to install a screen protector
-on it. The screen protector will be glued on the casing and a layer of resin
-will be added to prevent water intake. The screen protector does not affect the
-touch screen functionality yet it provide rain resistance.
-
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{topcasing.png}
-        \captionof{figure}{LCD screen (orange line), bottom casing (yellow line), top casing (grey line)}
-        \label{fig:top_casing}
-    \end{center}
-\end{figure}
-
-\paragraph{Screen Friction Hinge}
-The screen had been installed right below the caddy handle. The location of the
-screen is well placed as it utilizes the abundant space of the caddy, it does
-not affect the folding operation of the caddy. The screen can be folded and
-unfolded by using a friction hinge design as shown in Fig. (\ref{fig:fold}). The
-folding action took place by pushing the hinge 90 degree. The hinge shown in
-Fig. (\ref{fig:hinge}) relies on the friction provided from the bolts and nut. The
-tighter the bolts and nut, the harder to rotate the hinge.
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{caddy.png}
-        \captionof{figure}{LCD screen fit well without affecting the caddy folding operation}
-        \label{fig:fold}
-    \end{center}
-\end{figure}
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{hinge.png}
-        \captionof{figure}{Friction hinge for the LCD screen}
-        \label{fig:hinge}
-    \end{center}
-\end{figure}
-
-
-
-
-\subsection{Club Raising Mechanism}
-One of the key objectives for this project was to design and implement a release
-mechanism that will give a golf club to the user based on its position on the
-golf course and the distance to the green. This system will be used in
-conjunction with the machine learning algorithm which will be the main brain
-towards selecting which club to give to the user.
-
-\subsubsection{Design Requirements}
-\begin{itemize}
-    \item Need to lift at least 10 cm above other golf club in order to make it
-    clear which club is being given
-    \item Needs to withstand the weight of the golf club which produces an axial loading
-    \item Needs to be lightweight in order to not affect the entire golf bag
-    since it will be carried by a user
-    \item Needs to be a robust design since it will be used a lot of times
-\end{itemize}
-
-\subsubsection{Design Process}
-Initially the team started discussing on the available workspace that can be
-used to hold the mechanism. Two locations were identified, one was on the golf
-AGC where the golf bag rests and the other being inside the golf bag itself.
-The most feasible workspace was determined to be inside the golf bag since the
-system on the golf AGC will have a higher probability of failing to work as it
-would need to be aligned perfectly such that each mechanism is directly below
-each golf club.
-
-We then started investigating on possible configurations of systems that can
-offer a linear motion that will push up the golf club. Some of the most
-prominent ideas were to use linear actuators, slider-crank mechanism, an
-umbrella like compression spring mechanism, and a stepper motor with a threaded
-rod.
-
-\paragraph{First Iteration}
-After going through the various ideas presented, there were some clear
-advantages and disadvantages with each of them. Starting with the linear
-actuators, they are easy to use, robust in terms of mechanical functionality,
-can be automated and be used in a controlled environment. However, they are
-prone to be heavy in mass with one actuator weighing about 1.2kg.  If they were
-to be used for 14 clubs, that would be an extra added weight of 16.8 kg which
-will make the new golf bag, with the added actuators, 2.12 times heavier than
-without them. This would be an issue for the golfer as they will have to carry a
-bag over 30 kg, and it will also have an influence on the motors required to
-drive the AGC since they will need provide more torque to propel forward.
-
-For
-the slider-crank mechanism, although it appears to be the simplest design to
-adopt and use, the diameter of the crank would have had to be 10 cm if it is
-required to elevate a golf club by 10 cm. Due to the restricted workspace
-available in the golf bag to fit the mechanism, it would not be physically
-possible to fit 14 cranks of diameter 10 cm in the golf bag. 
-
-It now leads us to
-the first feasible idea which is an umbrella like mechanism using compression
-springs. Adopting a similar mechanism as in an umbrella, where a compression
-spring is under compression and release due to the force input from a user, the
-first design was built on CAD and is shown in Fig. (\ref{fig:init_release_mech}).
-Fi. (\ref{fig:pin}) shows a 3D printed pin that will act similar to one found in an
-umbrella.
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{Init Release Mech.PNG}
-        \captionof{figure}{Mechanism in a) retracted state b) released state}
-        \label{fig:init_release_mech}
-    \end{center}
-\end{figure}
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.1\textwidth]{pin.PNG}
-        \captionof{figure}{Pin}
-        \label{fig:pin}
-    \end{center}
-\end{figure}
-
-In this design, a compression spring is attached to a moveable top base and
-stationary base with a rod in the middle which leads to a pin that sits in
-either slot 1, when the mechanism is in “released” state or slot 2, when the
-mechanism is in “loaded” state. A user input is required to compress the spring
-to make the mechanism enter the “loaded” state. In order to release the
-compressed spring, which in turn gives the elevating effect, a stepper motor is
-used with a cam attached to its axle. An outer tube rests on the cam and when
-the cam rotates, the tube transfers its axial force received from the stepper
-motor, tangentially to the pin, which then pushes the pin inside and releasing
-the compressed spring. The pin will return to its original position once it
-reaches slot 1 after it suffered an elastic deformation from the outer tube.
-
-The mechanism was well suited for its purpose, however, the structural integrity
-of the pin soon failed. Since it had to be 3D printed, due to its intricate
-shape, the force acting on the pin acted as a cyclic loading which causes stress
-induced cracking at the point of bending. This in turn made the pin to fracture
-prematurely during testing. It was deemed that this design was too fragile to be
-used for a prolonged amount of time as on a golf course.
-
-This design was later improved due to the discovery of a mini electric lock that
-has an inbuilt motor inside a door latch design. The mini electric lock and the
-improved mechanism is shown in Fig. (\ref{fig:improv_release_mech}).
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{Improv Release Mech.PNG}
-        \captionof{figure}{a) Mini Electric Lock b) Improved Release Mechanism with electric lock}
-        \label{fig:improv_release_mech}
-    \end{center}
-\end{figure}
-
-The improvements on the original design made it more compact and rigid as a
-mechanism. However, the electric lock did not perform well when it was in the
-“loaded” state. The motor required a high torque and therefore a bigger size
-lock would be needed. The overall dimensions of each electric lock would then
-exceed the required amount in order to fit 14 in a golf bag for each club.
-Moreover, since it is not a controlled release, safety issues may arise should
-the mechanism release the golf club with excessive force which may hit the user.
-This design as well was deemed not usable as a release mechanism.
-
-\paragraph{Second Design Iteration}
-Another innovative idea was to use a mechanism that employs a nut and bolt
-analogy. If either a nut or bolt is fixed in free space and the other is
-rotated, the only direction for motion is either up or down, depending on the
-direction of rotation. Using this methodology, a stepper motor with a threaded
-rod was used and a plate holder was attached to a nut that will sit on the
-threaded rod of the stepper motor. This design was made to sit on the side of
-the tube and by using the inner walls of the tube to prevent the rotation of the
-nut, the only direction that the plate holder can move would be in the z-axis.
-Fig. (\ref{fig:init_stepper}) shows how the setup of this design look
-like. 
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{Init stepper motor design.PNG}
-        \captionof{figure}{Stepper motor with plate holder in tube}
-        \label{fig:init_stepper}
-    \end{center}
-\end{figure}
-
-Having weighted all the golf clubs given, the maximum mass recorded was around
-700g. This mass was used in further calculation in order to obtain a required
-torque to lift the club. Using a pulley analogy, for a mass of 700g being pulled
-up at a radius, $r$. Eqs. (\ref{eq:raising_force} and \ref{eq:raising_torque}) 
-can be used to calculate the force, $F$, and
-torque, $T$, required to raise the club. Where $m$ is the mass of the club.
-\begin{center}
-    \begin{equation}
-        F = W = mg_0
-        \label{eq:raising_force}
-    \end{equation}
-\end{center}
-\begin{center}
-    \begin{equation}
-        T = Fr
-        \label{eq:raising_torque}
-    \end{equation}
-\end{center}The issues regarding this design were that the plate holder can get
-stuck within the tube and therefore failing the whole system. Another issue was
-that the pitch of the threaded rod was too close together which would mean that
-the motor would have to rotate for a long amount of time to elevate the golf
-club for 10 cm as required. This will decrease the overall operational lifespan
-of the motor.
-
-\paragraph{Final Design}
-Finally, the mechanism that the team has opted for is a stepper motor with a
-leadscrew alongside a 3D printed tube that will be elevated. Fig.
-(\ref{fig:final_stepper}) shows the final design chosen for the release
-mechanism.
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{Final Stepper motor design.PNG}
-        \captionof{figure}{a) Stepper Motor with Leadscrew and guiding rails b) 3D Printed tube that sits on nut of leadscrew}
-        \label{fig:final_stepper}
-    \end{center}
-\end{figure}
-
-As the stepper motor shaft rotates, the tube that sits on the motor will try to
-rotate as well. However, instead of using the inner walls of the tube to hold
-the rotation, it now uses guiding rails prevent the rotation of the leadscrew’s
-nut that is attached to the lower plate of the tube. Since there is a rotation
-of the shaft and there is a restriction placed on the rotating movements, the
-only direction of motion for the tube is either up or down.
-
-The design chosen is more compact as it relies mostly on the operation of the
-stepper motor and can be contained mostly in a small space. It also allows for a
-more controlled release of the golf club and will have a high longevity since
-stepper motors can last for a long time. The overall weight of this design only
-amounts to 400g per mechanism and if it is to be used for 14 clubs in total,
-that would be 5.6 kg added to a golf bag which in turn is about 37\% increase
-from an original weight of 15 kg. Fig. (\ref{fig:stepper_in_bag}) shows how the mechanism
-is set up inside in the golf bag.
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{Mech in bag.png}
-        \captionof{figure}{Release Mechanism in golf bag}
-        \label{fig:stepper_in_bag}
-    \end{center}
-\end{figure}
-
-Table 1 lists the specification of the stepper motor used. This torque produced
-is well enough within the required torque to raise the golf club even with a
-factor of 3.
-
-\begin{table}[H]
-    \begin{center}
-        \begin{tabular}{|l|l|}
-            \hline
-            \textbf{Parameter}     & \textbf{Value}          \\ \hline 
-            Leadscrew Diameter     & $\SI{8}{\mm}$                  \\ \hline
-            Leadscrew Length       & $\SI{150}{\mm}$ ($\pm\SI{1}{\mm}$)        \\ \hline
-            Motor Dimensions       & $\SI{42}{\mm}\times\SI{42}{\mm}\times\SI{40}{\mm}$ (LxWxH) \\ \hline
-            Step Angle             & $\SI{1.8}{\degree}$           \\ \hline
-            Nut Material           & Brass                   \\ \hline
-            Holding Torque         & $\SI{400}{\mN\m}$                \\ \hline
-            Thrust (Full Step)     & $\SI{12.5}{\kg}$              \\ \hline
-            Rated Current/Phase    & $\SI{1.5}{\ampere}$      \\ \hline
-            Rated Voltage          & $\SI{3.3}{\volt}$     \\ \hline
-            Rated Resistance/Phase &$\SI{2.2}{\ohm}\pm10$\%  \\ \hline
-            Mass                   & $\SI{400}{\gram}$                  \\ \hline
-        \end{tabular}
-    \end{center}
-    \captionof{table}{Stepper motor specifications}
-\end{table}
-
-\subsection{AGC Electrical Base}
-\subsubsection{Design Requirements}
-In order to control all the newly placed systems around the AGC, a base, that
-will house all the electrical components and the battery, is required. The
-design requirements for it are listed below.
-\begin{itemize}
-    \item Needs to hold all the components required for the AGC to operate
-    the wheels, GPS module, Raspberry Pi, LCD Screen, and motors.
-    \item Needs to be lightweight otherwise it increases the weight of the
-    AGC which affect the motor size and power. 
-    \item Needs to be easily accessible since the battery will be inside the
-    casing and needs to be remove when charging is required.
-    \item Needs to be waterproof and have a rigid structure such that the
-    components do not move during movements on the golf course.
-\end{itemize}
-The most feasible place to have a base that will incorporate all the
-requirements, is where the previous battery was located. After removing the
-previous motors and battery plate holder, the new allocated space was measured
-and built on CAD in order to design a new compartment. Fig.
-(\ref{fig:prev_base}) shows the before and after replacing the previous motors
-with the new electrical base.
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{Prev AGC base.png}
-        \captionof{figure}{Replacing the previous AGC's motor with a base}
-        \label{fig:prev_base}
-    \end{center}
-\end{figure}
-
-\paragraph{Final Design}
-Fig. (\ref{fig:new_base}) shows how the final base that will hold the
-electronics and the battery looks like.
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{New AGC base.PNG}
-        \captionof{figure}{Full new AGC base}
-        \label{fig:new_base}
-    \end{center}
-\end{figure}
-
-\subsection{Wheels}
-\subsubsection{Design Requirements}
-The wheels of the AGC are one of the most important components that will
-ensure a smooth and stable drive. They need to be able to give enough friction
-and be able to adapt to the surface on a golf course. Since the AGC will have
-to be autonomous and will need to be able to turn in certain events, a list of
-new requirements for the wheels are listed below:
-
-\begin{itemize}
-    \item Maintain enough friction on wheels during acceleration such that it
-    can be used on golf course
-    \item Incorporate a system that allows the new motors chosen to operate one wheel individually
-    \item Front wheels need to be able to turn 360 in order to accommodate when the rear wheels are made to make an arc using speed differentials between each wheel.
-\end{itemize}
-
-\paragraph{Design Process}
-Initially the rear wheels on the original golf AGC were driven by a single
-shaft as shown in Fig. (\ref{fig:prev_wheels}) and the front wheel was held in such a
-way that allows movement only forward and backwards. 
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{Prev Wheels.PNG}
-        \captionof{figure}{Previous wheels connection on original golf AGC}
-        \label{fig:prev_wheels}
-    \end{center}
-\end{figure}
-
-
-There were three options available to meet these design requirements. It was to
-either design and manufacture our own wheels, to buy another readily available
-wheel of the market, or to be more cost effective and re-use the current wheels.
-The current rear wheels were on a single axle and therefore to make it
-compatible to function with two separate motors, the shaft was cut down at two
-separate locations. These locations were chosen since the wheel themselves
-required a locking mechanism to the axle as shown in Fig. (\ref{fig:cut_axle}). In
-order to not having to redesign the locking mechanism, it was best to cut
-further down the axle such that it will be easier to join to the shaft of the
-motors.
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{Cut axle.PNG}
-        \captionof{figure}{Single axle from previous golf AGC}
-        \label{fig:cut_axle}
-    \end{center}
-\end{figure}
-
-The wheels with the shaft attached and the shaft of the new motors were then
-attached together with a shaft coupler. This shaft couple was designed, and 3D
-printed with M2 holes that will go through each shaft and allow for a rigid
-connection through the coupler. The shaft coupler 3D printed part is shown in
-Fig. (\ref{fig:coupler}) and the connection between the wheels and motor is shown in
-Fig. (\ref{fig:new_rear_wheels}).
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{coupler.PNG}
-        \captionof{figure}{3D Printed Coupler to connect wheels and motor}
-        \label{fig:coupler}
-    \end{center}
-\end{figure}
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{New rear wheels.PNG}
-        \captionof{figure}{New arrangement of motors and wheels with coupler}
-        \label{fig:new_rear_wheels}
-    \end{center}
-\end{figure}
-The next adjustment that needed to be done is the front wheel. The available
-options we had were:
-\begin{itemize}
-    \item Design and manufacture a bracket which will hold the front wheel alongside a ball caster that allows for a full rotation of the wheel
-    \item To buy a swivel castor wheel of the market
-\end{itemize}
-
-The team decided to go with the second option since the cost and reliability of
-a ready-made swivel castor was better than a self-made one. The selected swivel
-castor is shown in Fig. (\ref{fig:castor}).
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{Swivel castor.PNG}
-        \captionof{figure}{Swivel Castor Wheel}
-        \label{fig:castor}
-    \end{center}
-\end{figure}
-
-Since the original location of the attachment of the wheels is not horizontal,
-the new swivel castor wheel could not rotate properly since it was at angle.
-Therefore, a sheet metal was attached at the uttermost low point of the AGC's
-main frame for the front wheel and then the wheel was attached to it. Fig.
-(\ref{fig:new_front_wheels}) shows how the previous wheel and the new swivel
-caster wheel are attached to the golf AGC.
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{New front wheels.PNG}
-        \captionof{figure}{a) Initial front wheel connection b) Swivel castor wheel attached to metal sheet}
-        \label{fig:new_front_wheels}
-    \end{center}
-\end{figure}
-
-\paragraph{Final Design}
-Fig. (\ref{fig:final_wheels}) shows how the AGC looks like after assembling
-all the wheels.
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{Full wheels.PNG}
-        \captionof{figure}{Complete assembly of golf AGC with new wheels connection}
-        \label{fig:final_wheels}
-    \end{center}
-\end{figure}
-
-
-
-
 \section{Software}
 \label{software}
 In this section all software required for the operating cycle of the AGC is
-discussed. The AGC main computer is a Raspberry Pi 4 running a 64-bit Debian port,
-the same is true for the Raspberry Pi used in the tracking pod. The GPS
+discussed. The AGC main computer is a Raspberry Pi 4 running a 64-bit Debian
+port, the same is true for the Raspberry Pi used in the tracking pod. The GPS
 navigation system requires high precision decimal storage to operate properly.
 Data type \verb|float32| can store 23 significant bits, compared to data type
 \verb|float64| which can store 52 significant
-bits\cite{floating_point_goldberg}. 
-The calulcations shown below in Fig. (\ref{fig:float_calcs}) show the
-physical significance of which datatype is chosen.
+bits\cite{floating_point_goldberg}. The calulcations shown below in Fig.
+(\ref{fig:float_calcs}) show the physical significance of which datatype is
+chosen.
 \begin{figure}[H]
     \begin{mdframed}
-        Only $180^{\circ}$ need to be accounted for because sign bit is separate, so to
-        represent $180^{\circ}$ the bits required is:
+        Only $180^{\circ}$ need to be accounted for because sign bit is
+        separate, so to represent $180^{\circ}$ the bits required is:
         \begin{center}
             \begin{equation*}
                 \log_2{180} \approx 7.49185 bits
             \end{equation*}
         \end{center}
         This leaves the $n - 7.49185$ significant bits left for sub degree
-        representation, the physical precision in meters we can then derive from each
-        data type of a longitude value at the equator can be calculated as shown in
-        the equations below.\newline
+        representation, the physical precision in meters we can then derive from
+        each data type of a longitude value at the equator can be calculated as
+        shown in the equations below.\newline
         \begin{center}
             \begin{minipage}{0.45\textwidth}
                 \begin{mdframed}
@@ -783,36 +1025,35 @@ physical significance of which datatype is chosen.
         \end{center}
         \center The radius of Earth. $R_e$, value used was $6371000m$. 
     \end{mdframed} 
-    \captionof{figure}{Calculations showing physics precision of single vs double
-    precision floats}
+    \captionof{figure}{Calculations showing physics precision of single vs
+    double precision floats}
     \label{fig:float_calcs}
 \end{figure}
 The $180^{\circ}$ is normalised to a power of two so we are able to use the non
 integer value of bits in the calculation for physical precision, were we to not
 perform this normalisation then $7.4918\rightarrow8$ full bits are required to
-represent the degrees and the final
-precision is slightly less for each datatype. To ensure this calculated
-precision is representative of our system all GPS coordinates are normalised to
-a power of two. We can see from the calculations that a significantly higher
-precision is achieved using double precision floating point data type to store
-GPS values. The precision yielded by the double precision floating point is
-unnecessary, however the precision of the single precision floating point is too
-low as our GPS module is capable of providing more accurate GPS measurements as
-discussed in section \ref{electronics}. Therefore double precision floating
-point datatypes will be used to store GPS data, which requires us to use a
-64-bit compatible operating system which is why the 64-bit Debian port was
-chosen. The higher precision achieved comes at the cost of slightly higher
-compte time for calculations, however as most of the algorithms onboard operate
-only on small amounts of data, this effect is unnoticable when operating the
-AGC.
+represent the degrees and the final precision is slightly less for each
+datatype. To ensure this calculated precision is representative of our system
+all GPS coordinates are normalised to a power of two. We can see from the
+calculations that a significantly higher precision is achieved using double
+precision floating point data type to store GPS values. The precision yielded by
+the double precision floating point is unnecessary, however the precision of the
+single precision floating point is too low as our GPS module is capable of
+providing more accurate GPS measurements as discussed in section
+\ref{electronics}. Therefore double precision floating point datatypes will be
+used to store GPS data, which requires us to use a 64-bit compatible operating
+system which is why the 64-bit Debian port was chosen. The higher precision
+achieved comes at the cost of slightly higher compte time for calculations,
+however as most of the algorithms onboard operate only on small amounts of data,
+this effect is unnoticable when operating the AGC.
 
 \subsection{Control Software}
 \label{control_software}
-This section discusses the software used to make the AGC follow the golfer.
-All of the control software apart from the elctronics specific code, such as
-motor controller communication, was written first using the OpenGL simulator
-that was built throughout the year. Building and using a simulator allowed us to 
-write and test all the control software / algorithms that would be required to make 
+This section discusses the software used to make the AGC follow the golfer. All
+of the control software apart from the elctronics specific code, such as motor
+controller communication, was written first using the OpenGL simulator that was
+built throughout the year. Building and using a simulator allowed us to write
+and test all the control software / algorithms that would be required to make
 the AGC follow the golfer as intended while avoiding hazard regions.
 
 All of the control software tested in the simulator was written in C as this was
@@ -824,12 +1065,12 @@ most likely a large number of array passing and manipulations are required,
 which is significantly slower in Python where function arguments are passed as
 object reference instead of pointers in C. Therefore the original C control
 algorithms were compiled as a dynamic link library (DLL) and the Python ``C
-Types'' library was used to load the DLL and create Python wrappers for the control
-algorithms. This significantly improved the performance as all of the resource
-intensive calculations were now performed with a compiled C program.
+Types'' library was used to load the DLL and create Python wrappers for the
+control algorithms. This significantly improved the performance as all of the
+resource intensive calculations were now performed with a compiled C program.
 
-The main control loop that determines the AGC's behaviour is shown below in
-Fig. (\ref{fig:control_loop}).
+The main control loop that determines the AGC's behaviour is shown below in Fig.
+(\ref{fig:control_loop}).
 \begin{figure}[H]
 \begin{mdframed}
     \begin{center}
@@ -840,14 +1081,14 @@ Fig. (\ref{fig:control_loop}).
 \label{fig:control_loop}
 \end{figure}
 \subsubsection{Map Processing}
-As discussed in the introduction to section \ref{software}, all GPS
-coordinates are normalised to a power of two. We also ``pad'' the hazard zone
-coordinates, before normalisation, by a safety factor of two meters, preventing innacurate GPS
-readings or hazard zone coordinates resulting in the AGC entering a hazard zone.
-We ``pad'' the hazard zones by calculating the coordinates of centroid of the
-polygon, then extending the vector from the centroid to each perimeter point by
-two meters. The centroid of a polygon can be calculated from the coordinates of
-it's perimeter points as shown in Eqs. (\ref{eq:cx} and \ref{eq:cy}).
+As discussed in the introduction to section \ref{software}, all GPS coordinates
+are normalised to a power of two. We also ``pad'' the hazard zone coordinates,
+before normalisation, by a safety factor of two meters, preventing innacurate
+GPS readings or hazard zone coordinates resulting in the AGC entering a hazard
+zone. We ``pad'' the hazard zones by calculating the coordinates of centroid of
+the polygon, then extending the vector from the centroid to each perimeter point
+by two meters. The centroid of a polygon can be calculated from the coordinates
+of it's perimeter points as shown in Eqs. (\ref{eq:cx} and \ref{eq:cy}).
 \begin{center}
     \begin{equation*}
         A=\frac{1}{2}\sum_{i=0}^{n-1}\left( x_i y_{i+1} - x_{i+1} y_i\right)
@@ -867,15 +1108,16 @@ it's perimeter points as shown in Eqs. (\ref{eq:cx} and \ref{eq:cy}).
 \end{center}
 \subsubsection{Ray Casting}
 The ray casting algorithm is used to determine whether a point falls within a
-polygon. The algorithm can only accept polygons with straight edges; our polygons are
-represented by a series of GPS points along their perimeter, and so our polygons
-are defined by a series of small straight edges. The concept of this algorithm
-is that given a point you wish to test, if you cast a ray from the point in one
-direction to infinity, the number of intersections the ray has with the polygon
-in question indicates whether the point falls in the polygon or not. If an even
-number of intersections are found, then the point lies outside the polygon, and
-if an odd number of intersections are found the point lies within the polygon.
-A visual of this concept can be seen below in Fig. (\ref{fig:raycasting}).
+polygon. The algorithm can only accept polygons with straight edges; our
+polygons are represented by a series of GPS points along their perimeter, and so
+our polygons are defined by a series of small straight edges. The concept of
+this algorithm is that given a point you wish to test, if you cast a ray from
+the point in one direction to infinity, the number of intersections the ray has
+with the polygon in question indicates whether the point falls in the polygon or
+not. If an even number of intersections are found, then the point lies outside
+the polygon, and if an odd number of intersections are found the point lies
+within the polygon. A visual of this concept can be seen below in Fig.
+(\ref{fig:raycasting}).
 \begin{figure}[H]
     \begin{mdframed}
         \begin{center}
@@ -895,20 +1137,19 @@ has four intersections and lies within the polygon.
 There are additional considerations in our implementation to accout for the ray
 intersecting a vertex or for the ray being collinear with a polygon edge. If a
 vertex is intersected then two intersections are counted, one for each edge
-forming the vertex, and the result is not affected. If the ray is collinear
-with a polygon edge then only a single intersection is counted, but the ray will
+forming the vertex, and the result is not affected. If the ray is collinear with
+a polygon edge then only a single intersection is counted, but the ray will
 undoubtedly also intersect at least one of the vertices on the collinear edge
-which will be appropriately accounted for.
-The algorithm has been tested and does not fail in either of these cases.
+which will be appropriately accounted for. The algorithm has been tested and
+does not fail in either of these cases.
 
 \subsubsection{Segment Polygon Intersection}
 Before the AGC starts moving towards any target destination, it first checks
 that it's intended translation vector joining it's location to the target
-location does not pass through
-any hazard zones. It does this by checking that it's intended translation vector
-doesn't intersect any edges of polygons. The diagram shown below in Fig.
-(\ref{fig:segment_intersection}) depicts two finite length line segments
-intersecting.
+location does not pass through any hazard zones. It does this by checking that
+it's intended translation vector doesn't intersect any edges of polygons. The
+diagram shown below in Fig. (\ref{fig:segment_intersection}) depicts two finite
+length line segments intersecting.
 \begin{figure}[H]
     \begin{mdframed}
         \begin{center}
@@ -929,10 +1170,11 @@ to determine the location of the intersection as shown in Fig.
 
 After the intersection point is calculated we ensure that the intersection point
 falls within the smallest rectangle bounded by one point from the first and
-second coordinates of either segment. We do this because the equation for a line is infinite, and
-any lines with non equal gradient will intersect, but we are only interested if
-the intersection occurs between points the AGC intends to travel. The bounding
-rectangle is demonstrated by the green rectangle in Fig. (\ref{fig:segment_intersection}).
+second coordinates of either segment. We do this because the equation for a line
+is infinite, and any lines with non equal gradient will intersect, but we are
+only interested if the intersection occurs between points the AGC intends to
+travel. The bounding rectangle is demonstrated by the green rectangle in Fig.
+(\ref{fig:segment_intersection}).
 
 \begin{figure}[H]
     \begin{mdframed}
@@ -946,9 +1188,9 @@ rectangle is demonstrated by the green rectangle in Fig. (\ref{fig:segment_inter
                 \label{eq:line_b}
             \end{equation}
         \end{center}
-    In our implementation, before this system is solved, we check
-    if the lines have equal gradient, and if they are collinear or not. If they
-    have equal graident, defined by:
+    In our implementation, before this system is solved, we check if the lines
+    have equal gradient, and if they are collinear or not. If they have equal
+    graident, defined by:
     \begin{center}
         \begin{equation*}
             \frac{ay_2 - ay_1}{ax_2 - ax_1} = \frac{by_2 - by_1}{bx_2 - bx_1}
@@ -973,7 +1215,8 @@ rectangle is demonstrated by the green rectangle in Fig. (\ref{fig:segment_inter
     \end{center}
     Now we solve the system defined by Eqs. (\ref{eq:line_a} and
     \ref{eq:line_b}) to determine the point of intersection resulting in the $x$
-    coordinate given by Eq. (\ref{eq:x}) and $y$ coordinate given by Eq. (\ref{eq:y}).
+    coordinate given by Eq. (\ref{eq:x}) and $y$ coordinate given by Eq.
+    (\ref{eq:y}).
     \begin{center}
         \begin{equation}
             x = \frac{ax_{1} m_{a} - ay_{1} - bx_{1} m_{b} + by_{1}}{m_{a} - m_{b}}
@@ -993,23 +1236,22 @@ rectangle is demonstrated by the green rectangle in Fig. (\ref{fig:segment_inter
 The pathfinding algorithm is only used if the control loop shown in Fig.
 (\ref{fig:control_loop}) determines that the AGC should move to the golfer but
 the a direct route is not possible due to the presence of a hazard zone between
-them. Initially the A* pathfinding algorithm was researched as it is a well known algorithm
-with which we could choose some heuristic function to minimise, in our case that
-heuristic function would likely be the shortest distance to reach the golfer.
- A* is generally used
-for pathfinding on a discrete graph, we do not have a discrete graph
-available and so would have to construct one for each golf course or a local graph
-surrounding the hazard we wish to avoid. This adds unnecessary complexity in
-terms of implementation and computation to our system which we wish to avoid.
-Additionally, A* has time complexity of $O(b^d)$ if $d$ is the shortest path length
-and b is the branching factor, and the algorithm has high memory requirements as all generated
-nodes are kept in memory \cite{astar_2009}. It
-was decided we would not use A* algorithm. The next consideration was to simply
-``pad'' the perimeter of the hazard polygon and follow it all the way around
-until the AGC reaches the golfer. This concept is shown in
-the diagram below in Fig. (\ref{fig:padding}) where the red line denotes
-the path that would be taken by the AGC to avoid a hazard zone. Clearly this is
-an inefficient path the AGC will unnecessarily follow the contour of the
+them. Initially the A* pathfinding algorithm was researched as it is a well
+known algorithm with which we could choose some heuristic function to minimise,
+in our case that heuristic function would likely be the shortest distance to
+reach the golfer. A* is generally used for pathfinding on a discrete graph, we
+do not have a discrete graph available and so would have to construct one for
+each golf course or a local graph surrounding the hazard we wish to avoid. This
+adds unnecessary complexity in terms of implementation and computation to our
+system which we wish to avoid. Additionally, A* has time complexity of $O(b^d)$
+if $d$ is the shortest path length and b is the branching factor, and the
+algorithm has high memory requirements as all generated nodes are kept in memory
+\cite{astar_2009}. It was decided we would not use A* algorithm. The next
+consideration was to simply ``pad'' the perimeter of the hazard polygon and
+follow it all the way around until the AGC reaches the golfer. This concept is
+shown in the diagram below in Fig. (\ref{fig:padding}) where the red line
+denotes the path that would be taken by the AGC to avoid a hazard zone. Clearly
+this is an inefficient path the AGC will unnecessarily follow the contour of the
 polygon. Additionally, this method increases the risk that the AGC enters the
 hazard zone if our GPS system is not performing well, or if our GPS mapping of
 hazard zones is erronous.  
@@ -1042,47 +1284,45 @@ determine where the AGC should go.
 \end{figure}
 
 First the chord vector, $\overrightarrow{\mathbf{C}}$, is calculated, along with
-the angle, $\theta$, between $\overrightarrow{\mathbf{C}}$ and the Y-unit vector,
-$\hat{\mathbf{y}}$, using Eq. ().  The relevant polygon, golfer position, and AGC
-position are rotated about the z-axis with the center of rotation as the
-origin by $\theta$ using Eq. () where $\overrightarrow{p}$ is a
-three dimensional point and $\overrightarrow{p^\prime}$ is the rotated point. 
-The polygon is rotated by applying Eq. () to each
-vertex. The purpose of the rotation was to aid the design process of the
-algorithm and make the code more readable, removing the necesscity for vector
-manipulations throuhout the algorithm instead using only simple arithmetic operations.
-This results in $\overrightarrow{\mathbf{C}^\prime}$ having constant $y$. The
-value of $y^\prime$ is increment in one meter steps until no intersection
-between the translated chord vector, $\overrightarrow{\mathbf{C}^\prime_t}$, and
-the rotated polygon, $\mathbf{P}^\prime$. If any point of
+the angle, $\theta$, between $\overrightarrow{\mathbf{C}}$ and the Y-unit
+vector, $\hat{\mathbf{y}}$, using Eq. ().  The relevant polygon, golfer
+position, and AGC position are rotated about the z-axis with the center of
+rotation as the origin by $\theta$ using Eq. () where $\overrightarrow{p}$ is a
+three dimensional point and $\overrightarrow{p^\prime}$ is the rotated point.
+The polygon is rotated by applying Eq. () to each vertex. The purpose of the
+rotation was to aid the design process of the algorithm and make the code more
+readable, removing the necesscity for vector manipulations throuhout the
+algorithm instead using only simple arithmetic operations. This results in
+$\overrightarrow{\mathbf{C}^\prime}$ having constant $y$. The value of
+$y^\prime$ is increment in one meter steps until no intersection between the
+translated chord vector, $\overrightarrow{\mathbf{C}^\prime_t}$, and the rotated
+polygon, $\mathbf{P}^\prime$. If any point of
 $\overrightarrow{\mathbf{C}^\prime_t}$ lies within the polygon the increment
 direction is reversed and incremented until there is no intersection and no
 points of $\overrightarrow{\mathbf{C}^\prime_t}$ lie within the polygon. This
 increment process is repeated in the $x^\prime$ direction for the vector joining
-the rotated AGC position,
-$\left(x^\prime_{AGC}, y^\prime_{AGC}\right)$, to $\left(x^\prime_{AGC},
-y^\prime_{AGC} + y^\prime_i\right)$. Once the incrementation process if finished
-such that no intersections are found, the vector joining $\left(x^\prime_{AGC},
-y^\prime_{AGC}\right)$ to $\left(x^\prime_{AGC}+x^\prime_i,
-y^\prime_{AGC} + y^\prime_i\right)$ is checked for intersections. If none are
-found then $\left(x^\prime_{AGC}+x^\prime_i,
+the rotated AGC position, $\left(x^\prime_{AGC}, y^\prime_{AGC}\right)$, to
+$\left(x^\prime_{AGC}, y^\prime_{AGC} + y^\prime_i\right)$. Once the
+incrementation process if finished such that no intersections are found, the
+vector joining $\left(x^\prime_{AGC}, y^\prime_{AGC}\right)$ to
+$\left(x^\prime_{AGC}+x^\prime_i, y^\prime_{AGC} + y^\prime_i\right)$ is checked
+for intersections. If none are found then $\left(x^\prime_{AGC}+x^\prime_i,
 y^\prime_{AGC} + y^\prime_i\right)$ is rotated back to the original coordinate
 system and set as the position target for the AGC. If an intersection is found
 then $\left(x^\prime_{AGC}+x^\prime_i, y^\prime_{AGC}\right)$ is rotated back to
 the original coordinate system and set as the AGC position target. This process
-repeats until the golfer is reached. Incrementing in the $y^\prime$ direction
-is equivelant to incrementing perpendicular to
-$\overrightarrow{\mathbf{C}}$ in
-the original coordinate system, and incrementing it by $x^\prime$ is equivelant
-to incrementing in the direction of $\overrightarrow{\mathbf{C}}$.
+repeats until the golfer is reached. Incrementing in the $y^\prime$ direction is
+equivelant to incrementing perpendicular to $\overrightarrow{\mathbf{C}}$ in the
+original coordinate system, and incrementing it by $x^\prime$ is equivelant to
+incrementing in the direction of $\overrightarrow{\mathbf{C}}$.
 \subsubsection{Pathfinding Diagram}
-Fig. (\ref{fig:pathfinding_visual}) shows a visual of how the pathfinding algorithm will determine intermediary
-positions for the AGC to move it towards the golfer. For the generation of this
-figure the pathfinding algorithm was only called again after the target position
-is reached, resulting in the very wide path that can be seen in the final path
-diagram. On the AGC the pathfinding algorithm is called every time new GPS data
-is available, approximately every second, resulting in a smoother and closer
-path being found.
+Fig. (\ref{fig:pathfinding_visual}) shows a visual of how the pathfinding
+algorithm will determine intermediary positions for the AGC to move it towards
+the golfer. For the generation of this figure the pathfinding algorithm was only
+called again after the target position is reached, resulting in the very wide
+path that can be seen in the final path diagram. On the AGC the pathfinding
+algorithm is called every time new GPS data is available, approximately every
+second, resulting in a smoother and closer path being found.
 \end{multicols}
 \newpage
 \begin{figure}[H]
@@ -1132,10 +1372,10 @@ path being found.
 The EMG30 motors we are using are controlled by the MD25 motor controller board
 via and $I^2C$ interface. The communication interface for this was written in C
 and is capable of handling multiple $I^2C$ devices. Currently the only device we
-have on the communications network is the MD25. The GPS in the golfer's pod communicates to the main Raspberry Pi via Bluetooth,
-which is written in Python using the PyBluez library. The GPSs communicate with
-the Raspberry Pis via serial commuication implemented using the Pyserial
-library.
+have on the communications network is the MD25. The GPS in the golfer's pod
+communicates to the main Raspberry Pi via Bluetooth, which is written in Python
+using the PyBluez library. The GPSs communicate with the Raspberry Pis via
+serial commuication implemented using the Pyserial library.
 
 \subsection{GCP Elevation API}
 The elevation is needed because the height difference in golf shots is relevant
@@ -1214,8 +1454,8 @@ ability of the AGC.
     \end{center}
 \end{figure}
 
-For testing, the Southampton Municipal Golf Course shown in Fig. (\ref{fig:municipal}) is chosen due to
-practical reasons: 
+For testing, the Southampton Municipal Golf Course shown in Fig.
+(\ref{fig:municipal}) is chosen due to practical reasons: 
 
 \begin{itemize}
     \item Closest and most accessible golf course for the team to go for testing
@@ -1227,8 +1467,9 @@ practical reasons:
 
 All the holes and hazards are identified and cross-checked with a golf course
 app, VPAR before drawing out the polygons. The waypoints are then created by
-drawing polygons around a parameter as in Fig. (\ref{fig:poly2}). For increased accuracy, the
-waypoints are drawn as closed as possible to each other as shown in Fig. (\ref{fig:poly1}).
+drawing polygons around a parameter as in Fig. (\ref{fig:poly2}). For increased
+accuracy, the waypoints are drawn as closed as possible to each other as shown
+in Fig. (\ref{fig:poly1}).
 
 \begin{figure}[H]
     \begin{center}
@@ -1268,30 +1509,27 @@ The motors we decided to use for our prototype version are the EMG30 motors
 because we already have them and this will save cost. However, they are
 underpowered as they will take too long to accelerate the AGC to full speed, and
 won't work at on anything more than a slight incline; for a final version the
-EMG49 motors should be used. 
-We chose these motors
-by
-considering the top speed we wish the AGC to able to go, and how fast we want it
-to accelerate to that speed on a $10^\circ$ incline. The calculations shown below in
-Fig. (\ref{fig:motor_calcs}) show how we calculated the necessary toruqe and rpm we require from our
-motors.
+EMG49 motors should be used. We chose these motors by considering the top speed
+we wish the AGC to able to go, and how fast we want it to accelerate to that
+speed on a $10^\circ$ incline. The calculations shown below in Fig.
+(\ref{fig:motor_calcs}) show how we calculated the necessary toruqe and rpm we
+require from our motors.
 
 \begin{figure}[H]
     \begin{mdframed}
         The top speed we chose for the AGC was 5.0 kilometers per hour,
-        equivalent to average walking speed. 
-        The wheel radius, $W_r$ of the AGC wheels is 0.115 meters. We can
-        calculate RPM using Eq. (\ref{eq:rpm}):
+        equivalent to average walking speed. The wheel radius, $W_r$ of the AGC
+        wheels is 0.115 meters. We can calculate RPM using Eq. (\ref{eq:rpm}):
         \begin{center}
             \begin{equation}
                 rpm = \frac{7.5 * \frac{1000}{3600}}{2\pi W_r} \cdot 60 \approx 115rpm
                 \label{eq:rpm}
             \end{equation}
         \end{center}
-        The AGC should be able
-        to accelerate to this speed, $V$, within $t=5$ seconds on a $10^\circ$ incline.
-        For predicted final mass, $M = 15kg$, 
-        the accelerating force, $F$, required can be calculated with Eq. (\ref{eq:accel}):
+        The AGC should be able to accelerate to this speed, $V$, within $t=5$
+        seconds on a $10^\circ$ incline. For predicted final mass, $M = 15kg$,
+        the accelerating force, $F$, required can be calculated with Eq.
+        (\ref{eq:accel}):
         \begin{center}
             \begin{equation}
                 F = \frac{V}{t} + M g_0 \sin(10^\circ)\approx 29 N
