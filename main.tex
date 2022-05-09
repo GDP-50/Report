@@ -150,20 +150,28 @@ process covers all the stages of the design and manufacturing process that the
 team followed in order to achieve a reliable and high-quality prototype. 
 
 All components of the caddy including its systems were interconnected thus a
-design process flowchart as seen in Figure X, was done to ensure all the design
-process was clear and done properly to obtain the best result for the project.
-The design process follows a 5 stage approach. The first stage consist of
-defining the problem, brainstorming possible solutions and exploring new
-concepts and possibilities for the design of the project. It was important for
-the team to cater to the requirements of the client without going astray of the
-requirements of the GDP. Initially, the request was to design and develop a
-fully functional smart autonomous golf caddy that was commercialisable. However,
-this was not possible considering the time and budget allocated for this project
-by the GDP stakeholders thus the team proposed to design and develop a
-functioning prototype that could be further improved in the future. Next, the
-team identified the design specifications of the standard caddy, research and
-explore new features and concepts, and subsequently evaluated and compared the
-ideas with current products available on the market. 
+design process flowchart as seen in Fig. (\ref{fig:design_process}), was done to
+ensure all the design process was clear and done properly to obtain the best
+result for the project. The design process follows a 5 stage approach. The first
+stage consist of defining the problem, brainstorming possible solutions and
+exploring new concepts and possibilities for the design of the project. It was
+important for the team to cater to the requirements of the client without going
+astray of the requirements of the GDP. Initially, the request was to design and
+develop a fully functional smart autonomous golf caddy that was
+commercialisable. However, this was not possible considering the time and budget
+allocated for this project by the GDP stakeholders thus the team proposed to
+design and develop a functioning prototype that could be further improved in the
+future. Next, the team identified the design specifications of the standard
+caddy, research and explore new features and concepts, and subsequently
+evaluated and compared the ideas with current products available on the market. 
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[]{design_process.png}
+    \end{center}
+    \captionof{figure}{Flow chart showing our design process}
+    \label{fig:design_process}
+\end{figure}
 
 The second stage was to select an approach and develop a design proposal. This
 stage consist of the team working on their roles, introduce the concepts to the
@@ -191,13 +199,27 @@ improvement that could be made to the design. In the case of this project, this
 could mean developing and improving the design to commercialising standards
 given the necessary time and funding. 
 
+\subsection{Inheritance and Design Changes from Original Golf Caddy}
+This project although new, the team were given a golf bag and caddy by the
+client. The team had to test, redesign and add a significant amount of hardware,
+software and electronics to the inherited design. In addition, the team also
+added a few innovations relevant to the project’s aims and objectives. To aid
+the clarification of this project, Fig. (\ref{fig:inheritance}) details a diagram of the
+individual changes made from the inherited design and developed components. 
+\end{multicols}
+\newpage
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[]{inheritance.png}
+    \end{center}
+    \captionof{figure}{Flow chart showing our design process}
+    \label{fig:inheritance}
+\end{figure}
+
 
 \newpage
-\end{multicols}
 \begin{multicols}{2}
-
-
-    \newpage
     
 \section{Mechanical Design}
     In this section, several mechanical components that were designed,
@@ -1391,22 +1413,112 @@ transforming the location into latitude and longitude coordinates.
 
 \subsection{GUI}
 
-A GUI is developed to ease communication between the golfer and the caddy. We
-installed a screen which is compatible with the Raspberry Pi which acts as the
-brain of the AGC. The screen is intended to show displays of the map and enables
-the golfer to interact with the AGC for the golf selections, i.e. the golfer can
-choose to accept the AGC`s recommended golf club or decline it. The GUI is
-developed using PyQt which is a Python binding of the cross-platform GUI toolkit
-Qt, used as a Python module. 
+A graphic user interface (GUI) is a graphics-based operating system interface
+that uses icons, menus and a mouse to manage interaction with the system. In
+this project, a GUI was developed to enable interactions between the golfer and
+the caddy, mainly for the golf suggestion system. The GUI would also act an
+information center to display all relevant information relevant to the golfer’s
+game which could include weather forecasts, GPS location and performance
+analysis. However, the GUI in this project focused on making the system
+interactive to enable the golfer to communicate with the caddy on the preferred
+golf club in a round of golf. Based on the machine learning algorithm for the
+golf suggestion system, the golfer would have the option to accept or reject the
+suggested golf by interacting with the GUI, as shown in Fig. (\ref{fig:gui}),
+and the result of the decision would be received by the golf suggesting
+algorithm to improve its data and accuracy. 
 
- 
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[]{GUI.png}
+    \end{center}
+    \captionof{figure}{Flow chart of the golfer interacting with the caddy on a club suggestion through the caddy}
+    \label{fig:gui}
+\end{figure}
 
+Initially the type of data representation that had to be displayed is peculiar
+and there was no readily available software that could be used to implement
+them. Therefore, a GUI had to be made from scratch in order to satisfy our aims
+and objectives on the type of data representation. To display the GUI, options
+such as LCD screen or even a phone app were considered. Frameworks that were
+considered in order to make the GUI that could be represented on the options
+above were Qt, Blynk IoT and React Native which is a library in JavaScript. Qt
+was chosen due to its library in python called PyQt which would be easier to use
+and considering that only a screen would be used, the user’s phone will not have
+to be unusable whilst the GUI is on. 
+
+\subsubsection{PyQt}
 PyQt is mainly used for creating GUI, developing desktop applications with
-Python. As an initial design implementation, we decided to use PyQt as the GUI
-of the AGC as the screen is able to showcase the GUI as an application through
-the Raspberry Pi. The main reason PyQt is used for this project is due to it
-being open source and provides many classes, methods and widgets. This allows us
-to make a rich app at zero cost.  
+Python. As an initial design implementation, the team decided to use PyQt as the
+GUI because screen is able to showcase the GUI as an application through the
+Raspberry Pi. The main reason PyQt is used for this project is due to it being
+open source and provides many classes, methods and widgets. This allows us to
+make a rich app at zero cost.  
+
+There are two methods known to create a GUI through PyQt: a: through hard coding
+i.e., manually coding the elements contained in the GUI and b: through a tool in
+PyQt called QtDesigner which allows the used to pick and choose the elements
+contained in the GUI. Obviously, the second method is easier as it allows the
+user direct preview of how the GUI would look like. However, the drawback of
+this method is that it that the user has less control of the GUI’s boundaries,
+and an extra step is needed to convert the GUI from a user interface file (.ui)
+to a python file to be used on python for the code (.py). The second method is
+used with a combination of the first method for control of the boundaries. There
+are a few GUIs created for the caddy with its use listed below in Table
+(\ref{tab:gui_descs}) with its description.
+
+\begin{table}[H]
+    \begin{center}
+        \resizebox{\columnwidth}{!}{%
+        \begin{tabular}{|l|l|}
+            \hline
+            \textbf{GUI Name} & \textbf{Description} \\ \hline
+            MyMap & To showcase a virtual map of the golf course to indicate the
+            live location of the golfer \\ \hline
+            MyInfo & To allow the golfer to key in their information which
+            includes age and skill level for the machine learning algorithm \\\hline
+            MyClubs & To allow the golfer to key in the information of the
+            location of each club in each slots in the golf bag. This GUI also
+            allows the golfer to interact with the caddy on whether they decide
+            to use the recommended golf club or their own preference \\ \hline
+        \end{tabular}
+        }
+    \end{center}
+    \captionof{table}{GUI names and descriptons}
+    \label{tab:gui_descs}
+\end{table}
+
+After developing these GUIs, they were tested on the Raspberry Pi to see its
+compatibility and functionality. All GUIs were working well and found compatible
+with the Raspberry Pi. However, there were drawbacks on some of the
+functionality of the GUI. First, MyMap wasn’t able to generate a responsive map
+that could allow the autonomous following algorithm to give and receive inputs
+with the map. This is because PyQt and Python could not incorporate Google Maps
+due to licensing and the alternative was a library from Python that could
+generate a map which was Folium. Folium is a tool to visualise data that has
+been manipulated through Python on an interactive leaflet. Although interactive,
+data from the map could not be extracted to enable the autonomous following
+algorithm to update the coordinates of the golfer and the caddy on the GUI. This
+results to a static map that could only be updated when the coordinates are
+updated manually in the algorithm. An alternative to this is to create a virtual
+map that replicates the golf course but would result in more computational power
+thus deemed unfeasible. Another alternative is to obtain the API and licensing
+from Google Maps and incorporate it into the GUI. However, obtaining the API and
+licensing requires the team to purchase them at a very high cost significantly
+beyond the budget allocated. Second, for MyClubs, the GUI works smoothly, and
+the golfer is able to setup the golf clubs according to the slots. The trouble
+is that it was difficult to incorporate the servo motors for the release
+mechanism with the Raspberry Pi as when connected and programmed, the servo
+motors were not responding. The team tested the servo motors separately using an
+Arduino and the release mechanism functioned without any issues. This could mean
+that the servo motors are not compatible with the Raspberry Pi thus alternative
+methods should be investigated. Third and lastly, MyInfo acts as key information
+for the golf suggesting algorithm because information on the golfer’s age,
+gender and skill level are relevant for the caddy to suggest a suitable golf
+club. However, this information were not enough to generate sufficient data for
+the golf suggesting algorithm thus making the golf suggestion to be inaccurate.
+More data would need to be obtained such as weather, elevation, distance of the
+ball to the hole and the power of the golfer’s swing to enable more accurate
+results. 
 
 \subsubsection{Course Map}
 The course map was implemented on the GUI using the map system that was used on
@@ -1417,89 +1529,65 @@ coordinates or in screen coordinates. This shortfall makes it impossible to give
 the golfer the ability to click a point on the map and see how far away it is
 from the AGC, using the simulator map allows us to add that feature.
 
-\section{Course Mapping}
-The coordinates of the golf map is required in order for the AGC to understand
-its movement boundaries on the golf course. The idea is for the AGC to know the
-coordinates of points where it should avoid such as bunkers, lakes and greens
-(hazards) while following the golfer throughout the golf course. The coordinates
-of the hazards are generated through a software called Mission Planner by
-drawing out polygons containing the coordinates of the hazards. Subsequently,
-these coordinates are extracted and converted into longitude and latitudes which
-are then used for the golf mapping.
+\section{Course Geo-mapping}
+The core of the autonomous following for the golf caddy is it relying on the
+golf course data to know where the unallowed and hazardous areas are with high
+accuracy. This is best done by using the GPS coordinates of the locations as it
+pinpoints exactly where these locations are and enables the caddy to know where
+the points are given the right communication tool.
 
-Mission planner is created by Michael Oborne and has some features that are
-beneficial to this project: 
+The Southampton Municipal Golf Course was chosen as the project’s test site on
+the grounds that it has a fair number of bunkers, greens and water which provide
+good amount of data without being too overwhelming. It is also logistically
+practical for testing as it accessible at a low cost. To ensure that the data
+obtain was accurate, the data obtained is compared with Google Maps and a golf
+app, VPAR which contains the number of greens according to its respective holes
+and the relative coordinates of all locations. The comparison was found to be
+accurate and helps strengthens the case of choosing the GPS coordinates of the
+unallowed and hazardous locations as the data source for the autonomous
+following system. 
 
-\begin{itemize}
-    \item Point-and-click waypoint, using Google Maps/Bing/Open street maps 
-    \item Extraction of coordinates polygons as text file enables flexibility on
-    how the data is used 
-\end{itemize}
+ I identified that the best way to extract the coordinates that allow
+the caddy to understand which area it should avoid is by drawing out polygon
+maps through the perimeters of the unallowed and hazardous locations. By doing
+this, it saves me time and reduces computational speed as I do not have to
+extract every single point within the area (for accuracy) and the algorithm for
+the autonomous following would not have to go through so many data that would be
+costly in computational speed. For accuracy, I established that the polygons
+drawn as the perimeter would need to be as close as possible to increase the
+points within the perimeter of the area that the caddy should avoid. Once of
+these plans were put together, the next step was to find out what tool that
+could be used to carry these out successfully within the budget of the project.
+All of this was possible through a software called Mission Planner.
 
-It is used mostly as a ground control station for Plane, Copter and Rover [2].
-In this project, its usefulness is its point-and-click waypoint feature which
-includes its ability to extract these coordinates. A waypoint is created by
-clicking on the map and a polygon is subsequently created. This polygon would
-have a unique coordinate (longitude and latitude) based on actual satellite
-mapping. The longitude and latitude can be extracted and saved as a text file
-which is the intention of this project enabling the coordinates to be
-implemented in other algorithms, mainly, the golf mapping and the following
-ability of the AGC. 
-
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{Municipal.png}
-        \captionof{figure}{Southampton Municipal Golf Course on Mission Planner}
-        \label{fig:municipal}
-    \end{center}
-\end{figure}
-
-For testing, the Southampton Municipal Golf Course shown in Fig.
-(\ref{fig:municipal}) is chosen due to practical reasons: 
-
-\begin{itemize}
-    \item Closest and most accessible golf course for the team to go for testing
-    which enables frequent testing at a low cost
-    \item Appropriate size of golf course for initial testing which includes a
-    perfect amount of hazards preventing overwhelming obstacles during testing
-    and design 
-\end{itemize}
-
-All the holes and hazards are identified and cross-checked with a golf course
-app, VPAR before drawing out the polygons. The waypoints are then created by
-drawing polygons around a parameter as in Fig. (\ref{fig:poly2}). For increased
-accuracy, the waypoints are drawn as closed as possible to each other as shown
-in Fig. (\ref{fig:poly1}).
+The coordinate is then extracted from a feature of this software which allows it
+to be formatted as a text file. As mentioned, the waypoints were drawn as
+closely to each other as possible. Fig. (\ref{fig:mission_planner}) illustrates
+the comparison of Southampton Municipal Golf Course on Mission Planner and
+Google Maps where both are identical and all coordinates match with each other
+on the maps. Prohibited zones are then created by drawing constructing a polygon
+formed by clicking points of the perimeter of a zone we do not with the AGC to
+trespass onto; the concept is demonstrated in Fig. (\ref{fig:polygon1}).
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=0.3\textwidth]{polygon 2.png}
-        \captionof{figure}{Drawing the polygons to define the waypoints for the hazards}
-        \label{fig:poly2}
+        \includegraphics[]{Municipal.png}
     \end{center}
+    \captionof{figure}{Mission Planner view of Southampton Municipal Golf Course}
+    \label{fig:mission_planer}
 \end{figure}
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=0.3\textwidth]{polygon 1.png}
-        \captionof{figure}{ Increase accuracy of coordinate extraction by having the polygons drawn more closely to each other}
-        \label{fig:poly1}
+        \includegraphics[]{polygon 1.png}
     \end{center}
+    \captionof{figure}{Mission Planner view of Southampton Municipal Golf Course}
+    \label{fig:polygon1}
 \end{figure}
 
-\section{Machine Learning}
-The AGC will have the option to enable optimal club choice predictions if the
-user desires it. This option is placed on the AGC because current golf
-regulations outside the United States do not permit the use of software to help
-the golfer.
-
-To determine the appropriate machine learning algorithm we first look at the
-type of data we have. The AGC will collect both input and output data. Input
-data will be mainly personal information from the user and type of club chosen
-while output data will be the result of those chosen parameters. Hence, the
-model uses supervised learning. From supervised learning we can do a regression
-or classification model. The latter one is most suitable because we are
-predicting labels and not quantities.
+Ultimately, the goal of this is to obtain all the coordinates of the perimeter
+of all unallowed and hazardous areas on the golf course. Subsequently, the
+coordinates would be extracted and used for the autonomous following system.
 
 
 \section{Electronics}
