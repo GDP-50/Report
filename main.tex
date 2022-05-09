@@ -167,7 +167,7 @@ evaluated and compared the ideas with current products available on the market.
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[]{design_process.png}
+        \includegraphics[width=0.3\textwidth]{design_process.png}
     \end{center}
     \captionof{figure}{Flow chart showing our design process}
     \label{fig:design_process}
@@ -211,7 +211,7 @@ individual changes made from the inherited design and developed components.
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[]{inheritance.png}
+        \includegraphics[width=\textwidth]{inheritance.png}
     \end{center}
     \captionof{figure}{Flow chart showing our design process}
     \label{fig:inheritance}
@@ -299,8 +299,6 @@ individual changes made from the inherited design and developed components.
     weight of a golf club that was measured to be 700g, was used in further
     calculations. The torque was calculated, using a pulley analogy, with the
     formula shown below.
-    
-    \newpage
     
     \begin{center}
         \begin{equation}
@@ -1102,6 +1100,13 @@ The main control loop that determines the AGC's behaviour is shown below in Fig.
 \captionof{figure}{Main AGC control loop}
 \label{fig:control_loop}
 \end{figure}
+\subsubsection{Design and Test Process}
+All software used for controlling the AGC was tested on the OpenGL simulator
+built. This allowed for good visualisation and analysis of the algorithms'
+performance. Only the pathfinding algorithm was not tested on the simulator to
+prevent wasting time animating it; visual output using Matplotlib was more
+efficient.
+
 \subsubsection{Map Processing}
 As discussed in the introduction to section \ref{software}, all GPS coordinates
 are normalised to a power of two. We also ``pad'' the hazard zone coordinates,
@@ -1391,24 +1396,13 @@ second, resulting in a smoother and closer path being found.
 \begin{multicols}{3}
 
 \subsection{Communications}
-The EMG30 motors we are using are controlled by the MD25 motor controller board
-via and $I^2C$ interface. The communication interface for this was written in C
-and is capable of handling multiple $I^2C$ devices. Currently the only device we
-have on the communications network is the MD25. The GPS in the golfer's pod
+The EMG49 motors we are using are controlled by the MD25 motor controller board
+via and serial communication. The communication interface for this was written in C
+and is capable of handling multiple serial devices. Currently the only device we
+have on the communications network is the MD49. The GPS in the golfer's pod
 communicates to the main Raspberry Pi via Bluetooth, which is written in Python
 using the PyBluez library. The GPSs communicate with the Raspberry Pis via
 serial commuication implemented using the Pyserial library.
-
-\subsection{GCP Elevation API}
-The elevation is needed because the height difference in golf shots is relevant
-to decide the optimal club choice. Hence, the first idea was to use a Google
-Cloud Platform (GCP) elevation application programming interface (API). The
-platform allows a free trial period and after this the price per 1000 request is
-of 4-5 USD. 
-
-Having the location of the pod, which will be carried by the user, and the
-location of the hole in the golf course, the height difference can be known by
-transforming the location into latitude and longitude coordinates.
 
 
 \subsection{GUI}
@@ -1429,7 +1423,7 @@ algorithm to improve its data and accuracy.
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[]{GUI.png}
+        \includegraphics[width=0.3\textwidth]{GUI.png}
     \end{center}
     \captionof{figure}{Flow chart of the golfer interacting with the caddy on a club suggestion through the caddy}
     \label{fig:gui}
@@ -1474,11 +1468,11 @@ are a few GUIs created for the caddy with its use listed below in Table
             \textbf{GUI Name} & \textbf{Description} \\ \hline
             MyMap & To showcase a virtual map of the golf course to indicate the
             live location of the golfer \\ \hline
-            MyInfo & To allow the golfer to key in their information which
+            MyInfo & To allow the golfer to key in their information which \newline
             includes age and skill level for the machine learning algorithm \\\hline
-            MyClubs & To allow the golfer to key in the information of the
-            location of each club in each slots in the golf bag. This GUI also
-            allows the golfer to interact with the caddy on whether they decide
+            MyClubs & To allow the golfer to key in the information of the \newline
+            location of each club in each slots in the golf bag. This GUI also \newline
+            allows the golfer to interact with the caddy on whether they \newline
             to use the recommended golf club or their own preference \\ \hline
         \end{tabular}
         }
@@ -1571,7 +1565,7 @@ trespass onto; the concept is demonstrated in Fig. (\ref{fig:polygon1}).
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[]{Municipal.png}
+        \includegraphics[width=0.3\textwidth]{Municipal.png}
     \end{center}
     \captionof{figure}{Mission Planner view of Southampton Municipal Golf Course}
     \label{fig:mission_planer}
@@ -1579,7 +1573,7 @@ trespass onto; the concept is demonstrated in Fig. (\ref{fig:polygon1}).
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[]{polygon 1.png}
+        \includegraphics[width=0.3\textwidth]{polygon 1.png}
     \end{center}
     \captionof{figure}{Mission Planner view of Southampton Municipal Golf Course}
     \label{fig:polygon1}
@@ -1968,7 +1962,15 @@ creating a scatter plot with polar coordinates where $\theta$ is the angle of
 deviation and radius, $r$, is the missed distance. Together, the AGC can make the
 user visualize via the screen this plot and find hidden patterns. For example, a
 player may have tendency to hit the ball to the left side in certain holes of
-the golf course. 
+the golf course, as shown in Fig. (\ref{fig:compass}) below. 
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[]{compass.png}
+    \end{center}
+    \captionof{figure}{Golfer shot pattern graphic}
+    \label{fig:compass}
+\end{figure}
 
 \subsection{Prediction Algorithm}
 \subsubsection{Introduction}
@@ -2116,7 +2118,7 @@ atmospheric conditions and more that are relevant to the distance a golf ball
 can travel.
 
 \end{multicols}
-\begin{table}[]
+\begin{table}[H]
     \centering
     \resizebox{\columnwidth}{!}{%
     \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
@@ -2145,7 +2147,7 @@ can travel.
     \label{tab:guillermo_t1}
 \end{table}
     
-\begin{table}[]
+\begin{table}[H]
     \centering
     \resizebox{\columnwidth}{!}{%
     \begin{tabular}{lllllllll}
@@ -2173,357 +2175,46 @@ can travel.
     \label{tab:guillermo_t2}
 \end{table}
     
-\begin{table}[]
+\begin{table}[H]
     \centering
-    \resizebox{\columnwidth}{!}{%
     \begin{tabular}{lllllllllllllllllll}
-    \multicolumn{1}{c}{} &
-      \multicolumn{1}{c}{username} &
-      \multicolumn{1}{c}{age} &
-      \multicolumn{1}{c}{gender} &
-      \multicolumn{1}{c}{skill\_level} &
-      \multicolumn{1}{c}{handicap} &
-      \multicolumn{1}{c}{linear\_dist} &
-      \multicolumn{1}{c}{actual\_dist} &
-      \multicolumn{1}{c}{missed\_dist} &
-      \multicolumn{1}{c}{club} &
-      \multicolumn{1}{c}{actual\_club} &
-      \multicolumn{1}{c}{aimed\_dir} &
-      \multicolumn{1}{c}{wind\_dir} &
-      \multicolumn{1}{c}{ws} &
-      \multicolumn{1}{c}{angle\_dev} &
-      \multicolumn{1}{c}{tendency} &
-      \multicolumn{1}{c}{temp} &
-      \multicolumn{1}{c}{height\_above\_sea\_level} &
-      \multicolumn{1}{c}{elev\_diff} \\
-    \multicolumn{1}{c}{28,701} &
-      \multicolumn{1}{c}{Kathryn} &
-      \multicolumn{1}{c}{19} &
-      \multicolumn{1}{c}{Female} &
-      \multicolumn{1}{c}{Average} &
-      \multicolumn{1}{c}{21} &
-      \multicolumn{1}{c}{96.90} &
-      \multicolumn{1}{c}{110.70} &
-      \multicolumn{1}{c}{13.80} &
-      \multicolumn{1}{c}{4 Iron} &
-      \multicolumn{1}{c}{6 Iron} &
-      \multicolumn{1}{c}{51} &
-      \multicolumn{1}{c}{191} &
-      \multicolumn{1}{c}{9.40} &
-      \multicolumn{1}{c}{94.10} &
-      \multicolumn{1}{c}{right} &
-      \multicolumn{1}{c}{29.30} &
-      \multicolumn{1}{c}{180.60} &
-      \multicolumn{1}{c}{-10} \\
-    \multicolumn{1}{c}{25,065} &
-      \multicolumn{1}{c}{Heather} &
-      \multicolumn{1}{c}{68} &
-      \multicolumn{1}{c}{Female} &
-      \multicolumn{1}{c}{Excellent} &
-      \multicolumn{1}{c}{2} &
-      \multicolumn{1}{c}{133.60} &
-      \multicolumn{1}{c}{128.30} &
-      \multicolumn{1}{c}{5.30} &
-      \multicolumn{1}{c}{8 Iron} &
-      \multicolumn{1}{c}{8 Iron} &
-      \multicolumn{1}{c}{215} &
-      \multicolumn{1}{c}{136} &
-      \multicolumn{1}{c}{3} &
-      \multicolumn{1}{c}{2.40} &
-      \multicolumn{1}{c}{top} &
-      \multicolumn{1}{c}{5.60} &
-      \multicolumn{1}{c}{356.40} &
-      \multicolumn{1}{c}{-2} \\
-    \multicolumn{1}{c}{11,524} &
-      \multicolumn{1}{c}{Roger} &
-      \multicolumn{1}{c}{51} &
-      \multicolumn{1}{c}{Male} &
-      \multicolumn{1}{c}{Average} &
-      \multicolumn{1}{c}{24} &
-      \multicolumn{1}{c}{203.50} &
-      \multicolumn{1}{c}{231.40} &
-      \multicolumn{1}{c}{27.90} &
-      \multicolumn{1}{c}{Driver} &
-      \multicolumn{1}{c}{Driver} &
-      \multicolumn{1}{c}{77} &
-      \multicolumn{1}{c}{259} &
-      \multicolumn{1}{c}{4.70} &
-      \multicolumn{1}{c}{55.50} &
-      \multicolumn{1}{c}{top right} &
-      \multicolumn{1}{c}{29.70} &
-      \multicolumn{1}{c}{473.10} &
-      \multicolumn{1}{c}{-6} \\
-    \multicolumn{1}{c}{4,838} &
-      \multicolumn{1}{c}{Edward} &
-      \multicolumn{1}{c}{68} &
-      \multicolumn{1}{c}{Male} &
-      \multicolumn{1}{c}{Good} &
-      \multicolumn{1}{c}{12} &
-      \multicolumn{1}{c}{191.10} &
-      \multicolumn{1}{c}{181.70} &
-      \multicolumn{1}{c}{9.40} &
-      \multicolumn{1}{c}{Hybrid} &
-      \multicolumn{1}{c}{5 Wood} &
-      \multicolumn{1}{c}{171} &
-      \multicolumn{1}{c}{206} &
-      \multicolumn{1}{c}{3.10} &
-      \multicolumn{1}{c}{14.90} &
-      \multicolumn{1}{c}{top right} &
-      \multicolumn{1}{c}{27.80} &
-      \multicolumn{1}{c}{435.90} &
-      \multicolumn{1}{c}{8} \\
-    \multicolumn{1}{c}{18,352} &
-      \multicolumn{1}{c}{Sarah} &
-      \multicolumn{1}{c}{44} &
-      \multicolumn{1}{c}{Female} &
-      \multicolumn{1}{c}{Excellent} &
-      \multicolumn{1}{c}{3} &
-      \multicolumn{1}{c}{100.40} &
-      \multicolumn{1}{c}{128.30} &
-      \multicolumn{1}{c}{27.90} &
-      \multicolumn{1}{c}{9 Iron} &
-      \multicolumn{1}{c}{Gap Wedge} &
-      \multicolumn{1}{c}{280} &
-      \multicolumn{1}{c}{96} &
-      \multicolumn{1}{c}{3.90} &
-      \multicolumn{1}{c}{360.60} &
-      \multicolumn{1}{c}{top} &
-      \multicolumn{1}{c}{17.50} &
-      \multicolumn{1}{c}{700.70} &
-      \multicolumn{1}{c}{0} \\
-    \multicolumn{1}{c}{22,344} &
-      \multicolumn{1}{c}{Angela} &
-      \multicolumn{1}{c}{40} &
-      \multicolumn{1}{c}{Female} &
-      \multicolumn{1}{c}{Excellent} &
-      \multicolumn{1}{c}{6} &
-      \multicolumn{1}{c}{138.30} &
-      \multicolumn{1}{c}{140.50} &
-      \multicolumn{1}{c}{2.20} &
-      \multicolumn{1}{c}{8 Iron} &
-      \multicolumn{1}{c}{7 Iron} &
-      \multicolumn{1}{c}{38} &
-      \multicolumn{1}{c}{79} &
-      \multicolumn{1}{c}{3.20} &
-      \multicolumn{1}{c}{305.70} &
-      \multicolumn{1}{c}{top left} &
-      \multicolumn{1}{c}{21.90} &
-      \multicolumn{1}{c}{779.80} &
-      \multicolumn{1}{c}{5} \\
-     &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       \\
-     &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       \\
-     &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       \\
-     &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       \\
-     &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       \\
-     &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       \\
-     &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       \\
-     &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       \\
-     &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       \\
-     &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       \\
-     &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-       &
-      
-    \end{tabular}%
-    }
-    \captionof{table}{Sample sythetic data}
-    \label{tab:guillermo_t3}
+           & username & age & gender & skill\_level & handicap & linear\_dist & actual\_dist & missed\_dist & club   & actual\_club & aimed\_dir & wind\_dir & ws   & angle\_dev & tendency  & temp  & height\_above\_sea\_level & elev\_diff  \\
+    28,701 & Kathryn  & 19  & Female & Average      & 21       & 96.90        & 110.70       & 13.80        & 4 Iron & 6 Iron       & 51         & 191       & 9.40 & 94.10      & right     & 29.30 & 180.60                    & -10         \\
+    25,065 & Heather  & 68  & Female & Excellent    & 2        & 133.60       & 128.30       & 5.30         & 8 Iron & 8 Iron       & 215        & 136       & 3    & 2.40       & top       & 5.60  & 356.40                    & -2          \\
+    11,524 & Roger    & 51  & Male   & Average      & 24       & 203.50       & 231.40       & 27.90        & Driver & Driver       & 77         & 259       & 4.70 & 55.50      & top right & 29.70 & 473.10                    & -6          \\
+    4,838  & Edward   & 68  & Male   & Good         & 12       & 191.10       & 181.70       & 9.40         & Hybrid & 5 Wood       & 171        & 206       & 3.10 & 14.90      & top right & 27.80 & 435.90                    & 8           \\
+    18,352 & Sarah    & 44  & Female & Excellent    & 3        & 100.40       & 128.30       & 27.90        & 9 Iron & Gap Wedge    & 280        & 96        & 3.90 & 360.60     & top       & 17.50 & 700.70                    & 0           \\
+    22,344 & Angela   & 40  & Female & Excellent    & 6        & 138.30       & 140.50       & 2.20         & 8 Iron & 7 Iron       & 38         & 79        & 3.20 & 305.70     & top left  & 21.90 & 779.80                    & 5          
+    \end{tabular}
+    \captionof{table}{Sample synthetic data}
+    \label{fig:guillermo_t3}
 \end{table}
+\newpage
+\begin{multicols}{3}
+\section{Project Review}
+\subsection{Project Aims}
+Detailed below is a review of how our project meets the aims initially laid out
+in the introduction.
+\paragraph{Follow the golfer automatically}
+yes but actually no
+
+\paragraph{Offer the optimal club to the golfer}
+conclusion is yes
+
+\subsection{Assessment Criteria}
+Detailed below is a review of how our project has met the laid out module
+assessment critera.
+\subsubsection{Innovation}
+Conclusion of innovative systems.
+
+\subsubsection{Process}
+Conclusion of how our design process was met. Validation etc
+
+\subsubsection{Communication}
+How did our meetings run, was it successful.
+\end{multicols}
+
+    
     
 
 \newpage
