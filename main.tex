@@ -1116,7 +1116,7 @@ this effect is unnoticable when operating the AGC.
 \label{control_software}
 This section discusses the software used to make the AGC follow the golfer. All
 of the control software apart from the elctronics specific code, such as motor
-controller communication, was written first using the OpenGL simulator that was
+controller communication, was written first in the OpenGL simulator environment that was
 built throughout the year. Building and using a simulator allowed us to write
 and test all the control software / algorithms that would be required to make
 the AGC follow the golfer as intended while avoiding hazard regions.
@@ -1126,7 +1126,7 @@ easiest to use with OpenGL, however we decided to change to PyQt5 for designing
 the onboard GUI. As the ACG software was now to be written in Python the control
 algorithms were re-written in Python, however upon testing it was found that
 their performance was significantly slower than the C implementations. This is
-most likely a large number of array passing and manipulations are required,
+most likely a large amount of array passing and manipulations are required,
 which is significantly slower in Python where function arguments are passed as
 object reference instead of pointers in C. Therefore the original C control
 algorithms were compiled as a dynamic link library (DLL) and the Python ``C
@@ -1196,8 +1196,8 @@ the point in one direction to infinity, the number of intersections the ray has
 with the polygon in question indicates whether the point falls in the polygon or
 not. If an even number of intersections are found, then the point lies outside
 the polygon, and if an odd number of intersections are found the point lies
-within the polygon. A visual of this concept can be seen below in Fig.
-(\ref{fig:raycasting}).
+within the polygon. Zero intersections means the point lies outside the polygon.
+A visual of this concept can be seen below in Fig. (\ref{fig:raycasting}).
 \begin{figure}[H]
     \begin{mdframed}
         \begin{center}
@@ -1211,12 +1211,12 @@ within the polygon. A visual of this concept can be seen below in Fig.
 The figure shows two points which are to be tested to determine if they lie
 within the polygon. Casting the ray to the right, towards $x\rightarrow\inf$ in
 our implementation, we can count the intersections each ray has with the
-polygon. Point A has five intersections and so lies outside the polygon, point B
-has four intersections and lies within the polygon. 
+polygon. Point A has five intersections and so lies inside the polygon, point B
+has four intersections and lies outside the polygon. 
 
 There are additional considerations in our implementation to accout for the ray
 intersecting a vertex or for the ray being collinear with a polygon edge. If a
-vertex is intersected then two intersections are counted, one for each edge
+vertex is encountered on the ray then two intersections are counted, one for each edge
 forming the vertex, and the result is not affected. If the ray is collinear with
 a polygon edge then only a single intersection is counted, but the ray will
 undoubtedly also intersect at least one of the vertices on the collinear edge
@@ -1324,23 +1324,24 @@ do not have a discrete graph available and so would have to construct one for
 each golf course or a local graph surrounding the hazard we wish to avoid. This
 adds unnecessary complexity in terms of implementation and computation to our
 system which we wish to avoid. Additionally, A* has time complexity of $O(b^d)$
-if $d$ is the shortest path length and b is the branching factor, and the
+if $d$ is the shortest path length and $b$ is the branching factor, and the
 algorithm has high memory requirements as all generated nodes are kept in memory
-\cite{astar_2009}. It was decided we would not use A* algorithm. The next
-consideration was to simply ``pad'' the perimeter of the hazard polygon and
-follow it all the way around until the AGC reaches the golfer. This concept is
-shown in the diagram below in Fig. (\ref{fig:padding}) where the red line
-denotes the path that would be taken by the AGC to avoid a hazard zone. Clearly
-this is an inefficient path the AGC will unnecessarily follow the contour of the
-polygon. Additionally, this method increases the risk that the AGC enters the
-hazard zone if our GPS system is not performing well, or if our GPS mapping of
-hazard zones is erronous.  
+\cite{astar_2009}. It was decided we would not use A* algorithm; standard
+Djikstra's algorithm was also considered by the same short comings are present
+with us not having a finite graph. The next consideration was to simply ``pad''
+the perimeter of the hazard polygon and follow it all the way around until the
+AGC reaches the golfer. This concept is shown in the diagram below in Fig.
+(\ref{fig:padding}) where the red line denotes the path that would be taken by
+the AGC to avoid a hazard zone. Clearly this is an inefficient path the AGC will
+unnecessarily follow the contour of the polygon. Additionally, this method
+increases the risk that the AGC enters the hazard zone if our GPS system is not
+performing well, or if our GPS mapping of hazard zones is erronous.  
 
 
 \begin{Figure}
     \begin{mdframed}
         \begin{center}
-            \includegraphics[width=0.95\textwidth]{padding.png}
+            \includegraphics[width=0.7\textwidth]{padding.png}
         \end{center}
     \end{mdframed}
     \captionof{figure}{Path derived by ``padding'' polygon}
@@ -1486,12 +1487,14 @@ second, resulting in a smoother and closer path being found.
 
 \subsection{Communications}
 The EMG49 motors we are using are controlled by the MD25 motor controller board
-via and serial communication. The communication interface for this was written in C
-and is capable of handling multiple serial devices. Currently the only device we
-have on the communications network is the MD49. The GPS in the golfer's pod
-communicates to the main Raspberry Pi via Bluetooth, which is written in Python
-using the PyBluez library. The GPSs communicate with the Raspberry Pis via
-serial commuication implemented using the Pyserial library.
+via and serial communication. The communication interface for this was written
+in C and is capable of handling multiple serial devices; if more than one device
+is present the serial port can be closed and reopened rapidly. Currently the
+only device we have on the communications network is the MD49. The GPS in the
+golfer's pod communicates to the main Raspberry Pi via Bluetooth, which is
+written in Python using the PyBluez library. The GPSs communicate with the
+Raspberry Pis via serial commuication implemented using the Pyserial library,
+using it's own designated serial port.
 
 
 \subsection{GUI}
@@ -1499,11 +1502,11 @@ serial commuication implemented using the Pyserial library.
 A graphic user interface (GUI) is a graphics-based operating system interface
 that uses icons, menus and a mouse to manage interaction with the system. In
 this project, a GUI was developed to enable interactions between the golfer and
-the caddy, mainly for the golf suggestion system. The GUI would also act an
+the AGC, mainly for the golf suggestion system. The GUI would also act as an
 information center to display all relevant information relevant to the golfer’s
 game which could include weather forecasts, GPS location and performance
 analysis. However, the GUI in this project focused on making the system
-interactive to enable the golfer to communicate with the caddy on the preferred
+interactive to enable the golfer to communicate with the AGC on the preferred
 golf club in a round of golf. Based on the machine learning algorithm for the
 golf suggestion system, the golfer would have the option to accept or reject the
 suggested golf by interacting with the GUI, as shown in Fig. (\ref{fig:gui}),
@@ -1514,7 +1517,7 @@ algorithm to improve its data and accuracy.
     \begin{center}
         \includegraphics[width=0.3\textwidth]{GUI.png}
     \end{center}
-    \captionof{figure}{Flow chart of the golfer interacting with the caddy on a club suggestion through the caddy}
+    \captionof{figure}{Flow chart of the golfer interacting with the AGC on a club suggestion through the caddy}
     \label{fig:gui}
 \end{figure}
 
@@ -1580,28 +1583,15 @@ due to licensing and the alternative was a library from Python that could
 generate a map which was Folium. Folium is a tool to visualise data that has
 been manipulated through Python on an interactive leaflet. Although interactive,
 data from the map could not be extracted to enable the autonomous following
-algorithm to update the coordinates of the golfer and the caddy on the GUI. This
+algorithm to update the coordinates of the golfer and the AGC on the GUI. This
 results to a static map that could only be updated when the coordinates are
-updated manually in the algorithm. An alternative to this is to create a virtual
-map that replicates the golf course but would result in more computational power
-thus deemed unfeasible. Another alternative is to obtain the API and licensing
+updated manually in the algorithm. An alternative is to obtain the API and licensing
 from Google Maps and incorporate it into the GUI. However, obtaining the API and
 licensing requires the team to purchase them at a very high cost significantly
-beyond the budget allocated. Second, for MyClubs, the GUI works smoothly, and
-the golfer is able to setup the golf clubs according to the slots. The trouble
-is that it was difficult to incorporate the servo motors for the release
-mechanism with the Raspberry Pi as when connected and programmed, the servo
-motors were not responding. The team tested the servo motors separately using an
-Arduino and the release mechanism functioned without any issues. This could mean
-that the servo motors are not compatible with the Raspberry Pi thus alternative
-methods should be investigated. Third and lastly, MyInfo acts as key information
+beyond the budget allocated. Third and lastly, MyInfo acts as key information
 for the golf suggesting algorithm because information on the golfer’s age,
-gender and skill level are relevant for the caddy to suggest a suitable golf
-club. However, this information were not enough to generate sufficient data for
-the golf suggesting algorithm thus making the golf suggestion to be inaccurate.
-More data would need to be obtained such as weather, elevation, distance of the
-ball to the hole and the power of the golfer’s swing to enable more accurate
-results. 
+gender and skill level are relevant for the AGC to suggest a suitable golf
+club. 
 
 \subsubsection{Course Map}
 The course map was implemented on the GUI using the map system that was used on
@@ -1616,7 +1606,7 @@ from the AGC, using the simulator map allows us to add that feature.
 The core of the autonomous following for the golf caddy is it relying on the
 golf course data to know where the unallowed and hazardous areas are with high
 accuracy. This is best done by using the GPS coordinates of the locations as it
-pinpoints exactly where these locations are and enables the caddy to know where
+pinpoints exactly where these locations are and enables the AGC to know where
 the points are given the right communication tool.
 
 The Southampton Municipal Golf Course was chosen as the project’s test site on
@@ -1631,14 +1621,14 @@ unallowed and hazardous locations as the data source for the autonomous
 following system. 
 
  I identified that the best way to extract the coordinates that allow
-the caddy to understand which area it should avoid is by drawing out polygon
+the AGC to understand which area it should avoid is by drawing out polygon
 maps through the perimeters of the unallowed and hazardous locations. By doing
 this, it saves me time and reduces computational speed as I do not have to
 extract every single point within the area (for accuracy) and the algorithm for
 the autonomous following would not have to go through so many data that would be
 costly in computational speed. For accuracy, I established that the polygons
 drawn as the perimeter would need to be as close as possible to increase the
-points within the perimeter of the area that the caddy should avoid. Once of
+points within the perimeter of the area that the AGC should avoid. Once of
 these plans were put together, the next step was to find out what tool that
 could be used to carry these out successfully within the budget of the project.
 All of this was possible through a software called Mission Planner.
@@ -1685,7 +1675,7 @@ For the trolley microcontroller, the Raspberry Pi 4B with 4 GB of RAM will be
 used. Other affordable alternatives of microcontrollers are Arduino boards.
 However, the Raspberry Pi is chosen because of its superiority in processing
 power, its easy compatibility with touchscreen displays and in-built Wi-Fi
-module allowing us to work with an APIs and remote access the system. The
+module allowing us to work with an APIs and remote access the system through ssh. The
 microcontroller will also have a set of heat sinks plus a fan that will avoid
 any overheating problems.
 
@@ -1714,7 +1704,7 @@ toruqe and rpm we require from our motors.
         (\ref{eq:accel}):
         \begin{center}
             \begin{equation}
-                F = \frac{V}{t} + M g_0 \sin(10^\circ)\approx 29 N
+                F = M\frac{V}{t} + M g_0 \sin(10^\circ)\approx 29 N
                 \label{eq:accel}
             \end{equation}
         \end{center}
@@ -1722,7 +1712,7 @@ toruqe and rpm we require from our motors.
         (\ref{eq:torque}):
         \begin{center}
             \begin{equation}
-                T = W_r * F \approx 1.7 Nm
+                T = W_r * \frac{F}{2} \approx 1.7 Nm
                 \label{eq:torque} 
             \end{equation}
         \end{center}
@@ -1765,18 +1755,17 @@ main features are \cite{md49data}:
 
 \subsubsection{Stepper Motors}
 The release mechanism requires a low RPM and high torque (minimum of 0.13 Nm)
-motor to push harder from rest. DC motors tend to have a more sustained output
-but less are harder to initialise. Hence, the decision to use stepper motors.
-The ones used and shown in Fig. (\ref{fig:electrical_schematic}) are the NEMA 17
-stepper motors. They have a maximum holding torque of 0.53 Nm, a rated voltage
-of 12-24V and require 1.5A per phase so 3A per motor. 
+motor to push harder from rest. The ones used and shown in Fig.
+(\ref{fig:electrical_schematic}) are the NEMA 17 stepper motors. They have a
+maximum holding torque of 0.53 Nm, a rated voltage of 12-24V and require 1.5A
+per phase so 3A per motor. 
 
 \subsubsection{A4988 Stepper Motor Driver}
 The A4988, shown in Fig. (\ref{fig:stepper_driver}), is a high-performance
 stepper motor driver that allows an easy control of one bipolar stepper motor up
 to 2A output current per coil. It comes with a heatsink as it can potentially
 reach 150$^{\circ}$ \cite{stepper_driver}.
-Its operating voltage lies in the range of 8 to 35V. According to the driver
+Its operating voltage lies in the range of 8 to 35 V. According to the driver
 specification, the stepper motor supply requires a 100µF decoupling capacitor
 close to the driver to sustain 4A. This capacitor is shown in Fig.
 (\ref{fig:electrical_schematic}).
@@ -1808,7 +1797,7 @@ requires very little power with only 3.3V at 45mA necessary \cite{neo_gps}.
 The power for the trolley will be supplied by four packs filled with eight AA
 1.5V 3Ah batteries. The configuration consists in two pairs of packs in
 parallel, resulting in a final configuration of 16s2p of AA cells. This is shown
-is DOFIG [electrical schematic diagram]. As a result, the total supply of
+is Fig. (\ref{fig:electrical_schematic}). As a result, the total supply of
 voltage is of 24V with a capacity of 6Ah. Initially, the trolley had EMG30
 motors rated at 12V and powered by a 12V 16Ah lithium battery inherited from the
 supplied trolley. However, the late upgrade in DC motors forced the group to
@@ -1841,8 +1830,7 @@ powered with 24V so do not need a regulated voltage.
 The touchscreen used is a 5-inch DSI capacitive touch display. It was chosen
 because of its convenient connection to the raspberry pi, which only consist of
 a ribbon, and its affordable price. It also brings mounting holes and screws to
-fit it in a case as we have done in the AGC shown in DOFIG [a picture from Erwins
-section, if possible, showing how the screen fits the case]. 
+fit it in a case as we have done in the AGC shown Fig. (\ref{fig:holder}). 
 
 \subsection{Pod Electronics}
 The pod, which is used to make the trolley follow the user via GPS, contains
@@ -1869,7 +1857,7 @@ switch to turn on/off the whole pod.
 
 \end{multicols}
 
-\begin{figure}
+\begin{figure}[H]
     \begin{center}
     \includegraphics[width=0.8\textwidth]{electrical_schematic.png}
     \captionof{figure}{Electrical Schematic}
@@ -1879,6 +1867,7 @@ switch to turn on/off the whole pod.
 
 \begin{multicols}{3}
 
+\newpage
 \section{Optimal Club Prediction}
 One of the main aspects of the project that involved innovation consisted in
 building a release mechanism that could offer a single golf club to the player
@@ -1896,10 +1885,10 @@ the golfer.
 \subsection{Big Data against simulation and empirical data}
 At the first project stages, it was assumed the data to train the algorithm
 could exist online for free. However, only paid database that contained the name
-and location of all golf courses throughout the world exists. As little as this
-database would still help to gather data, it was still not worth buying it due
-to the high price and irrelevancy to improve a golf club recommendation
-algorithm.
+and location of all golf courses throughout the world exists. As much as this
+database would still help to gather data for other aspects of the project, it
+was not worth buying it due to the high price and irrelevancy to improve a
+golf club recommendation algorithm.
 
 Hence, the group was left with 3 remaining options. The first option consists in
 creating a very realistic simulation that emulates a golf shot while considering
@@ -1927,11 +1916,11 @@ to build such simulation is far out of the scope of this project.
 On the other hand, using empirical data collected by us playing actual golf in a
 course would make the data as realistic as it can get. However, two main
 inconveniences stopped us from performing it. First, all the team members from
-this GDP fit into the same demographic, gender, and experience with golf. Hence,
-the collected data would have been too skewed against our averages making the
-extrapolation inaccurate. Secondly, even if the groups gender, age, and golf
-experience was more distributed, each member would have to pay to play in the
-golf course, increasing the budget of the project.
+this GDP fit into the same demographic in terms of gender, age, and experience
+with golf. Hence, the collected data would have been too skewed against our
+averages making the extrapolation inaccurate. Secondly, even if the groups
+gender, age, and golf experience was more distributed, each member would have to
+pay to play in the golf course, increasing the budget of the project.
 
 As result of both options not being viable for this project, the group went on
 to build a synthetic database since it is the most practical option considering
@@ -1957,12 +1946,12 @@ random age within a sensible range of 10 to 75 years old; a random skill level,
 where the options can be beginner, average, good and excellent. As much as the
 model would improve by asking even more personal information such as the diet
 the user has, number of sleeping hours, heart rate and years of golf training, a
-point will be reach were the user becomes dissatisfies by the amount data he has
+point will be reach were the user becomes dissatisfies by the amount data they have
 to manually fill into the GUI or reject to fill the information as it is
 personal and private. Therefore, the gathering of personal data has been limited
 to only the basics.
 
-After the 200 identities have been created, a double for loop is used to iterate
+After the 200 identities were created, a double for loop is used to iterate
 through all the possible golf club types and choose the number of times a person
 shot a ball with each different club. Assuming ten shots per type of club, it
 leads to a total of approximately thirty thousand different shots with each one
@@ -1979,7 +1968,7 @@ and another for female, consisted in the average distance a golfer hits a golf
 ball depending on a variety of sixteen clubs with different loft angles and four
 levels of skill. This can be shown in Table (\ref{tab:guillermo_t1}). By
 allocating each identity to its respective cell in Table
-(\ref{tab:tab:guillermo_t1}), where gender and type of club chosen should match,
+(\ref{tab:guillermo_t1}), where gender and type of club chosen should match,
 a random number from a normal distribution can be chosen. The normal
 distributions mean is the average distance each identity fits according to their
 gender and club, and the standard deviation is the average between the upper and
@@ -2008,10 +1997,10 @@ feet increase above sea level, the ball will be carried an extra 4.5 yards.
 Furthermore, the elevation difference between the player position to the aimed
 location is also considered for the actual distance. This time, the elevation is
 added to the actual distance, so if there if the desired location is 4 meters
-above the players location, the actual distance will be 4 meters shorter DOREF
-INTERVIEW. All of these relationships have been use to simulate the actual
-distance each identity would hit. Fig. (\ref{fig:distribution}) shows the actual
-distance and compares it to the linear distance. 
+above the players location, the actual distance will be 4 meters shorter. All of
+these relationships have been use to simulate the actual distance each identity
+would hit. Fig. (\ref{fig:distribution}) shows the actual distance and compares
+it to the linear distance. 
 
 As a result of the actual distance being approximating more to real life
 conditions, another column was created in the database which corrects the club
@@ -2040,7 +2029,7 @@ statistics. Furthermore, with the ever-increasing sport analytics market,
 projected to be valued at USD 5.11 billion by 2026,
 more and more users will be demanding this characteristic in the AGC \cite{analytics}. 
 
-In table[3], it can be seen two variables in the unit degrees called aimed
+In Table (\ref{tab:guillermo_t3}), it can be seen two variables in the unit degrees called aimed
 direction and wind direction. Since both are bearings, the nearest angle between
 both has been calculated and created a third and fourth variable called angle of
 deviation and tendency. Angle of deviation describes the difference in angle to
@@ -2238,20 +2227,21 @@ can travel.
     
 \begin{table}
     \centering
-    \begin{tabular}{lllllllllllllllllll}
-    Algorithm name &                &      &                    &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
-    Classifiers    & Accuracy score &      & Execution Time (s) &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
-    KNN            & 0.21           &      & 1.8                &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
-    Decision Tree  & 0.22           &      & 0.04               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
-    Naives Bayes   & 0.23           &      & 0.02               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
-    Kernel SVM     & N/A            &      & Too long           &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
-    Random forest  & 0.96           &      & 58.8               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
-                   &                &      &                    &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
-    Regression     & R\^{}2         & MAPE &                    &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
-    Linear         & -43            & 0.47 & 0.07               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
-    Decision Tree  & 0.86           & 0.09 & 0.23               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
-    Random forest  & 0.92           & 0.08 & 145                &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
-    Neural network & -3             & 0.42 & 3.62               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+        \hline
+    Algorithm name &                &      &                    &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
+    Classifiers    & Accuracy score &      & Execution Time (s) &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
+    KNN            & 0.21           &      & 1.8                &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
+    Decision Tree  & 0.22           &      & 0.04               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
+    Naives Bayes   & 0.23           &      & 0.02               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
+    Kernel SVM     & N/A            &      & Too long           &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
+    Random forest  & 0.96           &      & 58.8               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
+                   &                &      &                    &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
+    Regression     & R\^{}2         & MAPE &                    &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
+    Linear         & -43            & 0.47 & 0.07               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
+    Decision Tree  & 0.86           & 0.09 & 0.23               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
+    Random forest  & 0.92           & 0.08 & 145                &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
+    Neural network & -3             & 0.42 & 3.62               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\  \hline
     \end{tabular}
     \captionof{table}{Performance metrics of various machine learning algorithms}
     \label{tab:guillermo_t2}
@@ -2260,17 +2250,18 @@ can travel.
     
 \begin{table}[H]
     \centering
-    \begin{tabular}{lllllllllllllllllll}
-           & username & age & gender & skill\_level & handicap & linear\_dist & actual\_dist & missed\_dist & club   & actual\_club & aimed\_dir & wind\_dir & ws   & angle\_dev & tendency  & temp  & height\_above\_sea\_level & elev\_diff  \\
-    28,701 & Kathryn  & 19  & Female & Average      & 21       & 96.90        & 110.70       & 13.80        & 4 Iron & 6 Iron       & 51         & 191       & 9.40 & 94.10      & right     & 29.30 & 180.60                    & -10         \\
-    25,065 & Heather  & 68  & Female & Excellent    & 2        & 133.60       & 128.30       & 5.30         & 8 Iron & 8 Iron       & 215        & 136       & 3    & 2.40       & top       & 5.60  & 356.40                    & -2          \\
-    11,524 & Roger    & 51  & Male   & Average      & 24       & 203.50       & 231.40       & 27.90        & Driver & Driver       & 77         & 259       & 4.70 & 55.50      & top right & 29.70 & 473.10                    & -6          \\
-    4,838  & Edward   & 68  & Male   & Good         & 12       & 191.10       & 181.70       & 9.40         & Hybrid & 5 Wood       & 171        & 206       & 3.10 & 14.90      & top right & 27.80 & 435.90                    & 8           \\
-    18,352 & Sarah    & 44  & Female & Excellent    & 3        & 100.40       & 128.30       & 27.90        & 9 Iron & Gap Wedge    & 280        & 96        & 3.90 & 360.60     & top       & 17.50 & 700.70                    & 0           \\
-    22,344 & Angela   & 40  & Female & Excellent    & 6        & 138.30       & 140.50       & 2.20         & 8 Iron & 7 Iron       & 38         & 79        & 3.20 & 305.70     & top left  & 21.90 & 779.80                    & 5          
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+        \hline
+           & username & age & gender & skill\_level & handicap & linear\_dist & actual\_dist & missed\_dist & club   & actual\_club & aimed\_dir & wind\_dir & ws   & angle\_dev & tendency  & temp  & height\_above\_sea\_level & elev\_diff  \\  \hline
+    28,701 & Kathryn  & 19  & Female & Average      & 21       & 96.90        & 110.70       & 13.80        & 4 Iron & 6 Iron       & 51         & 191       & 9.40 & 94.10      & right     & 29.30 & 180.60                    & -10         \\ \hline
+    25,065 & Heather  & 68  & Female & Excellent    & 2        & 133.60       & 128.30       & 5.30         & 8 Iron & 8 Iron       & 215        & 136       & 3    & 2.40       & top       & 5.60  & 356.40                    & -2          \\ \hline
+    11,524 & Roger    & 51  & Male   & Average      & 24       & 203.50       & 231.40       & 27.90        & Driver & Driver       & 77         & 259       & 4.70 & 55.50      & top right & 29.70 & 473.10                    & -6          \\ \hline
+    4,838  & Edward   & 68  & Male   & Good         & 12       & 191.10       & 181.70       & 9.40         & Hybrid & 5 Wood       & 171        & 206       & 3.10 & 14.90      & top right & 27.80 & 435.90                    & 8           \\ \hline
+    18,352 & Sarah    & 44  & Female & Excellent    & 3        & 100.40       & 128.30       & 27.90        & 9 Iron & Gap Wedge    & 280        & 96        & 3.90 & 360.60     & top       & 17.50 & 700.70                    & 0           \\ \hline
+    22,344 & Angela   & 40  & Female & Excellent    & 6        & 138.30       & 140.50       & 2.20         & 8 Iron & 7 Iron       & 38         & 79        & 3.20 & 305.70     & top left  & 21.90 & 779.80                    & 5           \\ \hline
     \end{tabular}
     \captionof{table}{Sample synthetic data}
-    \label{fig:guillermo_t3}
+    \label{tab:guillermo_t3}
 \end{table}
 \newpage
 \begin{multicols}{3}
@@ -2386,7 +2377,7 @@ and simulations to the client while building professional relationships.
         
     \begin{tabular}{|l|l|l|l|}
         \hline
-    \multicolumn{1}{c}{\textbf{Description}}                                          & \multicolumn{1}{c}{\textbf{Price / item (£)}} & \multicolumn{1}{c}{\textbf{Quantity}} & \multicolumn{1}{c}{\textbf{Total Price (£)}}          \\ \hline
+    \textbf{Description}                                          & \textbf{Price / item (£)} & \textbf{Quantity} & \textbf{Total Price (£)}          \\ \hline
     \textbf{GPS Module Receiver  NEO-6M}                                                       & 12.99                                         & 2                                     & 25.98                                                 \\ \hline
     \textbf{Touch screen 7'' Display}                                                          & 41.99                                         & 1                                     & 41.99                                                 \\ \hline
     \textbf{Door Latch}                                                                        & 2.99                                          & 1                                     & 2.99                                                  \\ \hline
