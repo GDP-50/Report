@@ -16,6 +16,7 @@
 \usepackage{mdframed}
 \usepackage{caption}
 \usepackage{siunitx}
+\usepackage{makecell}
 \newenvironment{Figure}
   {\par\medskip\noindent\minipage{\linewidth}}
   {\endminipage\par\medskip}
@@ -123,12 +124,30 @@ this project:
 The team was allocated the baseline budget from the university of £850 and was
 also supported by our client where the team is provided with golf equipment to
 design the golf caddy and conduct testing. A full break down of the project our
-fundings can be seen in Table X. 
+expenditure and fundings can be seen in appendix DOAPPENDIX. 
 
 \subsection{Team Roles and Work Breakdown}
 The team was structured and organised in a way that everyone`s skills and
 experiences on similar works that could make the best out of this project. The
-team`s breakdown of roles can be seen in Table X 
+team`s breakdown of roles can be seen in Table (\ref{tab:roles}). 
+
+\begin{table}[H]
+    \begin{center}
+        \resizebox{\columnwidth}{!}{%
+        \begin{tabular}{|l|l|l|}
+            \hline
+            \textbf{Team Member} & \textbf{Primary Role} & \textbf{Secondary Role} \\ \hline
+            Ahmad Dzafran bin Mohamad Bustaman & Course data gathering & GUI \\ \hline
+            Guillermo Dominguez Temboury & Machine learning & Electronics \\ \hline
+            Jhelan Suggun & Mechanical design and manufacturing & Testing \\ \hline
+            Rufus Vijayaratnam & \makecell{Autonomous control software \\ Motor and controller software} & Electronics \\ \hline
+            Erwin Yew & Design and manufacture & Testing \\ \hline
+        \end{tabular}
+        }
+        \captionof{table}{Team member roles}
+        \label{tab:roles}
+    \end{center}
+\end{table}
 
 \subsection{Ethical and Sustainability Considerations}
 The aim of the project is to design and test the prototype to improve the caddy
@@ -611,23 +630,23 @@ documented through the rest of this report.
     is to allow the electrical cable from the mechanical compartment to connect
     the electrical components.
     
-    \begin{figure}[H]
+    \begin{Figure}
         \begin{center}
-            \includegraphics[width=0.2\textwidth]{Figure8.jpg}
+            \includegraphics[width=0.6\textwidth]{Figure8.jpg}
             \captionof{figure}{Electrical Top Base}
             \label{fig:ELECBASE}
         \end{center}
-    \end{figure}
+    \end{Figure}
     
     
     
-    \begin{figure}[H]
+    \begin{Figure}
         \begin{center}
-            \includegraphics[width=0.3\textwidth]{Figure9.jpg}
+            \includegraphics[width=\textwidth]{Figure9.jpg}
             \captionof{figure}{Electrical Top Base CAD}
             \label{fig:ELEC}
         \end{center}
-    \end{figure}
+    \end{Figure}
 
     The location of the holes (Figure \ref{fig:ELEC}) is placed beside the
     mechanical component for the ease of the cable to travel to the electrical
@@ -649,7 +668,7 @@ documented through the rest of this report.
     shown in Figure \ref{fig:installation}.
     \begin{Figure}
         \begin{center}
-            \includegraphics[width=0.4\textwidth]{Figure30.jpg}
+            \includegraphics[width=0.6\textwidth]{Figure30.jpg}
             \captionof{figure}{Release Mechanism installation process in golf bag}
             \label{fig:installation}
         \end{center}
@@ -668,8 +687,6 @@ documented through the rest of this report.
     the caddy. The location do not affect the the folding operation of the caddy
     (Figure) as it utilized the abundant space of the caddy. 
     
-    CADDY FOLDED WITH SCREEN
-    
     A 1 m electrical ribbon had been used to connect the LCD screen with the
     raspberry pi located on the electrical housing of the caddy. The electrical
     ribbon is heat shrink to provide protection for the ribbon and water
@@ -679,7 +696,7 @@ documented through the rest of this report.
 
     \begin{Figure}
         \begin{center}
-            \includegraphics[width=0.2\textwidth]{Figure33.jpg}
+            \includegraphics[width=0.8\textwidth]{Figure33.jpg}
             \captionof{figure}{HDMI ribbon path through AGC}
             \label{fig:ribbon}
         \end{center}
@@ -694,15 +711,15 @@ documented through the rest of this report.
     
     \begin{Figure}
         \begin{center}
-            \includegraphics[width=0.2\textwidth]{Figure34.jpg}
-            \captionof{figure}{LCD screen with Screen Holder}
+            \includegraphics[width=\textwidth]{Figure39.jpg}
+            \captionof{figure}{AGC folded with screen}
             \label{fig:holder}
         \end{center}
     \end{Figure}
     
     \begin{Figure}
         \begin{center}
-            \includegraphics[width=0.2\textwidth]{Figure31.jpg}
+            \includegraphics[width=0.6\textwidth]{Figure31.jpg}
             \captionof{figure}{Screen holder with metal rod support}
             \label{fig:rod}
         \end{center}
@@ -719,7 +736,7 @@ documented through the rest of this report.
     
     \begin{Figure}
         \begin{center}
-            \includegraphics[width=0.2\textwidth]{Figure17.jpg}
+            \includegraphics[width=0.5\textwidth]{Figure17.jpg}
             \captionof{figure}{Unfold LCD screen}
             \label{fig:unfold}
         \end{center}
@@ -727,7 +744,7 @@ documented through the rest of this report.
     
     \begin{Figure}
         \begin{center}
-            \includegraphics[width=0.2\textwidth]{Figure18.jpg}
+            \includegraphics[width=0.6\textwidth]{Figure18.jpg}
             \captionof{figure}{Folded LCD screen}
             \label{fig:fold}
         \end{center}
@@ -744,22 +761,22 @@ documented through the rest of this report.
     on the LCD screen. Therefore, the bottom case will mount firmly to the
     screen holder.
     
-    \begin{figure}[H]
+    \begin{Figure}
         \begin{center}
-            \includegraphics[width=0.3\textwidth]{Figure32.jpg}
+            \includegraphics[width=0.8\textwidth]{Figure32.jpg}
             \captionof{figure}{Front view of LCD screen fit in casing}
             \label{fig:LCD}
         \end{center}
-    \end{figure}
+    \end{Figure}
     
     
-    \begin{figure}[H]
+    \begin{Figure}
         \begin{center}
-            \includegraphics[width=0.3\textwidth]{Figure11.jpg}
+            \includegraphics[width=0.8\textwidth]{Figure11.jpg}
             \captionof{figure}{Back view of Bottom casing}
             \label{fig:bottom}
         \end{center}
-    \end{figure}
+    \end{Figure}
     
 
     \subsubsection{Top casing}
@@ -774,13 +791,13 @@ documented through the rest of this report.
     C,D,E,F as shown in Figure \ref{fig:HOLE} This ensures the entire casing do
     not drop from the screen holder during motion.
     
-    \begin{figure}[H]
+    \begin{Figure}
         \begin{center}
-            \includegraphics[width=0.3\textwidth]{Figure13.jpg}
+            \includegraphics[width=0.8\textwidth]{Figure13.jpg}
             \captionof{figure}{Top Casing with holes}
             \label{fig:HOLE}
         \end{center}
-    \end{figure}
+    \end{Figure}
 \end{multicols}
 
 \newpage
