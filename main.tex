@@ -17,6 +17,7 @@
 \usepackage{caption}
 \usepackage{siunitx}
 \usepackage{makecell}
+
 \newenvironment{Figure}
   {\par\medskip\noindent\minipage{\linewidth}}
   {\endminipage\par\medskip}
@@ -1138,17 +1139,25 @@ Types'' library was used to load the DLL and create Python wrappers for the
 control algorithms. This significantly improved the performance as all of the
 resource intensive calculations were now performed with a compiled C program.
 
+\begin{Figure}
+    \begin{center}
+        \includegraphics[width=\textwidth]{simulator.png}
+    \end{center}
+    \captionof{figure}{Simulator used for algorithm testing}
+    \label{fig:simulator}
+\end{Figure}
+
 The main control loop that determines the AGC's behaviour is shown below in Fig.
 (\ref{fig:control_loop}).
-\begin{figure}[H]
+\begin{Figure}
 \begin{mdframed}
     \begin{center}
-        \includegraphics[width=0.9\textwidth]{control_loop.png}
+        \includegraphics[width=\textwidth]{control_loop.png}
     \end{center}
 \end{mdframed}
 \captionof{figure}{Main AGC control loop}
 \label{fig:control_loop}
-\end{figure}
+\end{Figure}
 \subsubsection{Design and Test Process}
 All software used for controlling the AGC was tested on the OpenGL simulator
 built. This allowed for good visualisation and analysis of the algorithms'
@@ -1333,7 +1342,7 @@ hazard zone if our GPS system is not performing well, or if our GPS mapping of
 hazard zones is erronous.  
 
 
-\begin{figure}[H]
+\begin{Figure}
     \begin{mdframed}
         \begin{center}
             \includegraphics[width=0.95\textwidth]{padding.png}
@@ -1341,7 +1350,7 @@ hazard zones is erronous.
     \end{mdframed}
     \captionof{figure}{Path derived by ``padding'' polygon}
     \label{fig:padding}
-\end{figure}
+\end{Figure}
 
 A custom pathfinding algorithm was designed and implemented. The path it finds
 is not the optimal solution, but it computes quickly and the path derived is
@@ -1359,16 +1368,18 @@ determine where the AGC should go.
     \label{fig:pathfinding_flow}
 \end{figure}
 
-First the chord vector, $\overrightarrow{\mathbf{C}}$, is calculated, along with
-the angle, $\theta$, between $\overrightarrow{\mathbf{C}}$ and the Y-unit
-vector, $\hat{\mathbf{y}}$, using Eq. ().  The relevant polygon, golfer
-position, and AGC position are rotated about the z-axis with the center of
-rotation as the origin by $\theta$ using Eq. () where $\overrightarrow{p}$ is a
-three dimensional point and $\overrightarrow{p^\prime}$ is the rotated point.
-The polygon is rotated by applying Eq. () to each vertex. The purpose of the
-rotation was to aid the design process of the algorithm and make the code more
-readable, removing the necesscity for vector manipulations throuhout the
-algorithm instead using only simple arithmetic operations. This results in
+First the chord vector, $\overrightarrow{\mathbf{C}}$, is calculated with Eq. (\ref{eq:chord})
+where $\overrightarrow{\mathbf{G}}$ is the golfer position and $\overrightarrow{\mathbf{AGC}}$ is
+the AGC position. Also we calculate the angle, $\theta$, between
+$\overrightarrow{\mathbf{C}}$ and the Y-unit vector, $\hat{\mathbf{y}}$, using
+Eq. (\ref{eq:theta}).  The relevant polygon, golfer position, and AGC position are rotated
+about the z-axis with the center of rotation as the origin by $\theta$ using Eq.
+(\ref{eq:rotation_mat}) where $\overrightarrow{p}$ is a three dimensional point and
+$\overrightarrow{p^\prime}$ is the rotated point. The polygon is rotated by
+applying Eq. (\ref{eq:rotation_mat}) to each vertex. The purpose of the rotation was to aid the
+design process of the algorithm and make the code more readable, removing the
+necesscity for vector manipulations throuhout the algorithm instead using only
+simple arithmetic operations. This results in
 $\overrightarrow{\mathbf{C}^\prime}$ having constant $y$. The value of
 $y^\prime$ is increment in one meter steps until no intersection between the
 translated chord vector, $\overrightarrow{\mathbf{C}^\prime_t}$, and the rotated
@@ -1391,6 +1402,40 @@ repeats until the golfer is reached. Incrementing in the $y^\prime$ direction is
 equivelant to incrementing perpendicular to $\overrightarrow{\mathbf{C}}$ in the
 original coordinate system, and incrementing it by $x^\prime$ is equivelant to
 incrementing in the direction of $\overrightarrow{\mathbf{C}}$.
+
+\subsubsection{Target Reaching}
+From our GPS module we can acquire updated GPS data approximately once per
+second. Between GPS readings, the enocders embedded in the EMG49 motors are used
+to calculate the position of the AGC extrapolating from the total rotation of
+the motors and the orientation of the AGC when the maneuver began. As soon as
+new GPS data is available, the pathfinding algorithm will be run again, even if
+the initial target location set by the algorithm has not yet been reached.
+Running the algorithm more frequently results in a smoother path which sticks
+closer to the perimeter of the polygon.
+
+\begin{equation}
+        \overrightarrow{\mathbf{C}} = \overrightarrow{\mathbf{G}} - \overrightarrow{\mathbf{AGC}}
+    \label{eq:chord}
+\end{equation}
+\hspace{0.5cm}
+\begin{equation}
+        \theta=\operatorname{acos}\left(\frac{\overrightarrow{\mathbf{C}} \cdot \hat{\mathbf{y}}}{|\overrightarrow{\mathbf{C}}| |\hat{\mathbf{y}}|}\right)
+    \label{eq:theta}
+\end{equation}
+\hspace{1cm}
+\begin{equation}
+    \overrightarrow{p^\prime} = \left(\begin{matrix}
+        \operatorname{cos}\theta & -\operatorname{sin}\theta & 0 \\
+        \operatorname{sin}\theta & \operatorname{cos}\theta & 0 \\
+        0 & 0& 1\\
+    \end{matrix}\right) \overrightarrow{p}
+    \label{eq:rotation_mat}
+\end{equation}
+\hspace{0.5cm}
+\begin{equation*}
+    \overrightarrow{\mathbf{AGC}} = (x_{AGC}, y_{AGC})
+\end{equation*}
+
 \subsubsection{Pathfinding Diagram}
 Fig. (\ref{fig:pathfinding_visual}) shows a visual of how the pathfinding
 algorithm will determine intermediary positions for the AGC to move it towards
@@ -1515,14 +1560,14 @@ are a few GUIs created for the caddy with its use listed below in Table
         \begin{tabular}{|l|l|}
             \hline
             \textbf{GUI Name} & \textbf{Description} \\ \hline
-            MyMap & To showcase a virtual map of the golf course to indicate the
-            live location of the golfer \\ \hline
-            MyInfo & To allow the golfer to key in their information which \newline
-            includes age and skill level for the machine learning algorithm \\\hline
-            MyClubs & To allow the golfer to key in the information of the \newline
-            location of each club in each slots in the golf bag. This GUI also \newline
-            allows the golfer to interact with the caddy on whether they \newline
-            to use the recommended golf club or their own preference \\ \hline
+            MyMap & \makecell{To showcase a virtual map of the golf course to indicate the\\
+            live location of the AGC} \\ \hline
+            MyInfo & \makecell{To allow the golfer to key in their information which \\
+            includes age and skill level for the machine learning algorithm} \\ \hline
+            MyClubs & \makecell{To allow the golfer to key in the information of the \\
+            location of each club in each slots in the golf bag. This GUI also \\
+            allows the golfer to interact with the caddy on whether they \\
+            to use the recommended golf club or their own preference} \\ \hline
         \end{tabular}
         }
     \end{center}
@@ -2339,6 +2384,48 @@ and simulations to the client while building professional relationships.
 \bibliography{./ref}
 
 \end{multicols}
+\appendix
+\section{Expenditure}
+\begin{table}[H]
+    \begin{center}
+        
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+    \multicolumn{1}{c}{\textbf{Description}}                                          & \multicolumn{1}{c}{\textbf{Price / item (£)}} & \multicolumn{1}{c}{\textbf{Quantity}} & \multicolumn{1}{c}{\textbf{Total Price (£)}}          \\ \hline
+    \textbf{GPS Module Receiver  NEO-6M}                                                       & 12.99                                         & 2                                     & 25.98                                                 \\ \hline
+    \textbf{Touch screen 7'' Display}                                                          & 41.99                                         & 1                                     & 41.99                                                 \\ \hline
+    \textbf{Door Latch}                                                                        & 2.99                                          & 1                                     & 2.99                                                  \\ \hline
+    \textbf{3D printed pin holder (latch)}                                                     & 11.00                                         & 1                                     & 11.00                                                 \\ \hline
+    \textbf{3D printed mini lock holder}                                                       & 1.00                                          & 2                                     & 2.00                                                  \\ \hline
+    \textbf{3D printed latch (First Prototype)}                                                & 3.49                                          & 1                                     & 3.49                                                  \\ \hline
+    \textbf{Mini Electric Lock}                                                                & 13.99                                         & 1                                     & 13.99                                                 \\ \hline
+    \textbf{Stepper Motor}                                                                     & 12.99                                         & 1                                     & 12.99                                                 \\ \hline
+    \textbf{Stepper Motor Driver A4988}                                                        & 8.99                                          & 1                                     & 8.99                                                  \\ \hline
+    \textbf{PVC Tube 90mm}                                                                     & 11.61                                         & 2                                     & 23.22                                                 \\ \hline
+    \textbf{PVC Tube 42mm}                                                                     & 9.97                                          & 1                                     & 9.97                                                  \\ \hline
+    \textbf{UWB Module}                                                                        & 19.44                                         & 2                                     & 38.88                                                 \\ \hline
+    \textbf{3.3V DC/DC Power Supply}                                                           & 4.99                                          & 2                                     & 9.98                                                  \\ \hline
+    \textbf{4-Channel Bi-Directional I2C Logic Level Converter Module}                         & 3.54                                          & 4                                     & 14.16                                                 \\ \hline
+    \textbf{8 Pcs Toggle Latch}                                                                & 7.99                                          & 1                                     & 7.99                                                  \\ \hline
+    \textbf{3D Print Top part of Golf Bag}                                                     & 46.00                                         & 1                                     & 46.00                                                 \\ \hline
+    \textbf{12 Pcs Hose Clips}                                                                 & 8.99                                          & 1                                     & 8.99                                                  \\ \hline
+    \textbf{Screwfix Nuts + Bolts}                                                             & 8.66                                          & 1                                     & 8.66                                                  \\ \hline
+    \textbf{Molex 213499-3000 Square Directional GPS Antenna with SMA Connector, GPS} & 23.09                                         & 2                                     & 46.18                                                 \\ \hline
+    \textbf{SMA Female to U.FL connector}                                             & 3.73                                          & 2                                     & 7.46                                                  \\ \hline
+    \textbf{Swivel Castor Wheel}                                                      & 13.51                                         & 1                                     & 13.51                                                 \\ \hline
+    \textbf{Raspberry Pi Camera Cable 15Pin Ribbon}                                   & 13.98                                         & 1                                     & 13.98                                                 \\ \hline
+    \textbf{3D Printing LCD CASING}                                                   & 22.02                                         & 1                                     & 22.02                                                 \\ \hline
+    \textbf{Stepper Motor with Leadscrew}                                             & 25.99                                         & 3                                     & 77.97                                                 \\ \hline
+    \textbf{Tubes}                                                                    & 9.99                                          & 4                                     & 39.96                                                 \\ \hline
+    \textbf{Motor + Driver}                                                           & 218.66                                        & 1                                     & 218.66                                                \\ \hline
+    \textbf{4 x PVC Tube (41mm)}                                                      & 7.78                                          & 4                                     & 31.12                                                 \\ \hline
+    \textbf{1 x PVC Tube (25mm)}                                                      & 2.03                                          & 1                                     & 2.03                                                  \\ \hline
+    \textbf{2 voltage regulator 5V 5A}                                                & 6.1                                           & 2                                     & 12.20                                                 \\ \hline
+                                                                                      &                                               & Total (£)                             & 776.36 \\ \hline
+    \end{tabular}
+\end{center}
+\captionof{table}{Project expenditure documentation}
+\end{table}
 
 
 \end{document}
