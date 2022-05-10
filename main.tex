@@ -16,6 +16,10 @@
 \usepackage{mdframed}
 \usepackage{caption}
 \usepackage{siunitx}
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+
 \geometry{margin=2cm}
 
 \graphicspath{{./images/}}
@@ -147,7 +151,16 @@ of material resources and cost.
 The smart autonomous golf caddy consists of many sub-systems thus requires a
 structured and clear design process in order to be successful. The design
 process covers all the stages of the design and manufacturing process that the
-team followed in order to achieve a reliable and high-quality prototype. 
+team followed in order to achieve a reliable and high-quality prototype.
+
+\begin{Figure} 
+    \begin{center}
+        \includegraphics[width=\textwidth]{design_process.png}
+    \end{center}
+    \captionof{figure}{Flow chart showing our design process}
+    \label{fig:design_process}
+\end{Figure}
+
 
 All components of the caddy including its systems were interconnected thus a
 design process flowchart as seen in Fig. (\ref{fig:design_process}), was done to
@@ -165,13 +178,6 @@ future. Next, the team identified the design specifications of the standard
 caddy, research and explore new features and concepts, and subsequently
 evaluated and compared the ideas with current products available on the market. 
 
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[width=0.3\textwidth]{design_process.png}
-    \end{center}
-    \captionof{figure}{Flow chart showing our design process}
-    \label{fig:design_process}
-\end{figure}
 
 The second stage was to select an approach and develop a design proposal. This
 stage consist of the team working on their roles, introduce the concepts to the
@@ -219,8 +225,22 @@ individual changes made from the inherited design and developed components.
 
 
 \newpage
+
+\section{Final Design Proposal}
+Shown below in Fig. (\ref{fig:final_proposal}) is the final design for our
+prototype AGC. The design, testing and review of all relevant components, systems, and software is
+documented through the rest of this report.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\textwidth]{final_proposal.jpg}
+    \end{center}
+    \captionof{figure}{Final Design Proposal}
+    \label{fig:final_proposal}
+\end{figure}
+
 \begin{multicols}{2}
-    
+
 \section{Mechanical Design}
     In this section, several mechanical components that were designed,
     manufactured and implemented are discussed. However, considering the the
@@ -270,13 +290,13 @@ individual changes made from the inherited design and developed components.
     two main concept ideas were considered to be the most suitable and they are
     shown in Figure \ref{fig:design}.
     
-    \begin{figure}[H]
+    \begin{Figure}
         \begin{center}
             \includegraphics[width=0.5\textwidth]{Figure19.jpg}
             \captionof{figure}{Concept design for release mechanism}
             \label{fig:design}
         \end{center}
-    \end{figure}
+    \end{Figure}
     
     
     Idea 1 consisted of an umbrella type mechanism which uses a compression
@@ -329,13 +349,13 @@ individual changes made from the inherited design and developed components.
     Idea 2 was then made into a prototype, as shown in Figure \ref{fig:release},
     to test the effectiveness and robustness of the system. 
     
-    \begin{figure}[H]
+    \begin{Figure}
         \begin{center}
             \includegraphics[width=0.5\textwidth]{Figure20.jpg}
             \captionof{figure}{Release Mechanism Prototype}
             \label{fig:release}
         \end{center}
-    \end{figure}
+    \end{Figure}
     
     The initial testing of the prototyping demonstrated that the design worked
     well, with a time of 12.7 seconds recorded to lift the golf club by 10 cm.
@@ -370,13 +390,13 @@ individual changes made from the inherited design and developed components.
     The final and proposed design assembly and the built design is shown in
     Figure \ref{fig:release1}
     
-    \begin{figure}[H]
+    \begin{Figure}
         \begin{center}
             \includegraphics[width=0.3\textwidth]{Figure21.jpg}
             \captionof{figure}{Proposed Release Mechanism (a)Assembly (b)Manufactured Product}
             \label{fig:release1}
         \end{center}
-    \end{figure}
+    \end{Figure}
     
     
 \end{multicols}
@@ -389,7 +409,7 @@ individual changes made from the inherited design and developed components.
     to ensure the entire mechanical and electrical system had sufficient work
     space to operate. 
     
-    \subsubsection*{Design Requirement}
+    \subsubsection{Design Requirement}
     \begin{itemize}
         \item Need to fit all 14-golf club mechanism
         \item Mount mechanical compartment and electrical compartment
@@ -398,7 +418,7 @@ individual changes made from the inherited design and developed components.
         \item Lightweight 
     \end{itemize}
     
-    \subsubsection*{Design Process}
+    \subsubsection{Design Process}
     The design process started by thinking a feasible release mechanism before
     working on the golf bag. Once the release mechanism as shown above had been
     decided.The golf bag provided by James are dismantled to further understand
@@ -421,30 +441,29 @@ individual changes made from the inherited design and developed components.
     had been made by scanning the top frame using a 3D scanner(Figure
     \ref{fig:scan}). It is a innovative and efficient method to extract accurate
     data from irregular object due to its non-linear curvature.
-    \begin{figure}[H]
+    \begin{Figure}
         \begin{center}
             \includegraphics[width=0.18\textwidth]{Figure15.jpg}
             \captionof{figure}{Scan Machine}
             \label{fig:scan}
         \end{center}
-    \end{figure}
+    \end{Figure}
     
-    \begin{figure}[H]
+    \begin{Figure}
         \begin{center}
             \includegraphics[width=0.2\textwidth]{Figure3.jpg}
             \captionof{figure}{Inherited Top Base Side View}
             \label{fig:cloth}
         \end{center}
-    \end{figure}
+    \end{Figure}
     
-    \begin{figure}[H]
+    \begin{Figure}
         \begin{center}
             \includegraphics[width=0.2\textwidth]{Figure2.jpg}
             \captionof{figure}{Inherited Top Base Frame}
             \label{fig:top}
         \end{center}
-    \end{figure}
-    
+    \end{Figure}
     
     
     By applying a fill factor of 80\%, it is feasible for each tube to have a
@@ -502,13 +521,13 @@ individual changes made from the inherited design and developed components.
     ease on waterproofing all the electronics.
     
     
-    \begin{figure}[H]
+    \begin{Figure}
         \begin{center}
             \includegraphics[width=0.4\textwidth]{Figure16.jpg}
             \captionof{figure}{Infrastructure of Golf Bag}
             \label{fig:golfbag}
         \end{center}
-    \end{figure}
+    \end{Figure}
     
     
     
@@ -529,21 +548,21 @@ individual changes made from the inherited design and developed components.
     frame(Figure \ref{fig:CAD}). The final design is laser cut with acrylic and
     mounted on the frame with epoxy. The final top base is sprayed with black
     spray to improve aesthetic.
-    \begin{figure}[H]
+    \begin{Figure}
         \begin{center}
             \includegraphics[width=0.18\textwidth]{Figure.png}
             \captionof{figure}{Design Process of Top Base}
             \label{fig:change}
         \end{center}
-    \end{figure}
+    \end{Figure}
     
-    \begin{figure}[H]
+    \begin{Figure}
         \begin{center}
             \includegraphics[width=0.2\textwidth]{Figure.jpg}
             \captionof{figure}{CAD model of Top Base}
             \label{fig:CAD}
         \end{center}
-    \end{figure}
+    \end{Figure}
     
     
     \subsubsection{Extension of Golf Bag}
@@ -660,26 +679,26 @@ individual changes made from the inherited design and developed components.
     ribbon is heat shrink to provide protection for the ribbon and water
     resistance. The ribbon travel from the electrical housing of the caddy to
     the LCD screen through the caddy inner tube pathway as demonstrated in
-    Fig.(dlsd) main frame with ribbon
+     Fig. (\ref{fig:ribbon}) main frame with ribbon
 
     \begin{figure}[H]
         \begin{center}
-            \includegraphics[width=0.2\textwidth]{Figure10.jpg}
-            \captionof{figure}{Casing Design}
-            \label{fig:casing}
+            \includegraphics[width=0.2\textwidth]{Figure33.jpg}
+            \captionof{figure}{HDMI ribbon path through AGC}
+            \label{fig:ribbon}
         \end{center}
     \end{figure}
     
     \subsubsection{Screen Holder}
-    As shown in Figure, the screen holder is mounted on the back of the bottom
-    casing. The screen holder is designed to allow the LCD screen to sit firmly
-    on the screen holder (Figure \ref{fig:holder}). A cylinder metal rod (Figure
-    \ref{fig:rod})had been added in between of the screen holder to ensure the
-    screen holder do not rotate more than 90 degree.
+    As shown in Fig. (\ref{fig:holder}), the screen holder is mounted on the
+    back of the bottom casing. The screen holder is designed to allow the LCD
+    screen to sit firmly on the screen holder (Figure \ref{fig:holder}). A
+    cylinder metal rod Fig. (\ref{fig:rod}) had been added in between of the
+    screen holder to ensure the screen holder do not rotate more than 90 degrees.
     
     \begin{figure}[H]
         \begin{center}
-            \includegraphics[width=0.2\textwidth]{Figure14.jpg}
+            \includegraphics[width=0.2\textwidth]{Figure34.jpg}
             \captionof{figure}{LCD screen with Screen Holder}
             \label{fig:holder}
         \end{center}
@@ -831,7 +850,25 @@ individual changes made from the inherited design and developed components.
     the design.
     
     
-    
+\subsubsection{Final Design}
+Figure \ref{fig:final} shows a detailed assembly with the component of the base
+and Figure \ref{fig:blackcaddy} shows the implemented base on the caddy
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.3\textwidth]{basefinal.png}
+        \captionof{figure}{Assembly of proposed electrical base design}
+        \label{fig:final}
+    \end{center}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.3\textwidth]{Figure37.jpg}
+        \captionof{figure}{Implemented electrical base on caddy}
+        \label{fig:blackcaddy}
+    \end{center}
+\end{figure}
     
     \subsection{POWERTRAIN AND WHEELS}
     The powertrain on the inherited golf caddy consisted of a motor which was
@@ -2120,7 +2157,7 @@ can travel.
 \end{multicols}
 \begin{table}[H]
     \centering
-    \resizebox{\columnwidth}{!}{%
+    %\resizebox{\columnwidth}{!}{%
     \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
         \hline
                    & Male     &         &        &           & Female   &         &        &           \\ \hline
@@ -2142,38 +2179,32 @@ can travel.
     Sand Wedge     & 36.60    & 45.70   & 54.80  & 77.70     & 50.30    & 73.10   & 86.80  & 105.10    \\ \hline
     Lob Wedge      & 32       & 41.10   & 45.70  & 64        & 36.60    & 54.80   & 73.10  & 96        \\ \hline
     \end{tabular}%
-    }
+    %}
     \captionof{table}{Average shot distance with different clubs for men and women of different skill levels}
     \label{tab:guillermo_t1}
 \end{table}
     
-\begin{table}[H]
+\begin{table}
     \centering
-    \resizebox{\columnwidth}{!}{%
-    \begin{tabular}{lllllllll}
-    Algorithm name &       &       &          &        & Female &        &        &        \\
-    Classifiers          & Accuracy score         &                      & Execution Time (s) & Excellent & Beginner & Average & Good   & Excellent \\
-    KNN            & 0.21  &       & 1.8      & 210.20 & 173.70 & 201.10 & 228.50 & 255.90 \\
-    Decision Tree  & 0.22  &       & 0.04     & 192    & 155.40 & 192    & 205.70 & 214.80 \\
-    Naives Bayes   & 0.23  &       & 0.02     & 182.80 & 137.10 & 178.20 & 187.40 & 201.10 \\
-    Kernel SVM     & N/A   &       & Too long & 178.20 & 132.50 & 164.50 & 173.70 & 192    \\
-    Random forest  & 0.96  &       & 58.8     & 173.70 & 132.50 & 164.50 & 173.70 & 196.50 \\
-                   &       &       &          & 169.10 & 123.40 & 155.40 & 164.50 & 187.40 \\
-    Regression           & \#R\textasciicircum{}2 & R\textasciicircum{}2 & 137.10             & 164.50    & 114.30   & 146.30  & 155.40 & 178.20    \\
-    R\textasciicircum{}2 & 73.10                  & 100.50               & 128                & 155.40    & 109.70   & 141.70  & 150.80 & 169.10    \\
-    6 Iron         & 64    & 91.40 & 118.80   & 146.30 & 105.10 & 132.50 & 146.30 & 160    \\
-    7 Iron         & 59.40 & 82.30 & 109.70   & 137.10 & 96     & 128    & 137.10 & 150.80 \\
-    8 Iron         & 54.80 & 73.10 & 100.50   & 128    & 86.80  & 118.80 & 128    & 141.70 \\
-    9 Iron         & 50.30 & 64    & 86.80    & 118.80 & 73.10  & 105.10 & 114.30 & 132.50 \\
-    Pitching Wedge & 45.70 & 54.80 & 73.10    & 105.10 & 64     & 91.40  & 100.50 & 123.40 \\
-    Gap Wedge      & 41.10 & 50.30 & 64       & 86.80  & 54.80  & 82.30  & 91.40  & 114.30 \\
-    Sand Wedge     & 36.60 & 45.70 & 54.80    & 77.70  & 50.30  & 73.10  & 86.80  & 105.10 \\
-    Lob Wedge      & 32    & 41.10 & 45.70    & 64     & 36.60  & 54.80  & 73.10  & 96    
-    \end{tabular}%
-    }
-    \captionof{table}{Performance of different machine learning algorithms}
+    \begin{tabular}{lllllllllllllllllll}
+    Algorithm name &                &      &                    &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
+    Classifiers    & Accuracy score &      & Execution Time (s) &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
+    KNN            & 0.21           &      & 1.8                &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
+    Decision Tree  & 0.22           &      & 0.04               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
+    Naives Bayes   & 0.23           &      & 0.02               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
+    Kernel SVM     & N/A            &      & Too long           &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
+    Random forest  & 0.96           &      & 58.8               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
+                   &                &      &                    &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
+    Regression     & R\^{}2         & MAPE &                    &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
+    Linear         & -43            & 0.47 & 0.07               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
+    Decision Tree  & 0.86           & 0.09 & 0.23               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
+    Random forest  & 0.92           & 0.08 & 145                &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\
+    Neural network & -3             & 0.42 & 3.62               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  
+    \end{tabular}
+    \captionof{table}{Performance metrics of various machine learning algorithms}
     \label{tab:guillermo_t2}
 \end{table}
+    
     
 \begin{table}[H]
     \centering
@@ -2195,33 +2226,107 @@ can travel.
 \subsection{Project Aims}
 Detailed below is a review of how our project meets the aims initially laid out
 in the introduction.
-\paragraph{Follow the golfer automatically}
-yes but actually no
+\paragraph{To follow the golfer automatically}
+The software that has been written is a complete system that will allow the AGC
+to autonomously follow the golfer around the course, while pathfinding around
+prohibited zones; given appropriate GPS data. The GPS data we have access to
+from our GPS modules is not accurate enough; they performed well in intial
+testing after they were purchased, but we were unable to acquire accurate enough
+data when carrying out a full system test. This project aim could be fully
+satisfied with the purchase of improved GPS modules. The simulator demonstrates
+the ability of the software to properly function with appropriate data.
 
-\paragraph{Offer the optimal club to the golfer}
-conclusion is yes
+\paragraph{To offer the optimal club to the golfer}
+The release mechanism proposed aims to meet the objective of raising a club by
+10 cm as a form of suggestion by employing a nut and bolt analogy. A cylinder
+which contains a leadscrew nut at its base is placed on a stepper motor which
+has a leadscrew as its shaft. By having fixed rails going through the base plate
+of the cylinder, they prevent the rotation of the cylinder when a torque is
+applied to the stepper motor and only allow motion parallel to the axis of the
+shaft of the motor. Having this mechanism with the shaft facing upright, it will
+make an elevating effect which will be used to lift the golf club.
+
+The synthetic database and machine learning further help to achieve this goal.
+The synthetic database should reflect how a real-world golf player performs
+depending on many realistic parameters such as gender, golf skill level and age.
+However, even if it does not approximate to real world data, the predictive
+model is able to adapt to the new data by learning the difference between both.
+After several evaluations on different machine learning models, the most
+effective one has been selected. The result is that the model can accurately
+predict the optimal golf club according to the golfers needs. Combining the
+mechanism with the machine learning system for predicting the optimal club for
+any given shot allows, successfully fulfils this project aim.
+
 
 \subsection{Assessment Criteria}
 Detailed below is a review of how our project has met the laid out module
 assessment critera.
 \subsubsection{Innovation}
-Conclusion of innovative systems.
+Overall, the final design of the smart autonomous golf caddy aims to tackle the
+high cost of commercialise autonomous caddies in the market. With the budget
+allocated, the team designed and manufactured a smart autonomous golf caddy that
+would function similar to caddies in the market. Besides that, this project also
+focus on implementing new ideas in order to increase its functionality on the
+golf course. The innovation of having obstacle avoidance through GPS tracking
+and suggestive machine learning for optimal golf clubs shows new potential of
+smart autonomous golf caddies' capabilities in aiding the golfer on the golf
+course and improving their performance. This project also could promote
+newcomers to the sport with its potential of being an artificial intelligence
+coach at an affordable price.
+
+The machine learning model based on the synthetic database can suggest the
+optimal golf club for each shot in real-time. This feature already exists in a
+few golf apps. However, the AGC really focuses on making this feature stand out
+thanks to the release mechanism and the touchscreen display. Both systems
+improve the user experience when receiving the optimal golf club. The screen
+also allows the visualization of game analytics specific to a customer so that
+hidden patterns such as tendencies to hit a ball to the left in a specific hole
+of the course can be clearly seen and thus improve the customers golf game. This
+system of showing real-time analytics in a touchscreen display within the golf
+trolley does not currently exist in the market and is therefore an innovative
+system.
+
+Key innovative elements in our project include:
+\begin{itemize}
+    \item Design and implementation of a release mechanism that raise a golf
+    club as a form of suggestion for the golfer to use for their next shot based
+    on a machine learning algorithm
+    \item Design, testing and implementation of a custom pathfinding algorithm
+    \item Training and testing of a machine learning system to predict optimal
+    golf club to suggest
+    \item Use of old caddy chasis to construct our own, saving design work,
+    materials, and cost
+\end{itemize}
 
 \subsubsection{Process}
-Conclusion of how our design process was met. Validation etc
+Throughout the project duration, as a team we have worked hard to ensure that we
+worked within an effective design process, allowing us to avoid time wasting on
+designs that could be easily identified as innefective. At the beginning of the
+year we took time to ensure the project and the main aims were fully understood
+by each team member, working roles were designated and concepts produced for
+each element of the project. For any mechanical concept design, at least two
+team member would review the design to ensure no obvious oversights had occured.
+Before the process of integrating all separate elements onto the caddy began, we
+ensured all elements had been tested individually. For software aspects, each
+algorithm was tested independently to ensure functionality and robustness to
+edge case situations. 
+
 
 \subsubsection{Communication}
-How did our meetings run, was it successful.
-\end{multicols}
+The team has been able to communicate and showcase the key concepts the project
+in technical settings through presentations made for academics staffs as well as
+technical staffs whom have all helped and supported the team throughout this
+project. The team has also been able to communicate and explained the key
+concepts including the things that failed and alternative plans to our client.
+This was done through in-person meetings at the university and virtual meetings
+on Microsoft Teams where the team shared their ideas, outcome of conducted task
+and simulations to the client while building professional relationships.
 
-    
-    
-
-\newpage
 \nocite{*}
 \bibliographystyle{ieeetr}
 \bibliography{./ref}
 
+\end{multicols}
 
 
 \end{document}
