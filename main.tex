@@ -820,24 +820,24 @@ documented through the rest of this report.
     for the electrical base. Figure \ref{fig:base} shows the available space
     from the caddy after the motors were removed.
     
-    \begin{figure}[H]
+    \begin{Figure}
         \begin{center}
-            \includegraphics[width=0.4\textwidth]{Figure22.jpg}
+            \includegraphics[width=0.8\textwidth]{Figure22.jpg}
             \captionof{figure}{Location for electrical base}
             \label{fig:base}
         \end{center}
-    \end{figure}
+    \end{Figure}
     
     Three possible designs were initially made on CAD and they are shown in
     Figure \ref{fig:box}.
     
-    \begin{figure}[H]
+    \begin{Figure}
         \begin{center}
-            \includegraphics[width=0.5\textwidth]{Figure23.jpg}
+            \includegraphics[width=0.8\textwidth]{Figure23.jpg}
             \captionof{figure}{Concept design for electrical base}
             \label{fig:box}
         \end{center}
-    \end{figure}
+    \end{Figure}
     
     
     Idea 3 was chosen as the best option since it allows for an easy access to
@@ -867,179 +867,178 @@ documented through the rest of this report.
 Figure \ref{fig:final} shows a detailed assembly with the component of the base
 and Figure \ref{fig:blackcaddy} shows the implemented base on the caddy
 
-\begin{figure}[H]
+\begin{Figure}
     \begin{center}
-        \includegraphics[width=0.3\textwidth]{basefinal.png}
+        \includegraphics[width=\textwidth]{basefinal.png}
         \captionof{figure}{Assembly of proposed electrical base design}
         \label{fig:final}
     \end{center}
-\end{figure}
+\end{Figure}
 
-\begin{figure}[H]
+\begin{Figure}
     \begin{center}
-        \includegraphics[width=0.3\textwidth]{Figure37.jpg}
+        \includegraphics[width=0.6\textwidth]{Figure37.jpg}
         \captionof{figure}{Implemented electrical base on caddy}
         \label{fig:blackcaddy}
     \end{center}
+\end{Figure}
+    
+\subsection{Powertrain and Wheels}
+The powertrain on the inherited golf caddy consisted of a motor which was
+powering the rear wheels on a single axle. It allowed the caddy to the
+remotely controlled which was used to assist the user in pushing the caddy
+around. However, a user input was still required in order to navigate the
+caddy, for example when changing direction, since the front wheels were
+attached in such a way that would only allow forward and backward drive.
+Figure \ref{fig:train} shows the drivetrain of the inherited caddy.
+
+Due to the introduction of the autonomous tracking system and release
+mechanism, new motors are required in order to propel the caddy with the
+extra added weight. This powertrain required some changes to be made since
+it was not designed for autonomous driving.
+
+\subsubsection{Design Requirement for Powertrain}
+Two important design changes were identified. Since the caddy will have to
+make turns when required during the autonomous tracking, a speed
+differential between each of the rear wheel is required. Therefore, two
+separate motors are needed to control each rear wheel individually.
+Furthermore, a ball castor type support should be added at the front of the
+caddy in order to facilitate the turning action of the caddy as well as
+providing the ability for the caddy to have its own centre of rotation. 
+    
+
+\begin{Figure}
+    \begin{center}
+        \includegraphics[width=\textwidth]{Figure25.jpg}
+        \captionof{figure}{Inherited Caddy Powertrain}
+        \label{fig:train}
+    \end{center}
+\end{Figure}
+\newpage
+\subsubsection{Rear Wheel}
+In order to be cost effective and time efficient instead of manufacturing or
+buying a wheel from a third party seller, the previous rear wheels were
+used. However, these wheels were not compatible to be attached directly to
+the new motors since it required a locking mechnaism that is located on the
+previous axle. Therefore, this axle was cut down at two separate locations
+in order to retain this locking mechanism as well as a bracket that is used
+to securely connect it to the main frame of the caddy. Figure \ref{fig:rear}
+shows the locations that were determined to be the optimum cut off points.
+
+\begin{Figure}
+    \begin{center}
+        \includegraphics[width=\textwidth]{Figure26.jpg}
+        \captionof{figure}{Rear axle from inherited golf caddy}
+        \label{fig:rear}
+    \end{center}
+\end{Figure}
+
+Considering the space available, where the wheels need to be mounted, and
+the dimensions of the motors to be used, the connection between the shaft of
+the motor and the axle needs to be close type and secure connection. Since
+welding was not feasible due to the contact surface being too small between
+the motor shaft and the axle, adhesive was used. In order to have more
+contact surface when applying the adhesive, the motor’ shaft was immersed
+inside the axle where it allows for a more robust connection. Figure
+\ref{fig:auto} shows the rear wheels attached to the motors and mounted on
+the base plate of the electrical base.
+
+\begin{Figure}
+    \begin{center}
+        \includegraphics[width=\textwidth]{Figure27.jpg}
+        \captionof{figure}{Autonomous driving compatible powertrain}
+        \label{fig:auto}
+    \end{center}
+\end{Figure}
+
+
+\subsubsection{Front Wheel}
+The front wheel was decided that it will be incompatible to be used for
+autonomuos driving and therefore a swivel castor wheel was chosen as its
+best replacement. After removing the intial front wheel and its
+restrictions, the mounting space was at an incline fo 45 degrees. Since a
+flat surface is required to mount the swivel castor wheel, a piece of wood
+which was cut to the appropriate dimension, was in order to fill the gap.
+The wooden piece dimension also took into account the range of rotation of
+the wheel. Figure \ref{fig:castor} shows the process for mounting the swviel
+castor wheel on the caddy. 
+
+\begin{Figure}
+    \begin{center}
+        \includegraphics[width=\textwidth]{Figure28.jpg}
+        \captionof{figure}{Swivel Castor Wheel installation process}
+        \label{fig:castor}
+    \end{center}
+\end{Figure}
+The wooden piece was later wrapped in vinyl for aesthetic purposes.
+
+\newpage
+\subsubsection{Wheel Assembly}
+Figure \ref{fig:sprayed} shows the wheels mounted on the golf caddy. 
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{Figure29.jpg}
+        \captionof{figure}{Full Wheel installation process}
+        \label{fig:sprayed}
+    \end{center}
 \end{figure}
-    
-    \subsection{POWERTRAIN AND WHEELS}
-    The powertrain on the inherited golf caddy consisted of a motor which was
-    powering the rear wheels on a single axle. It allowed the caddy to the
-    remotely controlled which was used to assist the user in pushing the caddy
-    around. However, a user input was still required in order to navigate the
-    caddy, for example when changing direction, since the front wheels were
-    attached in such a way that would only allow forward and backward drive.
-    Figure \ref{fig:train} shows the drivetrain of the inherited caddy.
-    
-    \begin{figure}[H]
-        \begin{center}
-            \includegraphics[width=0.5\textwidth]{Figure25.jpg}
-            \captionof{figure}{Inherited Caddy Powertrain}
-            \label{fig:train}
-        \end{center}
-    \end{figure}
-    
-    Due to the introduction of the autonomous tracking system and release
-    mechanism, new motors are required in order to propel the caddy with the
-    extra added weight. This powertrain required some changes to be made since
-    it was not designed for autonomous driving.
-    
-    \subsubsection{Design Requirement for Powertrain}
-    Two important design changes were identified. Since the caddy will have to
-    make turns when required during the autonomous tracking, a speed
-    differential between each of the rear wheel is required. Therefore, two
-    separate motors are needed to control each rear wheel individually.
-    Furthermore, a ball castor type support should be added at the front of the
-    caddy in order to facilitate the turning action of the caddy as well as
-    providing the ability for the caddy to have its own centre of rotation. 
-    
-    
-    
-    \subsubsection{Rear Wheel}
-    In order to be cost effective and time efficient instead of manufacturing or
-    buying a wheel from a third party seller, the previous rear wheels were
-    used. However, these wheels were not compatible to be attached directly to
-    the new motors since it required a locking mechnaism that is located on the
-    previous axle. Therefore, this axle was cut down at two separate locations
-    in order to retain this locking mechanism as well as a bracket that is used
-    to securely connect it to the main frame of the caddy. Figure \ref{fig:rear}
-    shows the locations that were determined to be the optimum cut off points.
-    
-    \begin{figure}[H]
-        \begin{center}
-            \includegraphics[width=0.5\textwidth]{Figure26.jpg}
-            \captionof{figure}{Rear axle from inherited golf caddy}
-            \label{fig:rear}
-        \end{center}
-    \end{figure}
-    
-    Considering the space available, where the wheels need to be mounted, and
-    the dimensions of the motors to be used, the connection between the shaft of
-    the motor and the axle needs to be close type and secure connection. Since
-    welding was not feasible due to the contact surface being too small between
-    the motor shaft and the axle, adhesive was used. In order to have more
-    contact surface when applying the adhesive, the motor’ shaft was immersed
-    inside the axle where it allows for a more robust connection. Figure
-    \ref{fig:auto} shows the rear wheels attached to the motors and mounted on
-    the base plate of the electrical base.
-    
-    \begin{figure}[H]
-        \begin{center}
-            \includegraphics[width=0.5\textwidth]{Figure27.jpg}
-            \captionof{figure}{Autonomous driving compatible powertrain}
-            \label{fig:auto}
-        \end{center}
-    \end{figure}
-    
-    
-    \subsubsection{Front Wheel}
-    The front wheel was decided that it will be incompatible to be used for
-    autonomuos driving and therefore a swivel castor wheel was chosen as its
-    best replacement. After removing the intial front wheel and its
-    restrictions, the mounting space was at an incline fo 45 degrees. Since a
-    flat surface is required to mount the swivel castor wheel, a piece of wood
-    which was cut to the appropriate dimension, was in order to fill the gap.
-    The wooden piece dimension also took into account the range of rotation of
-    the wheel. Figure \ref{fig:castor} shows the process for mounting the swviel
-    castor wheel on the caddy. 
-    
-    \begin{figure}[H]
-        \begin{center}
-            \includegraphics[width=0.5\textwidth]{Figure28.jpg}
-            \captionof{figure}{Swivel Castor Wheel installation process}
-            \label{fig:castor}
-        \end{center}
-    \end{figure}
-    The wooden piece was later wrapped in vinyl for aesthetic purposes.
-    
-    
-    \subsubsection{Wheel Assembly}
-    Figure \ref{fig:sprayed} shows the wheels mounted on the golf caddy. 
-    
-    \begin{figure}[H]
-        \begin{center}
-            \includegraphics[width=0.5\textwidth]{Figure29.jpg}
-            \captionof{figure}{Full Wheel installation process}
-            \label{fig:sprayed}
-        \end{center}
-    \end{figure}
-    
-    
-    \subsection{Further Improvement}
-    
-    For the continuation of this project, to make it a commercially viable
-    product, the future team undertaking it should consider the following.
-    
-    \subsubsection{Release Mechanism}
-    For the release mechanism, one of the key improvements that could be
-    implemented would be the use of gears for the mechanism as it can save up a
-    lot of weight instead of using one stepper motor per golf club. Other
-    materials such as acrylic, wood or harder steel should be explored in order
-    to be used as the guiding rails since the current one being used are
-    threaded rods of 2 mm diameter which can easily bend. This can cause issues
-    to the release mechanism’s elevating platform since it can get stuck at the
-    point where the bending of the guiding rails occurs. Currently, the way to
-    operate the release mechanism, requires the user to connect the cable from
-    the golf bag to the caddy’s electrical base. An improvement to that could be
-    to implement a circuit within the golf bag that can communicate with the
-    circuit on the golf caddy through WIFI or Bluetooth, thus reducing the
-    possibility of the connection being loose which would not allow the system
-    to work. It also benefits the user since they will not have to worry about
-    unintentionally pulling the circuit system inside the electrical base on the
-    caddy every time they remove the golf bag form the golf caddy. 
-    
-    \subsubsection{Golf Bag}
-    The current golf bag are designed to be able to implement waterproofing. Due
-    to time constraint, the concept had not been implemented but could be done
-    easily with the current golf bag. Both Mechanical and Electrical Compartment
-    could be sealed with resin to prevent water entering the system. A water
-    sink could be implemented above the Mechanical Compartment. A tube could be
-    used to release the accumulated water from the water sink.
-    
-    \subsubsection{Golf Caddy Infrastructure}
-    The golf caddy could be more futuristic if the caddy could be redesigned.
-    Function of one button folding and unfolding could be achieved if the caddy
-    are well designed.
-    
-    \subsubsection{Caddy's Electrical Base}
-    It might be better to explore further designs since the current base is too
-    tall and it does not allow the full closure of the caddy when the golf bag
-    is removed. The need for waterproofing the “box” compartment which contains
-    all the electrical circuits should be implemented in the design stage as one
-    of the key design requirements. The current way to close the base is just a
-    sliding type of closure and it could be improved by using hinges or some
-    other component that can make the base more compact with regards to the
-    waterproofing. In terms of material selection, it might be better to use
-    acrylic for a commercially viable product since it will look better
-    aesthetically. 
-    
-    \subsubsection{Front Wheel}
-    In terms of the current connection of the swivel castor wheel, it might be
-    best to make changes to the main frame of the golf caddy instead of using
-    the piece of wood to make a flat surface. Moreover, the front wheel itself
-    should be considered to change since it might not provide enough grip to be
-    used on a golf course for a long period of time.
+
+
+\subsection{Further Improvement}
+
+For the continuation of this project, to make it a commercially viable
+product, the future team undertaking it should consider the following.
+
+\subsubsection{Release Mechanism}
+For the release mechanism, one of the key improvements that could be
+implemented would be the use of gears for the mechanism as it can save up a
+lot of weight instead of using one stepper motor per golf club. Other
+materials such as acrylic, wood or harder steel should be explored in order
+to be used as the guiding rails since the current one being used are
+threaded rods of 2 mm diameter which can easily bend. This can cause issues
+to the release mechanism’s elevating platform since it can get stuck at the
+point where the bending of the guiding rails occurs. Currently, the way to
+operate the release mechanism, requires the user to connect the cable from
+the golf bag to the caddy’s electrical base. An improvement to that could be
+to implement a circuit within the golf bag that can communicate with the
+circuit on the golf caddy through WIFI or Bluetooth, thus reducing the
+possibility of the connection being loose which would not allow the system
+to work. It also benefits the user since they will not have to worry about
+unintentionally pulling the circuit system inside the electrical base on the
+caddy every time they remove the golf bag form the golf caddy. 
+
+\subsubsection{Golf Bag}
+The current golf bag are designed to be able to implement waterproofing. Due
+to time constraint, the concept had not been implemented but could be done
+easily with the current golf bag. Both Mechanical and Electrical Compartment
+could be sealed with resin to prevent water entering the system. A water
+sink could be implemented above the Mechanical Compartment. A tube could be
+used to release the accumulated water from the water sink.
+
+\subsubsection{Golf Caddy Infrastructure}
+The golf caddy could be more futuristic if the caddy could be redesigned.
+Function of one button folding and unfolding could be achieved if the caddy
+are well designed.
+
+\subsubsection{Caddy's Electrical Base}
+It might be better to explore further designs since the current base is too
+tall and it does not allow the full closure of the caddy when the golf bag
+is removed. The need for waterproofing the “box” compartment which contains
+all the electrical circuits should be implemented in the design stage as one
+of the key design requirements. The current way to close the base is just a
+sliding type of closure and it could be improved by using hinges or some
+other component that can make the base more compact with regards to the
+waterproofing. In terms of material selection, it might be better to use
+acrylic for a commercially viable product since it will look better
+aesthetically. 
+
+\subsubsection{Front Wheel}
+In terms of the current connection of the swivel castor wheel, it might be
+best to make changes to the main frame of the golf caddy instead of using
+the piece of wood to make a flat surface. Moreover, the front wheel itself
+should be considered to change since it might not provide enough grip to be
+used on a golf course for a long period of time.
     
 \end{multicols}
 
