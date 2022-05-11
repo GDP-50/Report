@@ -9,7 +9,7 @@
 \usepackage{amsmath, amssymb}
 \usepackage{float}
 \usepackage{wrapfig}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage[parfill]{parskip}
 \usepackage{glossaries}
 \usepackage{amsmath}
@@ -252,7 +252,7 @@ documented through the rest of this report.
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=\textwidth]{final_proposal.jpg}
+        \includegraphics[width=\textwidth]{final_proposal.PNG}
     \end{center}
     \captionof{figure}{Final Design Proposal}
     \label{fig:final_proposal}
@@ -1735,8 +1735,9 @@ includes a standard noise suppression capacitor across the motor windings
 \begin{figure}[H]
     \begin{center}
     \includegraphics[]{emg49.png}
-    \label{fig:emg49}
-    \end{center}
+\end{center}
+\captionof{figure}{EMG49 Motor}
+\label{fig:emg49}
 \end{figure}
 
 \subsubsection{MD49 Motor Controller}
@@ -2003,22 +2004,23 @@ these relationships have been used to simulate the actual distance each identity
 would hit. Fig. (\ref{fig:distribution}) shows the actual distance and compares
 it to the linear distance. 
 
+\begin{Figure}
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{distribution.png}
+        \captionof{figure}{Frequency of shot distance with driver for adult males at different levels}
+        \label{fig:distribution}
+    \end{center}
+\end{Figure}
+
 As a result of the actual distance being approximating more to real life
 conditions, another column was created in the database which corrects the club
-that the user should have taken had he not considered only the distance. 
-
+that the user should have taken had he not considered only the distance.
 Moreover, the variables wind speed and golf course elevation are random numbers
 extracted from a gamma distribution with sensible means and standard deviation
 to increase the realism in the synthetic database, since both continuous
 variables follow this distribution in the real world \cite{wind_dist}. 
 
-\begin{figure}[H]
-    \begin{center}
-        \includegraphics[]{distribution.png}
-        \captionof{figure}{Frequency of shot distance with driver for adult males at different levels}
-        \label{fig:distribution}
-    \end{center}
-\end{figure}
+
 
 \subsection{Output Metrics}
 The main aim of the AGC is to essentially behave as close as possible to a
@@ -2167,37 +2169,11 @@ mean the user will have to wait one minute every time he wants to get a
 suggested golf club. Hence, the AGC will recommend the optimal golf club 96\% of
 the time as shown in Table (\ref{tab:guillermo_t2}).
 
-\subsection{Future Work}
-Despite the fact the model has great accuracy, in the end, the model will be as
-good as its data. In the future, before commercialising the product, empirical
-data from players with a range of abilities and identities should play with the
-AGC to gather real data and verify the synthetic database precision.
 
-\subsubsection{APIs}
-When in commercialization or in testing stage, the weather and physical
-conditions that exist in the synthetic database will be recorded thanks to two
-APIs (application programming interfaces) that require a hotspot connection from
-the users phone, which the Raspberry Pi can connect to.
-
-\paragraph{GCP Elevation API} 
-The elevation is needed because the height difference in golf shots is relevant
-to decide the optimal club choice. Hence, the first idea was to use a Google
-Cloud Platform (GCP) elevation application programming interface (API). The
-platform allows a free trial period and after this the price per 1000 request is
-of 4-5 US dollars \cite{google_docs}. 
-
-Having the location of the pod, which will be carried by the user, and the
-location of the hole in the golf course, the height difference can be known by
-transforming the location into latitude and longitude coordinates and requesting
-the call from the API
-
-\paragraph{Openweather API}
-Openweather is another API which enables the limited free access to all the
-atmospheric conditions and more that are relevant to the distance a golf ball
-can travel.
 
 \end{multicols}
-\begin{table}[H]
+\newpage
+\begin{table}
     \centering
     %\resizebox{\columnwidth}{!}{%
     \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
@@ -2248,7 +2224,6 @@ can travel.
     \label{tab:guillermo_t2}
 \end{table}
     
-    
 \begin{table}[H]
     \centering
     \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
@@ -2263,9 +2238,40 @@ can travel.
     \end{tabular}
     \captionof{table}{Sample synthetic data}
     \label{tab:guillermo_t3}
-\end{table}
+\end{table} 
+
+
 \newpage
 \begin{multicols}{3}
+\subsection{Future Work}
+Despite the fact the model has great accuracy, in the end, the model will be as
+good as its data. In the future, before commercialising the product, empirical
+data from players with a range of abilities and identities should play with the
+AGC to gather real data and verify the synthetic database precision.
+
+\subsubsection{APIs}
+When in commercialization or in testing stage, the weather and physical
+conditions that exist in the synthetic database will be recorded thanks to two
+APIs (application programming interfaces) that require a hotspot connection from
+the users phone, which the Raspberry Pi can connect to.
+
+\paragraph{GCP Elevation API} 
+The elevation is needed because the height difference in golf shots is relevant
+to decide the optimal club choice. Hence, the first idea was to use a Google
+Cloud Platform (GCP) elevation application programming interface (API). The
+platform allows a free trial period and after this the price per 1000 request is
+of 4-5 US dollars \cite{google_docs}. 
+
+Having the location of the pod, which will be carried by the user, and the
+location of the hole in the golf course, the height difference can be known by
+transforming the location into latitude and longitude coordinates and requesting
+the call from the API
+
+\paragraph{Openweather API}
+Openweather is another API which enables the limited free access to all the
+atmospheric conditions and more that are relevant to the distance a golf ball
+can travel.
+
 \section{Project Review}
 \subsection{Project Aims}
 Detailed below is a review of how our project meets the aims initially laid out
@@ -2371,6 +2377,7 @@ and simulations to the client while building professional relationships.
 \bibliography{./ref}
 
 \end{multicols}
+\newpage
 \appendix
 \section{Expenditure}
 \begin{table}[H]
