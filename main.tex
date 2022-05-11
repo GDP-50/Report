@@ -17,6 +17,7 @@
 \usepackage{caption}
 \usepackage{siunitx}
 \usepackage{makecell}
+\usepackage{pdfpages}
 
 \newenvironment{Figure}
   {\par\medskip\noindent\minipage{\linewidth}}
@@ -40,7 +41,7 @@
 
 \begin{document}
 \pagenumbering{arabic}
-\maketitle
+\includepdf{cover.pdf}
 \newpage
 \begin{multicols}{3}
 \tableofcontents
@@ -53,8 +54,8 @@ caddies are also emerging technologies in the sport; they provide support
 by carrying their golf clubs and provide useful information such as weather
 forecast and wind trajectory throughout the round of golf. There are typically
 two modes of operation provided by current golf caddies where it can either
-follow the golfer autonomously, though some type of tracking sensor is required
-such as a Bluetooth remote control, or through manual control where the
+follow the golfer autonomously, although some type of tracking sensor is required
+such as a Bluetooth remote control; or through manual control where the
 golfer needs to guide the caddy through the golf course.
 \cite{choi_2020}. These modes are of course interchangeable with the transition
 from manual to autonomous and vice versa via an interaction between the
@@ -69,8 +70,8 @@ However, such high-end technology leads to the product being very expensive;
 this particular product cost £950 thus not being accessible to the general
 public. In addition, although the caddy can be independent, needs some
 guidance as to where it should go considering that the golf course is full of
-hazards such as bunkers and lakes. Besides that, though current technologies are
-good and helps the golfer in ways as previously mentioned, there is a lot of
+hazards such as bunkers and lakes. Although current technologies are
+good and help the golfer in the ways previously mentioned, there is a lot of
 potential in improving the caddy. Experienced golfers would have better
 understanding of their rounds and would have better intuitions to make decisions
 on which golf clubs would be best used for the current shot. However,
@@ -112,9 +113,9 @@ this project:
 \begin{itemize}
     \item Design and implement a system that allows autonomous tracking between
     a golfer and the caddy 
-    \item Develop and implement machine learning algorithm into the caddy that
+    \item Develop and implement a machine learning algorithm into the caddy that
     will be used to record data from the golfer’s performance 
-    \item Design and implement a system that will offer optimum golf club
+    \item Design and implement a system that will offer the optimum golf club
     needed for the next shot based on the machine learning algorithm 
     \item Design and develop a User-Interface system so the golfer can interact
     with the AGC
@@ -123,8 +124,8 @@ this project:
 \subsection{Resources}
 The team was allocated the baseline budget from the university of £850 and was
 also supported by our client where the team is provided with golf equipment to
-design the golf caddy and conduct testing. A full break down of the project our
-expenditure and fundings can be seen in appendix (A). 
+design the golf caddy and conduct testing. A full break down of our project
+expenditure and funding can be seen in appendix (A). 
 
 \subsection{Team Roles and Work Breakdown}
 The team was structured and organised in a way such that everyone`s skills and
@@ -150,8 +151,8 @@ team`s breakdown of roles can be seen below in Table (\ref{tab:roles}).
 \end{table}
 
 \subsection{Ethical and Sustainability Considerations}
-An ethical concern pertains to whether or not the caddy is follow the rules and
-regulations of standard golf. Although the implementation of the machine
+An ethical concern pertains to whether or not the caddy follows the rules and
+regulations of golf. Although the implementation of the machine
 learning algorithm is not allowed as this would be an unfair advantage in a
 professional game, the intention of this feature is focused on training and
 encouraging new talents that are keen in joining the sport. Other than that, all
@@ -198,7 +199,7 @@ caddy, researched and explored new features and concepts, and subsequently
 evaluated and compared the ideas with current products available on the market. 
 
 
-The second stage was to select an concept and develop a design proposal. This
+The second stage was to select a concept and develop a design proposal. This
 stage consist of the team working on their roles and introducing the concepts to the
 team and client. Concepts that did not meet the requirements were rejected and
 the design proposal were refined during discussions. It was also important to
@@ -456,7 +457,7 @@ documented through the rest of this report.
     holes. Removing the inherited design will provide more freedom and
     potential to fully utilise the available space of the golf bag. Calculation
     of the dimensions was made by scanning the top frame using a 3D as shown in
-     Fig. (\ref{fig:scan}). It is a innovative and efficient method to
+     Fig. (\ref{fig:scan}). It is an innovative and efficient method to
     extract accurate data from irregular object due to its non-linear curvature.
     \begin{Figure}
         \begin{center}
@@ -491,7 +492,7 @@ documented through the rest of this report.
     
     The design of the bag will follow along the PVC tube. With a solid
     foundation for the 14 PVC tubes, the changes made in the release mechanism
-    wouldn’t affect the golf bag design as long the release mechanisms are
+    wouldn’t affect the golf bag design as long as the release mechanisms are
     installed in the dedicated PVC tube. Each tube had its own name as specified
     golf clubs will be placed in them. By doing this, the machine learning will
     release the mechanism of the specified club to the golfer based on its
@@ -515,7 +516,7 @@ documented through the rest of this report.
     
     
     \subsubsection{Golf Bag innovation}
-    The golf bag is another one of our innovative creations as we manage to
+    The golf bag is another of our innovative creations as we manage to
     create a fully-functioning golf bag with extremely low cost. Low cost is
     achieved by reusing recycled items and using basic resources such as sheet metal,
     plywood and acrylic. With manufacturing limitations, cloth and plastic had been
@@ -576,7 +577,7 @@ documented through the rest of this report.
     \begin{Figure}
         \begin{center}
             \includegraphics[width=0.6\textwidth]{Figure.jpg}
-            \captionof{figure}{CAD model of Top Base}
+            \captionof{figure}{Result of 3D scan on caddy top}
             \label{fig:CAD}
         \end{center}
     \end{Figure}
@@ -646,7 +647,7 @@ documented through the rest of this report.
         \end{center}
     \end{Figure}
 
-    The location of the holes Fig. (\ref{fig:ELEC}) is placed beside the
+    The location of the holes, shown in Fig. (\ref{fig:ELEC}), are placed beside the
     mechanical component for the ease of the cable to travel to the electrical
     compartment. The holes are also designed to ensure none of the mechanical
     component will obstruct the hole. The electrical compartment consists of the
@@ -678,8 +679,7 @@ documented through the rest of this report.
     In this project, a LCD screen is implemented which will have a GUI for data
     representation. A LCD screen casing was manufactured to protect the LCD
     screen from environmental damage such as rainwater and physical debris
-    damage. The overall casing design are shown in Fig. (\ref{fig:casing}).
-    Different location of mounting the LCD screen on the caddy had been
+    damage. Different location of mounting the LCD screen on the caddy had been
     explored, The best location of mounting the LCD screen on the caddy will be
     right below the caddy handle as it can be easily viewed by the user nearby
     the caddy. The location does not affect the folding operation of the caddy,
@@ -691,7 +691,7 @@ documented through the rest of this report.
     ribbon is wrapped in heat shrink to provide protection for the ribbon and water
     resistance. The ribbon travels from the electrical housing of the AGC to
     the LCD screen through the AGC inner tube pathway as demonstrated in
-     Fig. (\ref{fig:ribbon}) main frame with ribbon
+     Fig. (\ref{fig:ribbon}).
 
     \begin{Figure}
         \begin{center}
@@ -702,9 +702,9 @@ documented through the rest of this report.
     \end{Figure}
     
     \subsubsection{Screen Holder}
-    As shown in Fig. (\ref{fig:holder}), the screen holder is mounted on the
+    As shown in Fig. (\ref{fig:bottom}), the screen holder is mounted on the
     back of the bottom casing. The screen holder is designed to allow the LCD
-    screen to sit firmly on the screen holder (Figure \ref{fig:holder}). A
+    screen to sit firmly on the screen holder. A
     cylindrical metal rod Fig. (\ref{fig:rod}) was added in between the
     screen holder to ensure the screen holder does rotate more than 90 degrees.
     
@@ -811,7 +811,7 @@ documented through the rest of this report.
     \subsubsection{Concept Design}
     After investigating the inherited golf caddy for possible locations that can
     be used for the electrical base, it was determined that the only
-    feasible place was where the previous battery located. After removing the
+    feasible place was where the previous battery was located. After removing the
     previous motors and battery plate holder, the new allocated space was
     measured and built on SOLIDWORKS in order to model different possible design
     for the electrical base. Fig. (\ref{fig:base}) shows the available space
@@ -935,8 +935,8 @@ the dimensions of the motors to be used, the connection between the shaft of
 the motor and the axle needs to be close type and secure connection. Since
 welding was not feasible due to the contact surface being too small between
 the motor shaft and the axle, adhesive was used. In order to have more
-contact surface when applying the adhesive, the motor’ shaft was immersed
-inside the axle where it allows for a more robust connection. Fig.
+contact surface when applying the adhesive, the motor shafts were immersed
+inside the axles where it allows for more robust coupling. Fig.
 (\ref{fig:auto}) shows the rear wheels attached to the motors and mounted on
 the base plate of the electrical base.
 
@@ -1045,7 +1045,7 @@ used on a golf course for a long period of time.
 \label{software}
 In this section all software required for the operating cycle of the AGC is
 discussed. The AGC main computer is a Raspberry Pi 4 running a 64-bit Debian
-port, the same is true for the Raspberry Pi used in the tracking pod. The GPS
+port, the same for the Raspberry Pi used in the tracking pod. The GPS
 navigation system requires high precision decimal storage to operate properly.
 Data type \verb|float32| can store 23 significant bits, compared to data type
 \verb|float64| which can store 52 significant
@@ -1095,7 +1095,7 @@ chosen.
     \label{fig:float_calcs}
 \end{figure}
 The $180^{\circ}$ is normalised to a power of two so we are able to use the non
-integer value of bits in the calculation for physical precision, were we to not
+integer value of bits in the calculation for physical precision. Were we not to
 perform this normalisation then $7.4918\rightarrow8$ full bits are required to
 represent the degrees and the final precision is slightly less for each
 datatype. To ensure this calculated precision is representative of our system
@@ -1142,7 +1142,7 @@ resource intensive calculations were now performed with a compiled C program.
     \label{fig:simulator}
 \end{Figure}
 
-The main control loop that determines the AGC's behaviour is shown below in Fig.
+The main control loop that determines the AGC's behaviour is shown in Fig.
 (\ref{fig:control_loop}).
 \begin{Figure}
 \begin{mdframed}
@@ -1314,18 +1314,18 @@ travel. The bounding rectangle is demonstrated by the green rectangle in Fig.
 
 \subsubsection{Pathfinding}
 The pathfinding algorithm is only used if the control loop shown in Fig.
-(\ref{fig:control_loop}) determines that the AGC should move to the golfer but
-the a direct route is not possible due to the presence of a hazard zone between
-them. Initially the A* pathfinding algorithm was researched as it is a well
-known algorithm with which we could choose some heuristic function to minimise,
-in our case that heuristic function would likely be the shortest distance to
-reach the golfer. A* is generally used for pathfinding on a discrete graph, we
-do not have a discrete graph available and so would have to construct one for
-each golf course or a local graph surrounding the hazard we wish to avoid. This
-adds unnecessary complexity in terms of implementation and computation to our
-system which we wish to avoid. Additionally, A* has time complexity of $O(b^d)$
-if $d$ is the shortest path length and $b$ is the branching factor, and the
-algorithm has high memory requirements as all generated nodes are kept in memory
+(\ref{fig:control_loop}) determines that the AGC should move to the golfer but a
+direct route is not possible due to the presence of a hazard zone between them.
+Initially the A* pathfinding algorithm was researched as it is a well known
+algorithm with which we could choose some heuristic function to minimise, in our
+case that heuristic function would likely be the shortest distance to reach the
+golfer. A* is generally used for pathfinding on a discrete graph, we do not have
+a discrete graph available and so would have to construct one for each golf
+course or a local graph surrounding the hazard we wish to avoid. This adds
+unnecessary complexity in terms of implementation and computation to our system
+which we wish to avoid. Additionally, A* has time complexity of $O(b^d)$ if $d$
+is the shortest path length and $b$ is the branching factor, and the algorithm
+has high memory requirements as all generated nodes are kept in memory
 \cite{astar_2009}. It was decided we would not use A* algorithm; standard
 Djikstra's algorithm was also considered by the same short comings are present
 with us not having a finite graph. The next consideration was to simply ``pad''
@@ -1377,7 +1377,7 @@ design process of the algorithm and make the code more readable, removing the
 necesscity for vector manipulations throuhout the algorithm instead using only
 simple arithmetic operations. This results in
 $\overrightarrow{\mathbf{C}^\prime}$ having constant $y$. The value of
-$y^\prime$ is increment in one meter steps until no intersection between the
+$y^\prime$ is incremented in one meter steps until no intersection between the
 translated chord vector, $\overrightarrow{\mathbf{C}^\prime_t}$, and the rotated
 polygon, $\mathbf{P}^\prime$. If any point of
 $\overrightarrow{\mathbf{C}^\prime_t}$ lies within the polygon the increment
@@ -1386,7 +1386,7 @@ points of $\overrightarrow{\mathbf{C}^\prime_t}$ lie within the polygon. This
 increment process is repeated in the $x^\prime$ direction for the vector joining
 the rotated AGC position, $\left(x^\prime_{AGC}, y^\prime_{AGC}\right)$, to
 $\left(x^\prime_{AGC}, y^\prime_{AGC} + y^\prime_i\right)$. Once the
-incrementation process if finished such that no intersections are found, the
+incrementation process is finished such that no intersections are found, the
 vector joining $\left(x^\prime_{AGC}, y^\prime_{AGC}\right)$ to
 $\left(x^\prime_{AGC}+x^\prime_i, y^\prime_{AGC} + y^\prime_i\right)$ is checked
 for intersections. If none are found then $\left(x^\prime_{AGC}+x^\prime_i,
@@ -1487,7 +1487,7 @@ second, resulting in a smoother and closer path being found.
 
 \subsection{Communications}
 The EMG49 motors we are using are controlled by the MD25 motor controller board
-via and serial communication. The communication interface for this was written
+via serial communication. The communication interface for this was written
 in C and is capable of handling multiple serial devices; if more than one device
 is present the serial port can be closed and reopened rapidly. Currently the
 only device we have on the communications network is the MD49. The GPS in the
@@ -1628,7 +1628,7 @@ extract every single point within the area (for accuracy) and the algorithm for
 the autonomous following would not have to go through so many data that would be
 costly in computational speed. For accuracy, I established that the polygons
 drawn as the perimeter would need to be as close as possible to increase the
-points within the perimeter of the area that the AGC should avoid. Once of
+points within the perimeter of the area that the AGC should avoid. Once
 these plans were put together, the next step was to find out what tool that
 could be used to carry these out successfully within the budget of the project.
 All of this was possible through a software called Mission Planner.
@@ -1636,18 +1636,19 @@ All of this was possible through a software called Mission Planner.
 The coordinate is then extracted from a feature of this software which allows it
 to be formatted as a text file. As mentioned, the waypoints were drawn as
 closely to each other as possible. Fig. (\ref{fig:mission_planner}) illustrates
-the comparison of Southampton Municipal Golf Course on Mission Planner and
-Google Maps where both are identical and all coordinates match with each other
-on the maps. Prohibited zones are then created by drawing constructing a polygon
-formed by clicking points of the perimeter of a zone we do not with the AGC to
-trespass onto; the concept is demonstrated in Fig. (\ref{fig:polygon1}).
+the Southampton Municipal Golf Course on Mission Planner. We found that Mission
+Planner and Google Maps were both identical and all coordinates match with
+each other on the maps. Prohibited zones are then created by drawing
+constructing a polygon formed by clicking points of the perimeter of a zone we
+do not with the AGC to trespass onto; the concept is demonstrated in Fig.
+(\ref{fig:polygon1}).
 
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=0.3\textwidth]{Municipal.png}
     \end{center}
     \captionof{figure}{Mission Planner view of Southampton Municipal Golf Course}
-    \label{fig:mission_planer}
+    \label{fig:mission_planner}
 \end{figure}
 
 \begin{figure}[H]
@@ -1675,7 +1676,7 @@ For the trolley microcontroller, the Raspberry Pi 4B with 4 GB of RAM will be
 used. Other affordable alternatives of microcontrollers are Arduino boards.
 However, the Raspberry Pi is chosen because of its superiority in processing
 power, its easy compatibility with touchscreen displays and in-built Wi-Fi
-module allowing us to work with an APIs and remote access the system through ssh. The
+module allowing us to work with APIs and remote access the system through SSH. The
 microcontroller will also have a set of heat sinks plus a fan that will avoid
 any overheating problems.
 
@@ -1685,7 +1686,7 @@ We chose to use the EMG49 motors for our prototype. We chose these motors by
 considering the top speed we wish the AGC to able to go, and how fast we want it
 to accelerate to that speed on a $10^\circ$ incline. The calculations shown
 below in Fig. (\ref{fig:motor_calcs}) show how we calculated the necessary
-toruqe and rpm we require from our motors.
+torque and rpm we require from our motors.
 
 \begin{figure}[H]
     \begin{mdframed}
@@ -1721,12 +1722,12 @@ toruqe and rpm we require from our motors.
     \label{fig:motor_calcs}
 \end{figure}
 
-According to their datasheet the EMG49 motors can provided a loaded rpm of 122
+According to their datasheet the EMG49 motors can provide a loaded rpm of 122
 and a torque of 1.56, close to our requirements set out above. As the torque is
 slightly lower than calulated, the AGC will accelerate slightly to top speed on
 a $10^\circ$ incline in slightly over five seconds.
 
-Shown in Fig. (\ref{fig{emg49}}), is a 24v motor fully equipped with
+Shown in Fig. (\ref{fig:emg49}), is a 24v motor fully equipped with
 encoders and a 49:1 reduction gearbox. It is ideal for medium to large robotic
 applications, providing cost effective drive and feedback for the user. It also
 includes a standard noise suppression capacitor across the motor windings
@@ -1779,7 +1780,7 @@ close to the driver to sustain 4A. This capacitor is shown in Fig.
 \end{figure}
 
 \subsubsection{GPS Module}
-The GPS module called NEO-6M shown in DOFIG [picture of gps module] can sense
+The GPS module called NEO-6M shown in Fig. (\ref{fig:gps_module}) can sense
 locations through the whole world by tracking 22 satellites. It takes 27 seconds
 to start accurately, provides GPS data in the form of NMEA sentences, and
 requires very little power with only 3.3V at 45mA necessary \cite{neo_gps}.
@@ -1806,8 +1807,8 @@ budget, the only alternative was to use 32 AA batteries. During testing we found
 that this configuratin was unable to supply enough current to the motors,
 resulting in the motors unable to run at maximum speed. As out goal was simply
 to demonstrate the AGC abilities, it was not necessary for the AGC to operate at
-maximum speed, and were a final product to be manufactured then a more
-appropriate solution to power the system will be required.
+maximum speed. Were a final product to be manufactured then a more
+appropriate solution to power the system would be required.
 
 As shown in Fig. (\ref{fig:electrical_schematic}), the first components after
 the battery are a 5A fuse and a switch to turn on/off the whole trolley. These
@@ -1996,9 +1997,9 @@ in temperature, the ball will be carried 2.5 yards shorter and for every 1000
 feet increase above sea level, the ball will be carried an extra 4.5 yards.
 Furthermore, the elevation difference between the player position to the aimed
 location is also considered for the actual distance. This time, the elevation is
-added to the actual distance, so if there if the desired location is 4 meters
+added to the actual distance, so if the desired location is 4 meters
 above the players location, the actual distance will be 4 meters shorter. All of
-these relationships have been use to simulate the actual distance each identity
+these relationships have been used to simulate the actual distance each identity
 would hit. Fig. (\ref{fig:distribution}) shows the actual distance and compares
 it to the linear distance. 
 
@@ -2023,7 +2024,7 @@ variables follow this distribution in the real world \cite{wind_dist}.
 The main aim of the AGC is to essentially behave as close as possible to a
 real-life caddie. This means helping the user improve its game while also
 carrying its golf bag and extra equipment. As a result, the AGC should be able
-to offer data analytics for each username. These analytics should provide useful
+to offer data analytics for each user. These analytics should provide useful
 insights that allows the player to leverage them and improve its golf
 statistics. Furthermore, with the ever-increasing sport analytics market,
 projected to be valued at USD 5.11 billion by 2026,
@@ -2116,7 +2117,7 @@ algorithms and evaluating their performance by comparing the results. Table (\re
 shows the performance of the tested algorithms. For classifiers, the performance
 is measured by the accuracy score, which computes the ratio between true
 positives and all other predictions. If ${\hat{y}}_i$ is the predicted value of
-the $\mathcal{i}-th$ sample and $y_\mathcal{i}$ is the corresponding true value,
+the $\mathcal{i}_{th}$ sample and $y_{\mathcal{i}}$ is the corresponding true value,
 then the fraction of correct predictions over $n_{samples}$ is defined as shown
 in Eq. (\ref{eq:classifier_accuracy}).
 
@@ -2130,7 +2131,7 @@ regression, performance is measured by computing $R^2$ (coefficient of
 determination), which assesses the ability of a model to predict or explain an
 outcome in the linear regression setting. The best value is 1.0 and it can be
 negative because the model can arbitrarily be worse. If ${\hat{y}}_i$ is the
-predicted value of the $\mathcal{i}-th$ sample and $y_\mathcal{i}$ is the
+predicted value of the $\mathcal{i}-th$ sample and $y_{\mathcal{i}}$ is the
 corresponding true value for n samples, the estimated $R^2$ is defined as shown in
 Eq. (\ref{eq:regression_accuracy}).
 \begin{equation}
@@ -2145,8 +2146,8 @@ Where:
 
 Also, the MAPE (mean absolute percentage error) is measured for regression. This
 metric computes the absolute error for every prediction and returns its mean. If
-${\hat{y}}_i$ is the predicted value of the $\mathcal{i}-th$ sample and
-$y_\mathcal{i}$ is the corresponding true value, then the mean absolute percentage
+${\hat{y}}_i$ is the predicted value of the $\mathcal{i}_{th}$ sample and
+$y_{\mathcal{i}}$ is the corresponding true value, then the mean absolute percentage
 error estimated over $n_{samples}$ is defined shown in Eq. (\ref{eq:mape}).
 
 \begin{equation}
@@ -2163,8 +2164,8 @@ taking all metrics into consideration, and prioritising the accuracy more than
 the execution time, the chosen model is a random forest classifier. It has the
 highest accuracy and although the execution time is of one minute, this does not
 mean the user will have to wait one minute every time he wants to get a
-suggested golf club. Hence, the AGC will recommend the optimal golf club 96% of
-the time as shown in Table (\ref{fig:guillermo_t2}).
+suggested golf club. Hence, the AGC will recommend the optimal golf club 96\% of
+the time as shown in Table (\ref{tab:guillermo_t2}).
 
 \subsection{Future Work}
 Despite the fact the model has great accuracy, in the end, the model will be as
@@ -2176,7 +2177,7 @@ AGC to gather real data and verify the synthetic database precision.
 When in commercialization or in testing stage, the weather and physical
 conditions that exist in the synthetic database will be recorded thanks to two
 APIs (application programming interfaces) that require a hotspot connection from
-the users phone, which the raspberry pi easily allows.
+the users phone, which the Raspberry Pi can connect to.
 
 \paragraph{GCP Elevation API} 
 The elevation is needed because the height difference in golf shots is relevant
@@ -2227,21 +2228,21 @@ can travel.
     
 \begin{table}
     \centering
-    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+    \begin{tabular}{|l|l|l|l|}
         \hline
-    Algorithm name &                &      &                    &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
-    Classifiers    & Accuracy score &      & Execution Time (s) &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
-    KNN            & 0.21           &      & 1.8                &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
-    Decision Tree  & 0.22           &      & 0.04               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
-    Naives Bayes   & 0.23           &      & 0.02               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
-    Kernel SVM     & N/A            &      & Too long           &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
-    Random forest  & 0.96           &      & 58.8               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
-                   &                &      &                    &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
-    Regression     & R\^{}2         & MAPE &                    &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
-    Linear         & -43            & 0.47 & 0.07               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
-    Decision Tree  & 0.86           & 0.09 & 0.23               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
-    Random forest  & 0.92           & 0.08 & 145                &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\ \hline
-    Neural network & -3             & 0.42 & 3.62               &  &  &  &  &  &  &  &  &  &  &  &  &  &  &   \\  \hline
+    Algorithm name &                &      &                     \\ \hline
+    Classifiers    & Accuracy score &      & Execution Time (s)  \\ \hline
+    KNN            & 0.21           &      & 1.8                 \\ \hline
+    Decision Tree  & 0.22           &      & 0.04                \\ \hline
+    Naives Bayes   & 0.23           &      & 0.02                \\ \hline
+    Kernel SVM     & N/A            &      & Too long            \\ \hline
+    Random forest  & 0.96           &      & 58.8                \\ \hline
+                   &                &      &                     \\ \hline
+    Regression     & R\^{}2         & MAPE &                     \\ \hline
+    Linear         & -43            & 0.47 & 0.07                \\ \hline
+    Decision Tree  & 0.86           & 0.09 & 0.23                \\ \hline
+    Random forest  & 0.92           & 0.08 & 145                 \\ \hline
+    Neural network & -3             & 0.42 & 3.62                \\  \hline
     \end{tabular}
     \captionof{table}{Performance metrics of various machine learning algorithms}
     \label{tab:guillermo_t2}
@@ -2344,7 +2345,7 @@ Key innovative elements in our project include:
 \subsubsection{Process}
 Throughout the project duration, as a team we have worked hard to ensure that we
 worked within an effective design process, allowing us to avoid time wasting on
-designs that could be easily identified as innefective. At the beginning of the
+designs that could be easily identified as inneffective. At the beginning of the
 year we took time to ensure the project and the main aims were fully understood
 by each team member, working roles were designated and concepts produced for
 each element of the project. For any mechanical concept design, at least two
