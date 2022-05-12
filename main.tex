@@ -18,6 +18,7 @@
 \usepackage{siunitx}
 \usepackage{makecell}
 \usepackage{pdfpages}
+\usepackage[none]{hyphenat}
 
 \newenvironment{Figure}
   {\par\medskip\noindent\minipage{\linewidth}}
@@ -30,7 +31,7 @@
 \pagestyle{fancy}
 \setlength{\headheight}{24pt}
 \fancyhead[L]{GDP Group 35}
-\fancyhead[R]{Design of an Autonomous Golf Caddy}
+\fancyhead[R]{Design of a Smart Autonomous Golf Cart Caddy}
 \fancyfoot[C]{\thepage}
 
 
@@ -42,63 +43,63 @@
 \tableofcontents
 \newpage
 \section{Introduction}
-In this modern era, mobile robot platforms are not strange concepts and have
-been utilised not only for transportation but also have been diversified in
+Caddy is a person who carries a player's bag and clubs, and gives the player advice
+and moral support. In this modern era, mobile robot platforms are not strange concepts
+and have been utilised not only for transportation but also have been diversified in
 other services such as medical, industrial and even sports. Autonomous golf
-caddies are also emerging technologies in the sport; they provide support
-by carrying their golf clubs and provide useful information such as weather
-forecast and wind trajectory throughout the round of golf. There are typically
-two modes of operation provided by current golf caddies where it can either
-follow the golfer autonomously, although some type of tracking sensor is required
-such as a Bluetooth remote control; or through manual control where the
-golfer needs to guide the caddy through the golf course.
+caddies are also emerging technologies in the sport. Like typical caddies, they provide
+support by carrying the golfer's golf clubs and provide useful information such as
+weather forecast and wind trajectory throughout the round of golf. There are typically
+two modes of operation provided by current golf cart caddies where it can either
+follow the golfer autonomously and remotely, although some type of tracking sensor
+is required such as a Bluetooth pod; or through manual control where the
+golfer needs to guide the caddy through the golf course using a remote control.
 \cite{choi_2020}. These modes are of course interchangeable with the transition
 from manual to autonomous and vice versa via an interaction between the
-golfer and the caddy. Recent improvements on the design concepts of autonomous
-golf caddies on the market have been made; especially on the autonomous
+golfer and the golf cart caddy. Recent improvements on the design concepts of
+autonomous golf caddies on the market have been made; especially on the autonomous
 following. The M5 GPD DHC Trolley for instance, features a rechargeable lithium
 battery and secure Bluetooth connectivity remote control that enables the caddy
-to follow the golfer independently as long as the remote control is on-person
-and within 50 meters of the caddy \cite{golf_2022}.
+to follow the golfer independently as long as the remote control is attached on
+the golfer and within 50 meters of the golf cart caddy \cite{golf_2022}.
 
 However, such high-end technology leads to the product being very expensive;
-this particular product cost £950 thus not being accessible to the general
-public. In addition, although the caddy can be independent, needs some
-guidance as to where it should go considering that the golf course is full of
-hazards such as bunkers and lakes. Although current technologies are
-good and help the golfer in the ways previously mentioned, there is a lot of
-potential in improving the caddy. Experienced golfers would have better
-understanding of their rounds and would have better intuitions to make decisions
-on which golf clubs would be best used for the current shot. However,
-beginner golfers do not have that luxury and there is potential there to have
-the caddy aid them in making decisions based on computational analysis of their
-previous shot data, local weather forecast, and wind trajectory. 
+this particular product cost £950 thus not being a popular choice for those
+who intend to join the sport at the early stages. In addition, although the
+golf cart caddy can be independent, needs some guidance as to where it should
+go considering that the golf course is full of hazards such as bunkers and lakes.
+Although current technologies are capable of supporting the golfer in the ways
+previously mentioned, there is a lot of potential in improving the golf cart caddy.
+Experienced golfers would have better understanding of their rounds and better
+intuitions to make decisions on which golf clubs would be best used for the
+current shot. However, beginner golfers lack experience and would have trouble
+in making decisions on the golf course. There is a potential to have the golf
+cart caddy to aid them in making decisions based on computational analysis
+of their previous shot data, local weather forecast, and wind trajectory. 
 
-Improvements can be made to the current autonomous golf caddies so that it would
-be more affordable and accessible to the general public while aiding current
-golfers with their performance and encourage new talents to the sport. This
+Improvements can be made to the current autonomous golf cart caddies so that
+it would be more affordable and accessible to the general public while aiding
+current golfers with their performance and encourage new talents to the sport. This
 project considers the design, manufacture and testing of a prototype Autonomous
 Golf Caddy (AGC), with emphasis on these improvements. Although current
 regulations do not permit computer aids for professional games as this would be
-an unfair advantage, the improvements on the information feature could be used
+an unfair advantage, the improvements on this feature could be used
 during casual games and training so that golfers could analyse their performance
-by comparing it to computational analysis of their games, weather forecast and
-wind trajectory.  
+by comparing it to computational analysis of their games.  
 
 \subsection{Aims}
 The concept of this project was proposed by our client, an avid golfer who wishes
-to improve his game of golf and to present a new product to the market
+to improve his game of golf and hope to present a new product to the market
 targeting new talents in golf. Based on the clients requirements and considering
-the requirements of the GDP, the team has set a list of aims prior to the start
-of the Group Design Project, aligning both stakeholder's requirements, to
-achieve at the end of the project: 
+the requirements of the university's Group Design Project (GDP), the team has set
+a list of aims prior to the start of the GDP, aligning both stakeholder's
+requirements, to achieve at the end of the project: 
 \begin{itemize}
-    \item Develop a prototype of a smart autonomous golf caddy within the budget
+    \item Develop a prototype of a smart autonomous golf cart caddy within the budget
     provided by the university that is able to follow the golfer around the golf
     course while avoiding unallowed locations such as the greens, bunkers and
     waters. 
-    \item Design the caddy that could offer golf clubs to the golfer according
-    to the golfer`s needs 
+    \item Design the caddy that could offer an optimum golf club to the golfer
 \end{itemize}
 \vfill\null
 \columnbreak
@@ -119,15 +120,15 @@ this project:
 \end{itemize}
 
 \subsection{Resources}
-The team was allocated the baseline budget from the university of £850 and was
+The team was allocated s maximum budget from the university of £850 and was
 also supported by our client where the team is provided with golf equipment to
-design the golf caddy and conduct testing. A full break down of our project
+design the project and conduct testing. A full break down of our project
 expenditure and funding can be seen in appendix (A). 
 
 \subsection{Team Roles and Work Breakdown}
-The team was structured and organised in a way such that everyone`s skills and
-experiences on similar projects could make the most out of this project. The
-team`s breakdown of roles can be seen below in Table (\ref{tab:roles}). 
+The team was structured and organised in a way such that everyone's set of skills
+could be fully utilised thus making the most out of this project. The team`s
+breakdown of roles can be seen below in Table (\ref{tab:roles}). 
 
 \begin{table}[H]
     \begin{center}
@@ -148,11 +149,11 @@ team`s breakdown of roles can be seen below in Table (\ref{tab:roles}).
 \end{table}
 
 \subsection{Ethical and Sustainability Considerations}
-An ethical concern pertains to whether or not the caddy follows the rules and
-regulations of golf. Although the implementation of the machine
+An ethical concern pertains to whether or not this newly designed caddy follows the
+rules and regulations of golf. Although the implementation of the machine
 learning algorithm is not allowed as this would be an unfair advantage in a
 professional game, the intention of this feature is focused on training and
-encouraging new talents that are keen in joining the sport. Other than that, all
+encouraging new talents that are keen in joining the sport. Besides that, all
 of designs and implementations are acceptable within the rules and regulations.
 Additionally, as we will be collecting large amounts of data on the golfer, we
 would need to ensure this is properly protected if made commercially available.
@@ -179,22 +180,21 @@ team followed in order to achieve a reliable and high-quality prototype.
 \end{Figure}
 
 
-All components of the caddy including its systems were interconnected thus a
+All components of the caddy including its systems were interconnected and thus a
 design process flowchart as seen in Fig. (\ref{fig:design_process}), was made to
-ensure all the design process was clear and done properly to obtain the best
-result for the project. The design process follows a 5 stage approach. The first
-stage consist of defining the problem, brainstorming possible solutions and
-exploring new concepts and possibilities for the design of the project. It was
+ensure all the design process was clear and done in a properly manner to obtain
+the best result for the project. The design process follows a 5 stage approach.
+The first stage consist of defining the problem, brainstorming possible solutions
+and exploring new concepts and possibilities for the design of the project. It was
 important for the team to cater to the requirements of the client without going
 astray of the requirements of the GDP. Initially, the request was to design and
-develop a fully functional smart autonomous golf caddy that was
-commercialisable. However, this was not possible considering the time and budget
-allocated for this project by the GDP stakeholders thus the team proposed to
-design and develop a functioning prototype that could be further improved in the
-future. Next, the team identified the design specifications of the standard
-caddy, researched and explored new features and concepts, and subsequently
-evaluated and compared the ideas with current products available on the market. 
-
+develop a fully functional smart AGC that was commercialisable. However, this
+was not possible considering the time and budget allocated for this project by
+the GDP stakeholders thus the team proposed to design and develop a functioning
+prototype that could be further improved in the future. Next, the team identified
+the design specifications of the standard caddy, researched and explored new
+features and concepts, and subsequently evaluated and compared the ideas with
+current products available on the market. 
 
 The second stage was to select a concept and develop a design proposal. This
 stage consist of the team working on their roles and introducing the concepts to the
@@ -205,13 +205,13 @@ order to meet the client’s requirements. It was also found very insightful and
 helpful as the client gave feedback and other perspectives to consider. 
 
 The third stage was simulation and prototyping. The algorithms and codes for the
-machine learning and golf caddy following were develop and simulated. Based on
-the design specifications, the mechanical designs, motor controls and
-electronics were tested. All components of the project were simulated or tested
+machine learning and golf caddy following were develop and simulated. The mechanical
+designs, motor controls and electronics were tested based on the design
+specifications. All components of the project were simulated or tested
 individually to ensure that risk of individual part problems was minimised
 before assembly. This process was important to mitigate any risk that could be
 hazardous to the team and everyone involved during the prototyping process and
-increase the efficiency of using the budget to avoid wastage. 
+reduce errors that could lead to wastage of resources. 
 
 The fourth stage is assembly and testing. After assembling all individual
 components to make the prototype caddy, testing was conducted. The testing
@@ -222,12 +222,13 @@ In the case of this project, this could mean developing and improving the design
 to commercialising standards given the necessary time and funding. 
 
 \subsection{Inheritance and Design Changes from Original Golf Caddy}
-Although this is a new project, the team were given a golf bag and caddy by the
-client. The team had to test, redesign and add a significant amount of hardware,
-software and electronics to the inherited design. In addition, the team also
-added a few innovations relevant to the project’s aims and objectives. To aid
-the clarification of this project, Fig. (\ref{fig:inheritance}) details a diagram of the
-individual changes made from the inherited design and developed components. 
+Although this is a new project within the GDP, the team were given a golf bag
+and caddy by the client. The team had to test, redesign and add a significant
+amount of hardware, software and electronics to the inherited design. In
+addition, the team also added a few innovations relevant to the project’s
+aims and objectives. To aid the clarification of this project, Fig.
+(\ref{fig:inheritance}) details a diagram of the individual changes made
+from the inherited design and developed components. 
 \end{multicols}
 \newpage
 
@@ -300,7 +301,7 @@ documented through the rest of this report.
     \end{itemize}
     
     \subsubsection{Concept Design}
-    Various mechanisms that provides linear translation motion, which is
+    Various mechanisms that provides linear translation motion, which are
     desired, were explored. However due to the design requirements, two main
     concept ideas were considered to be the most suitable and they are shown in
     Fig. (\ref{fig:design}).
@@ -313,12 +314,11 @@ documented through the rest of this report.
         \end{center}
     \end{Figure}
     
-    
     Idea 1 consisted of an umbrella type mechanism which uses a compression
     spring, and with the use of a stepper motor and cam, the system can be
     released from a “loaded” state to elevate the component. Idea 2 was more
-    innovative as it made use of the bolt and nut analogy. A plate holder is
-    attached to a nut which is placed on a stepper motor with a threaded rod.
+    innovative as it made use of a similar mechanism that is employed in a linear actuator. In this design, a plate holder is
+    attached to a nut and it is placed on a stepper motor with a threaded rod.
     This plate holder is placed within a tube and by using the inner wall of the
     tube as a restriction to prevent the rotation of the nut when the stepper
     motor provides a torque, the plate holder’s only direction of motion can be
@@ -332,7 +332,7 @@ documented through the rest of this report.
     compared to Idea 1 and therefore there is a less chance for failure to
     occur. To calculate the required torque for the stepper motor, the maximum
     weight of the heaviest golf club that was measured to be 700g, was used in further
-    calculations. The torque was calculated, using a pulley analogy, with the
+    calculations. The torque was calculated, by modelling it mathematically similar to a pulley problem, with the
     formulas shown below in Eqs.(\ref{eq:raising_force} and \ref{eq:raising_torque}).
     
     \begin{center}
@@ -379,23 +379,26 @@ documented through the rest of this report.
     bending observed on the plate holder when the golf club was not perfectly
     placed in the middle of the plate. Another issue was that the time taken for
     the club to be raised was particularly long which is due to the pitch of the
-    threaded rod being small. In consequence of that, some improvements were
+    threaded rod being small. 
+    
+    In consequence of that, some improvements were
     made to this design. The stepper motor with the threaded rod was changed to
     one with a leadscrew integrated as its shaft and this will decrease the time
-    to raise the golf club.  A way of mitigating the risk for a system failure
+    to raise the golf club. A way of mitigating the risk for a system failure
     due to the plate holder getting stuck inside the wall of the tube, was to
     use a cylinder where its lower plate will have the leadscrew nut mounted on
     using nuts and bolts. It was deemed to be a more robust design that can
     easily support the weight of the golf club and with the implementation of
     guiding rails, which are threaded rods in this case, the inner tube walls
-    will not be used to restrict the rotating motion of the cylinder. This tube
-    was manufactured using 3D printing with polylactic acid (PLA) filament as
+    will not be used to restrict the rotating motion of the cylinder. 
+    
+    This cylinder was manufactured using 3D printing with PLA filament as
     the material. Taking into account the stair stepping effect and porosity
     from 3D printing, the cylinder was made to be sufficiently strong enough to
     hold the maximum weight of a golf club recorded. After incorporating these
     improvements, the calculated time to raise the golf club by 10 cm was
     recorded to be 3.6 seconds which is almost 3.5 times faster than the
-    prototyped version. The overall weight of this design only amounts to 400g
+    prototype version. The overall weight of this design only amounts to 400g
     per mechanism and since only three release mechanism has been promised to be
     implemented in this project, the total added weight amounts to 1.2 kg which
     is only an 8\% weight increase from an original golf bag weight of 15 kg. 
@@ -418,51 +421,52 @@ documented through the rest of this report.
 \newpage
 \begin{multicols}{3}
     \subsection{Golf Bag}
-    Golf bags are the essential tools used by the golfer. In this project, the
-    golf bag is the core of the entire club raising mechanism. All the mechanisms
-    and electronics are installed on the golf bag. The golf bag is well designed
+        Golf bags are the essential tools used by the golfer. In this project, the
+    golf bag is the housing of the entire club raising mechanism. All the mechanisms
+    and electronics are installed on the golf bag. The golf bag is innovatively design
     to ensure the entire mechanical and electrical system have sufficient work
-    space to operate. 
+    space to operate. The current golf bag had 3 golf clubs mechanism due to cost restriction. 14 golf clubs mechanism can be installed easily in the future. The following shows the design requirements of the golf bag.
+ 
     
     \subsubsection{Design Requirement}
     \begin{itemize}
         \item Need to fit all 14-golf club mechanisms
         \item Mount mechanical compartment and electrical compartment
-        \item Components able to stay still during motion
+        \item Components must be fixed in place during motion
         \item Compartments need to be easily accessible for maintenance
         \item Lightweight 
     \end{itemize}
     
     \subsubsection{Design Process}
-    The design process started by thinking a feasible release mechanism before
-    working on the golf bag. Once the release mechanism as shown above had been
-    decided.The golf bag provided by the client was dismantled to further
-    understand its infrastructure. In order to incorporate the release mechanism
-    in the golf bag, a new top base design was required. We realised the
-    segregation of the golf bag didn't reach the bottom of the golf bag Fig.
-    (\ref{fig:cloth}). The segregation took place on the frame, a small part of
-    the top part was segregated with cloth giving a misconception that all  14
-    golf clubs are well segregated before dismantling the bag. A segregation is
-    essential to separate the release mechanism system and to prevent the golf
-    clubs from tangling each other at the bottom of the golf bag. Therefore,
-    tube is implemented for each golf clubs so the golf clubs may not interact
-    with each other. Exploration of different materials of tube was done. PVC
-    tube was chosen as it is cheap, accessible and lightweight. The average
-    diameter of the golf club is 28mm therefore the inner diameter of the tube
-    must be greater than 28mm. The inherited design is unsymmetrical and had
-    inconsistent spacing, as shown in Fig. (\ref{fig:top}), for all the 14
-    holes. Removing the inherited design will provide more freedom and
-    potential to fully utilise the available space of the golf bag. Calculation
-    of the dimensions was made by scanning the top frame using a 3D as shown in
-     Fig. (\ref{fig:scan}). It is an innovative and efficient method to
-    extract accurate data from irregular object due to its non-linear curvature.
+    The design process is broken down into 9 steps as shown in Figure \ref{fig:process}.
+Once the release mechanism as shown above had been decided, the golf bag provided by James are dismantled to explore the available working space for the release mechanism. The inherited top base of the golf bag needs to be replaced as there isn’t enough work space for all 14-release mechanism. A new top base design needs to be implemented. The dimension of the housing for the release mechanism needs to be calculated before designing a new top base. Once calculation had been done, consideration of all the 14 release mechanism housing dimension is able to fit in the golf bag. These two criteria need to be satisfied before designing the top base of the golf bag. Once the top base of the golf bag had been designed, the vertical workspace of the golf bag is explored. The golf bag required extension as the electrical and mechanical compartment will be added below the original golf bag. The amount of extension needs to be determined by the workspace required by the mechanical and electrical compartment. With the extended bag, the mechanical and electrical compartment can be designed to accommodate the release mechanism. The release mechanism can be easily installed as the golf bag took consideration of all the requirements needed from the it. 
     \begin{Figure}
         \begin{center}
-            \includegraphics[width=0.5\textwidth]{Figure15.jpg}
-            \captionof{figure}{Scan Machine}
-            \label{fig:scan}
+            \includegraphics[width=0.8\textwidth]{Figure40.jpg}
+            \captionof{figure}{Design Process}
+            \label{fig:process}
         \end{center}
     \end{Figure}
+
+\subsubsection{Design Process of Golf Bag Top Base }
+Once the release mechanism as shown above had been
+    decided, the golf bag provided by the client was dismantled to further
+    understand its infrastructure. The original 
+    segregation of the golf bag didn't reach the bottom of the golf bag Fig.
+    (\ref{fig:cloth}). The segregation took place on the frame, a small part of
+    the top part was segregated with cloth giving misconception that all  14
+    golf clubs are well segregated. A segregation is
+    essential to separate the release mechanism system and prevent the golf
+    clubs from congestion with each other at the bottom of the golf bag. Therefore,    tube is implemented for each golf clubs so the golf clubs may not interact
+    with each other. Different kinds of material for the tube had been explored such as plastic, acrylic and etc . PVC
+    tube was chosen as it is cheap, accessible and lightweight. 
+The inherited design is unsymmetrical and had
+    inconsistent spacing, as shown in Fig. (\ref{fig:top}), for all the 14
+    holes. Removing the inherited design will provide more freedom and
+    potential to fully utilise the available space of the golf bag. Dimension was obtained by
+scanning the top frame using a scanning machine. as shown in
+     Fig. (\ref{fig:scan}). It is an innovative and efficient method to
+    extract accurate data from irregular object due to its non-linear curvature.
     
     \begin{Figure}
         \begin{center}
@@ -480,60 +484,54 @@ documented through the rest of this report.
         \end{center}
     \end{Figure}
     
-    
-    By applying a fill factor of 80\%, it is feasible for each tube to have a
-    maximum of 57mm outer diameter. Based on the value, we decided a PVC tube
-    with 42mm outer diameter and 38mm inner diameter would provide ease of
+       From the scanned model in Fig. ( \ref{fig:CAD}), the area of the top part was calculated. With a fill factor of 80\%, it is feasible for each tube to have a
+    maximum of 57mm outer diameter. Considering the average golf club handle to be 28mm, the tube 
+    with 42mm outer diameter and 38mm inner diameter is the best options as it provides ease of
     placing the golf clubs into the tube. Using the given dimension, design had
     been made for the top base of the golf bag.
     
-    The design of the bag will follow along the PVC tube. With a solid
-    foundation for the 14 PVC tubes, the changes made in the release mechanism
-    wouldn’t affect the golf bag design as long as the release mechanisms are
-    installed in the dedicated PVC tube. Each tube had its own name as specified
+    The design of the bag will follow along the PVC tube.
+. Each tube had its own name as specified
     golf clubs will be placed in them. By doing this, the machine learning will
     release the mechanism of the specified club to the golfer based on its
     decision with the acquired data from the golfer. 
-    
-    The next step is to design a support that could hold all the 14 PVC tubes.
-    Mechanical and electrical compartments were implemented to ensure the
-    mechanical components are undisturbed by the electrical components. The
-    bag needs to be extended due to the implementation of the release mechanism
-    in the golf bag. The released golf clubs may injure the user if the golf bag
-    isn’t extended as the extended golf clubs are in an angle facing the user.
-    The golf bag will be unstable if the golf bag isn’t extended as the weight
-    distribution is too far from the center of mass of the golf bag. Next, a
-    mechanical and electrical compartment had been designed and implemented at
-    the bottom of the golf bag. Both designs are simple and accessible to the
-    user for future maintenance. After that, a new top base of the golf bag had
-    been designed to replace the old unsymmetrical top base as the new design
-    provide more freedom of utilizing maximum space in the bag. Once the main
-    frame of the golf bag is manufactured, the mechanical mechanism and
-    electronics will be installed. 
+        \begin{Figure}
+        \begin{center}
+            \includegraphics[width=0.5\textwidth]{Figure15.jpg}
+            \captionof{figure}{Scan Machine}
+            \label{fig:scan}
+        \end{center}
+    \end{Figure}
     
     
+        \begin{Figure}
+        \begin{center}
+            \includegraphics[width=0.3\textwidth]{Figure.jpg}
+            \captionof{figure}{Result of 3D scan on caddy top}
+            \label{fig:CAD}
+        \end{center}
+    \end{Figure}
     \subsubsection{Golf Bag innovation}
     The golf bag is another of our innovative creations as we manage to
     create a fully-functioning golf bag with extremely low cost. Low cost is
     achieved by reusing recycled items and using basic resources such as sheet metal,
-    plywood and acrylic. With manufacturing limitations, cloth and plastic had been
-    replaced by metal to extend the golf bag. Plywood is used as the support for
+    plywood and acrylic. Metal are used to extend the golf bag as it is flexible and cheap.
+. Plywood is used as the support for
     the release mechanism while acrylic is used for the new top base design of
-    the golf bag. The golf bag is able to fulfil the design requirements and
-    tested to be working well with the mechanical and electrical components.
+    the golf bag. The golf bag functionality is well designed and is able to fulfil the design requirements.
+
     
     \subsubsection{Golf Bag Infrastructure}
-    The whole bag had 3 different parts, the top base of the golf bag, the
+      The whole bag had 3 different parts, the top base of the golf bag, the
     mechanical compartment and the electrical compartment as shown in Fig.
     (\ref{fig:golfbag}). The top base of the golf bag act as a support and
     segregation compartment for the golf clubs. The mechanical compartment
     consists of the motor compartment and the release mechanism. The motor is
     placed between two supports to ensure the motor is kept in place during
     operation. The release mechanism is above the motor compartment. It has a
-    support base to ensure the tube and the release mechanism stay aligned. All
-    the electronics and the cabling are placed in the electrical compartment to
-    ensure the cabling does not disturb the mechanical system and also for the
-    ease of waterproofing all the electronics.
+    support base to ensure the tube and the release mechanism stays aligned. All
+    the electronics and the cabling are placed in the electrical compartment to provide easy access for the future maintenance
+
     
     
     \begin{Figure}
@@ -547,22 +545,22 @@ documented through the rest of this report.
     
     
     \subsubsection{Top base of Golf Bag}
-    The top base of the golf bag has been through 2 manufacturing processes
-    as shown in Fig. (\ref{fig:change}). Both designs are able to fit 14 equal
-    size release mechanism for the golf club. Each slot has equal spacing and
-    sufficient space between the slots. PVC tube fits through each slot
-    perfectly. Design 1 had been initially laser cut with plywood before sending
+    Two design had been implemented for the top base of the golf bag as shown in Fig. (\ref{fig:change}). The top base of the golf bag had 2 possible manufacturing process that can be used.
+      
+Design 1 had been initially laser cut with plywood before sending
     for 3D printing. The tube fit the design and is well supported by it.
     Due to the limitation of the 3D printer size (250 x 210 x 210mm), the new
     design had a dimension of (255 x 230 x 41 mm). Therefore it was not feasible
-    to 3D print the entire design.
+to 3D print the entire design.
+It is cost effective and efficient to reuse the original top base frame of the golf bag as it can save manufacturing cost and time. 
     
-    Decision were made to have the new design installed on the old golf bag
-    top frame which is more innovative as the frame could be reused. The new
-    design is drawn on Solidworks with the scanned CAD model of the top
+    Decision was made to have the new design installed on the old golf bag 
+    top frame which is more innovative as the frame could be reused. By reusing the frame, new connection part of the top base and the golf bag are not required. It can save manufacturing cost and time. The new
+    design is drawn on Solidworks with the scanned CAD model of the top base shown in 
      Fig. (\ref{fig:CAD}). The final design is laser cut with acrylic and
     mounted on the frame with epoxy. The final top base is sprayed with black
     spray to improve aesthetic.
+
     \begin{Figure}
         \begin{center}
             \includegraphics[width=0.4\textwidth]{Figure.png}
@@ -570,14 +568,7 @@ documented through the rest of this report.
             \label{fig:change}
         \end{center}
     \end{Figure}
-    
-    \begin{Figure}
-        \begin{center}
-            \includegraphics[width=0.6\textwidth]{Figure.jpg}
-            \captionof{figure}{Result of 3D scan on caddy top}
-            \label{fig:CAD}
-        \end{center}
-    \end{Figure}
+
     
     
     \subsubsection{Extension of Golf Bag}
@@ -602,6 +593,7 @@ documented through the rest of this report.
     the motor base to ensure the mechanism stays stationary in the bag. The
     support base provides support to the PVC tubes and ensures the release
     mechanisms remained vertical.
+
     
     \begin{Figure}
         \begin{center}
@@ -613,7 +605,7 @@ documented through the rest of this report.
     
     \begin{Figure}
         \begin{center}
-            \includegraphics[width=\textwidth]{Figure7.jpg}
+            \includegraphics[width=0.5\textwidth]{Figure7.jpg}
             \captionof{figure}{Top view of Mechanical Compartment}
             \label{fig:TOP}
         \end{center}
@@ -621,7 +613,7 @@ documented through the rest of this report.
     
     \subsubsection{Electrical Compartment}
     The Electrical Compartment consist of a wooden laser cut top base and the
-    inherited golf bag bottom base. The wooden laser cut base had 14 small holes
+    original golf bag bottom base. The wooden laser cut base had 14 small holes
     on it as shown in Fig. (\ref{fig:ELECBASE}). The main function of the holes
     is to allow the electrical cable from the mechanical compartment to connect
     the electrical components.
@@ -638,15 +630,14 @@ documented through the rest of this report.
     
     \begin{Figure}
         \begin{center}
-            \includegraphics[width=\textwidth]{Figure9.jpg}
+            \includegraphics[width=0.5\textwidth]{Figure9.jpg}
             \captionof{figure}{Electrical Top Base CAD}
             \label{fig:ELEC}
         \end{center}
     \end{Figure}
 
     The location of the holes, shown in Fig. (\ref{fig:ELEC}), are placed beside the
-    mechanical component for the ease of the cable to travel to the electrical
-    compartment. The holes are also designed to ensure none of the mechanical
+    mechanical component to ensure none of the mechanical
     component will obstruct the hole. The electrical compartment consists of the
     cabling from the motor and a main cable which connects to the caddy. All the
     electronics are placed in the electrical compartment for ease of water
@@ -672,21 +663,22 @@ documented through the rest of this report.
 
     \subsection{LCD screen casing}
     In this project, a LCD screen is implemented which will have a GUI for data
-    representation. A LCD screen casing was manufactured to protect the LCD
-    screen from environmental damage such as rainwater and physical debris
-    damage. Different location of mounting the LCD screen on the caddy had been
-    explored, The best location of mounting the LCD screen on the caddy will be
-    right below the caddy handle as it can be easily viewed by the user nearby
+    representation. A LCD screen casing was designed to protect the it from environmental damage such as rainwater and physical debris
+    damage. Several possible location of mounting the LCD screen on the caddy are analyzed.
+    The best location of mounting the LCD screen on the caddy will be
+    below the caddy handle as it can be easily viewed by the user nearby
     the caddy. The location does not affect the folding operation of the caddy,
     as shown in Fig. (\ref{fig:holder}), as it utilized the abundant space of
     the AGC. 
+ 
     
     A 1 m electrical ribbon was used to connect the LCD screen with the
     Raspberry Pi located on the electrical housing of the caddy. The electrical
-    ribbon is wrapped in heat shrink to provide protection for the ribbon and water
+    ribbon is wrapped in heat shrink to provide protection and water
     resistance. The ribbon travels from the electrical housing of the AGC to
     the LCD screen through the AGC inner tube pathway as demonstrated in
      Fig. (\ref{fig:ribbon}).
+
 
     \begin{Figure}
         \begin{center}
@@ -697,11 +689,11 @@ documented through the rest of this report.
     \end{Figure}
     
     \subsubsection{Screen Holder}
-    As shown in Fig. (\ref{fig:bottom}), the screen holder is mounted on the
-    back of the bottom casing. The screen holder is designed to allow the LCD
+        As shown in Fig. (\ref{fig:bottom}), the screen holder is mounted on the back of the bottom casing. The screen holder is designed to allow the LCD
     screen to sit firmly on the screen holder. A
     cylindrical metal rod Fig. (\ref{fig:rod}) was added in between the
     screen holder to ensure the screen holder does rotate more than 90 degrees.
+
     
     \begin{Figure}
         \begin{center}
@@ -720,7 +712,7 @@ documented through the rest of this report.
     \end{Figure}
     
     \subsubsection{Friction Hinge}
-    The screen can be fold and unfolded by 90 degrees using th friction hinge
+    The screen can be fold and unfolded by 90 degrees using the friction hinge
     concept shown in Figs. (\ref{fig:unfold} \ref{fig:fold}). The screen
     holder is designed to operate along with the friction hinge operation. The
     friction hinge relies on the friction provided from the nuts and bolts. By
@@ -794,7 +786,7 @@ documented through the rest of this report.
 
 \newpage
 \begin{multicols}{2}
-    \subsection{CADDY ELECTRICAL BASE}
+    \subsection{Golf Cart Caddy Electrical Base}
     From the inherited golf caddy, there were close to no electrical systems
     since only the wheels were motorised. However, with the addition of all the
     newly added electrical systems from this project, an electrical base was
@@ -825,7 +817,7 @@ documented through the rest of this report.
     
     \begin{Figure}
         \begin{center}
-            \includegraphics[width=0.8\textwidth]{Figure23.jpg}
+            \includegraphics[width=1.0\textwidth]{Figure23.png}
             \captionof{figure}{Concept design for electrical base}
             \label{fig:box}
         \end{center}
@@ -837,7 +829,7 @@ documented through the rest of this report.
     checking should any issues occur. It also allows the user to easily remove
     and charge the battery when required without interfering with any of the
     electrical circuits along the way and it provides a better airflow compared
-    to being clustered in the “box” compartment. It is also beneficial for the
+    to being clustered in the enclosure compartment. It is also beneficial for the
     centre of mass of the AGC as the battery, which is the heaviest amongst
     the components on the electrical base, is as close as possible to the centre
     of the AGC. It allows for a more stable drive whilst minimising the chance
@@ -851,7 +843,7 @@ documented through the rest of this report.
     cutting was used as the manufacturing process for time saving and due to the
     possibility of employing box joints as well as mortise and tenon joints in
     order to easily assemble the design. The joints were further reinforced
-    using gorilla wood glue for added reassurance of the structural integrity of
+    using adhesive for added reassurance of the structural integrity of
     the design.
     
     
@@ -901,7 +893,7 @@ providing the ability for the AGC to have its own centre of rotation.
 
 \begin{Figure}
     \begin{center}
-        \includegraphics[width=\textwidth]{Figure25.jpg}
+        \includegraphics[width=\textwidth]{Picture2.PNG}
         \captionof{figure}{Inherited Caddy Powertrain}
         \label{fig:train}
     \end{center}
@@ -1057,7 +1049,7 @@ chosen.
             \end{equation*}
         \end{center}
         This leaves the $n - 7.49185$ significant bits left for sub degree
-        representation, the physical precision in meters we can then derive from
+        representation, the physical precision in meters can be derived from
         each data type of a longitude value at the equator can be calculated as
         shown in the equations below.\newline
         \begin{center}
@@ -1089,12 +1081,12 @@ chosen.
     double precision floats}
     \label{fig:float_calcs}
 \end{figure}
-The $180^{\circ}$ is normalised to a power of two so we are able to use the non
-integer value of bits in the calculation for physical precision. Were we not to
-perform this normalisation then $7.4918\rightarrow8$ full bits are required to
+The $180^{\circ}$ is normalised to a power of two so it is possible to use the
+non integer value of bits in the calculation for physical precision. Were this
+normalisation not performed then $7.4918\rightarrow8$ full bits are required to
 represent the degrees and the final precision is slightly less for each
 datatype. To ensure this calculated precision is representative of our system
-all GPS coordinates are normalised to a power of two. We can see from the
+all GPS coordinates are normalised to a power of two. It can be seen from the
 calculations that a significantly higher precision is achieved using double
 precision floating point data type to store GPS values. The precision yielded by
 the double precision floating point is unnecessary, however the precision of the
@@ -1117,7 +1109,7 @@ and test all the control software / algorithms that would be required to make
 the AGC follow the golfer as intended while avoiding hazard regions.
 
 All of the control software tested in the simulator was written in C as this was
-easiest to use with OpenGL, however we decided to change to PyQt5 for designing
+easiest to use with OpenGL, however it was decided to change to PyQt5 for designing
 the onboard GUI. As the ACG software was now to be written in Python the control
 algorithms were re-written in Python, however upon testing it was found that
 their performance was significantly slower than the C implementations. This is
@@ -1157,13 +1149,13 @@ efficient.
 
 \subsubsection{Map Processing}
 As discussed in the introduction to section \ref{software}, all GPS coordinates
-are normalised to a power of two. We also ``pad'' the hazard zone coordinates,
-before normalisation, by a safety factor of two meters, preventing innacurate
-GPS readings or hazard zone coordinates resulting in the AGC entering a hazard
-zone. We ``pad'' the hazard zones by calculating the coordinates of centroid of
-the polygon, then extending the vector from the centroid to each perimeter point
-by two meters. The centroid of a polygon can be calculated from the coordinates
-of it's perimeter points as shown in Eqs. (\ref{eq:cx} and \ref{eq:cy}).
+are normalised to a power of two. Also, the hazard zones are ``padded''  by a
+safety factor of two meters, preventing innacurate GPS readings or hazard zone
+coordinates resulting in the AGC entering a hazard zone. The hazard zones are
+``padded'' by calculating the coordinates of centroid of the polygon, then
+extending the vector from the centroid to each perimeter point by two meters.
+The centroid of a polygon can be calculated from the coordinates of it's
+perimeter points as shown in Eqs. (\ref{eq:cx} and \ref{eq:cy}).
 \begin{center}
     \begin{equation*}
         A=\frac{1}{2}\sum_{i=0}^{n-1}\left( x_i y_{i+1} - x_{i+1} y_i\right)
@@ -1205,9 +1197,9 @@ A visual of this concept can be seen below in Fig. (\ref{fig:raycasting}).
 
 The figure shows two points which are to be tested to determine if they lie
 within the polygon. Casting the ray to the right, towards $x\rightarrow\inf$ in
-our implementation, we can count the intersections each ray has with the
-polygon. Point A has five intersections and so lies inside the polygon, point B
-has four intersections and lies outside the polygon. 
+our implementation, the intersections each ray has with the polygon are counted.
+Point A has five intersections and so lies inside the polygon, point B has four
+intersections and lies outside the polygon. 
 
 There are additional considerations in our implementation to accout for the ray
 intersecting a vertex or for the ray being collinear with a polygon edge. If a
@@ -1245,9 +1237,9 @@ to determine the location of the intersection as shown in Fig.
 
 After the intersection point is calculated we ensure that the intersection point
 falls within the smallest rectangle bounded by one point from the first and
-second coordinates of either segment. We do this because the equation for a line
-is infinite, and any lines with non equal gradient will intersect, but we are
-only interested if the intersection occurs between points the AGC intends to
+second coordinates of either segment. This is done because the equation for a line
+is infinite, and any lines with non equal gradient will intersect, but it is
+only relevant if the intersection occurs between points the AGC intends to
 travel. The bounding rectangle is demonstrated by the green rectangle in Fig.
 (\ref{fig:segment_intersection}).
 
@@ -1263,15 +1255,15 @@ travel. The bounding rectangle is demonstrated by the green rectangle in Fig.
                 \label{eq:line_b}
             \end{equation}
         \end{center}
-    In our implementation, before this system is solved, we check if the lines
-    have equal gradient, and if they are collinear or not. If they have equal
-    graident, defined by:
+    In our implementation, before this system is solved, it is checked for if
+    the lines have equal gradient, and if they are collinear or not. If they
+    have equal graident, defined by:
     \begin{center}
         \begin{equation*}
             \frac{ay_2 - ay_1}{ax_2 - ax_1} = \frac{by_2 - by_1}{bx_2 - bx_1}
         \end{equation*}
     \end{center}
-    Then we check if they are collinear, defined by:
+    The condition for collinearity must be checked, defined by:
     \begin{center}
         \begin{equation*}
             (x - ax_1) = (x - bx_1)
@@ -1288,7 +1280,7 @@ travel. The bounding rectangle is demonstrated by the green rectangle in Fig.
             m_a = \frac{ay_2 - ay_1}{ax_2 - ax_1} \hspace{1cm} m_b = \frac{by_2 - by_1}{bx_2 - bx_1}
         \end{equation*}
     \end{center}
-    Now we solve the system defined by Eqs. (\ref{eq:line_a} and
+    The system must be solved using Eqs. (\ref{eq:line_a} and
     \ref{eq:line_b}) to determine the point of intersection resulting in the $x$
     coordinate given by Eq. (\ref{eq:x}) and $y$ coordinate given by Eq.
     (\ref{eq:y}).
@@ -1498,7 +1490,7 @@ A graphic user interface (GUI) is a graphics-based operating system interface
 that uses icons, menus and a mouse to manage interaction with the system. In
 this project, a GUI was developed to enable interactions between the golfer and
 the AGC, mainly for the golf suggestion system. The GUI would also act as an
-information center to display all relevant information relevant to the golfer’s
+information center to display all information relevant to the golfer’s
 game which could include weather forecasts, GPS location and performance
 analysis. However, the GUI in this project focused on making the system
 interactive to enable the golfer to communicate with the AGC on the preferred
@@ -1524,23 +1516,23 @@ such as LCD screen or even a phone app were considered. Frameworks that were
 considered in order to make the GUI that could be represented on the options
 above were Qt, Blynk IoT and React Native which is a library in JavaScript. Qt
 was chosen due to its library in python called PyQt which would be easier to use
-and considering that only a screen would be used, the user’s phone will not have
-to be unusable whilst the GUI is on. 
+and considering that only a LCD touchscreen would be used, the user’s phone will
+not have to be unusable whilst the GUI is on. 
 
 \subsubsection{PyQt}
 PyQt is mainly used for creating GUI, developing desktop applications with
 Python. As an initial design implementation, the team decided to use PyQt as the
 GUI because screen is able to showcase the GUI as an application through the
-Raspberry Pi. The main reason PyQt is used for this project is due to it being
-open source and provides many classes, methods and widgets. This allows us to
-make a rich app at zero cost.  
+Raspberry Pi as its processor. The main reason PyQt is used for this project is
+due to it being open source and provides many classes, methods and widgets. This
+allows us to make a rich app at no cost.  
 
 There are two methods known to create a GUI through PyQt: a: through hard coding
 i.e., manually coding the elements contained in the GUI and b: through a tool in
-PyQt called QtDesigner which allows the used to pick and choose the elements
-contained in the GUI. Obviously, the second method is easier as it allows the
+PyQt called QtDesigner which allows the user to pick and choose the elements
+contained in the GUI. The second method is found to be easier as it allows the
 user direct preview of how the GUI would look like. However, the drawback of
-this method is that it that the user has less control of the GUI’s boundaries,
+this method is that the user has less control of the GUI’s boundaries,
 and an extra step is needed to convert the GUI from a user interface file (.ui)
 to a python file to be used on python for the code (.py). The second method is
 used with a combination of the first method for control of the boundaries. There
@@ -1555,7 +1547,7 @@ are a few GUIs created for the caddy with its use listed below in Table
             \textbf{GUI Name} & \textbf{Description} \\ \hline
             MyMap & \makecell{To showcase a virtual map of the golf course to indicate the\\
             live location of the AGC} \\ \hline
-            MyInfo & \makecell{To allow the golfer to key in their information which \\
+            MyGolf & \makecell{To allow the golfer to key in their information which \\
             includes age and skill level for the machine learning algorithm} \\ \hline
             MyClubs & \makecell{To allow the golfer to key in the information of the \\
             location of each club in each slots in the golf bag. This GUI also \\
@@ -1571,38 +1563,69 @@ are a few GUIs created for the caddy with its use listed below in Table
 After developing these GUIs, they were tested on the Raspberry Pi to see its
 compatibility and functionality. All GUIs were working well and found compatible
 with the Raspberry Pi. However, there were drawbacks on some of the
-functionality of the GUI. First, MyMap wasn’t able to generate a responsive map
+functionality of the GUI. First, MyMap was unable to generate a responsive map
 that could allow the autonomous following algorithm to give and receive inputs
 with the map. This is because PyQt and Python could not incorporate Google Maps
 due to licensing and the alternative was a library from Python that could
 generate a map which was Folium. Folium is a tool to visualise data that has
-been manipulated through Python on an interactive leaflet. Although interactive,
-data from the map could not be extracted to enable the autonomous following
-algorithm to update the coordinates of the golfer and the AGC on the GUI. This
-results to a static map that could only be updated when the coordinates are
-updated manually in the algorithm. An alternative is to obtain the API and licensing
-from Google Maps and incorporate it into the GUI. However, obtaining the API and
-licensing requires the team to purchase them at a very high cost significantly
-beyond the budget allocated. Third and lastly, MyInfo acts as key information
-for the golf suggesting algorithm because information on the golfer’s age,
-gender and skill level are relevant for the AGC to suggest a suitable golf
-club. 
+been manipulated through Python on an interactive leaflet. However, data from
+the map could not be extracted to enable the autonomous following algorithm to
+update the coordinates of the golfer and the AGC on the GUI. This results to a
+static map that could only be updated when the coordinates are updated manually
+in the algorithm. An alternative is to obtain the application programming
+interface (API) and licensing from Google Maps and incorporate it into the GUI.
+However, obtaining the API and licensing requires the team to purchase them at
+a very high cost significantly beyond the budget allocated. Third and lastly,
+MyGolf acts as key information for the golf suggesting algorithm because
+information on the golfer’s age, gender and skill level are relevant for the
+AGC to suggest a suitable golf club. 
+
+Fig. (\ref{fig:MyMap}) shows the MyMap GUI containing a white space for where the map would be and information of the current hole with the distance between the golfer and the hole.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.2\textwidth]{MyMap.png}
+    \end{center}
+    \captionof{figure}{MyMap containing a white space for where the map would be and information of the current hole with the distance between the golfer and the hole}
+    \label{fig:MyMap}
+\end{figure}
+
+Fig. (\ref{fig:MyGolf}) shows the MyGolf GUI displaying the current hole and the distance to the hole. This GUI would also be where the golfer would accept or reject the golf club suggested by the GUI.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.2\textwidth]{MyGolf.png}
+    \end{center}
+    \captionof{figure}{MyGolf shows the current hole and the distance to the hole. This GUI would also be where the golfer would accept or reject the golf club suggested by the GUI}
+    \label{fig:MyGolf}
+\end{figure}
+
+Fig. (\ref{fig:MyClubs}) shows the MyClubs GUI that allows the golfer to input the golf club to the intended positions in the golf bag for the release mechanism.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=0.2\textwidth]{MyClubs.png}
+    \end{center}
+    \captionof{figure}{MyClubs allows the golfer to input the golf club to the intended positions in the golf bag for the release mechanism}
+    \label{fig:MyClubs}
+\end{figure}
 
 \subsubsection{Course Map}
 The course map was implemented on the GUI using the map system that was used on
-the simulator. We attempted to embed a map web app called folium which looks
-better than the map developed for the simulator, however, it doesn't allow us to
-retreive coordinates for a point clicked on the map in real latitude / longitude
+the simulator. We attempted to embed a map in a web app called folium which looks
+better than the map developed for the simulator, however, it does not allow us to
+retrieve coordinates for a point clicked on the map in real latitude / longitude
 coordinates or in screen coordinates. This shortfall makes it impossible to give
 the golfer the ability to click a point on the map and see how far away it is
-from the AGC, using the simulator map allows us to add that feature.
+from the AGC, whereas using the simulator app, it was possible to add that feature.
 
 \section{Course Geo-mapping}
-The core of the autonomous following for the golf caddy is it relying on the
+The core of the autonomous following for the golf caddy as it is dependent on the
 golf course data to know where the unallowed and hazardous areas are with high
 accuracy. This is best done by using the GPS coordinates of the locations as it
 pinpoints exactly where these locations are and enables the AGC to know where
-the points are given the right communication tool.
+the points are given that the coordinates are programmed into the autonomous
+following algorithm.
 
 The Southampton Municipal Golf Course was chosen as the project’s test site on
 the grounds that it has a fair number of bunkers, greens and water which provide
@@ -1615,28 +1638,23 @@ accurate and helps strengthens the case of choosing the GPS coordinates of the
 unallowed and hazardous locations as the data source for the autonomous
 following system. 
 
- I identified that the best way to extract the coordinates that allow
-the AGC to understand which area it should avoid is by drawing out polygon
-maps through the perimeters of the unallowed and hazardous locations. By doing
-this, it saves me time and reduces computational speed as I do not have to
-extract every single point within the area (for accuracy) and the algorithm for
-the autonomous following would not have to go through so many data that would be
-costly in computational speed. For accuracy, I established that the polygons
-drawn as the perimeter would need to be as close as possible to increase the
-points within the perimeter of the area that the AGC should avoid. Once
-these plans were put together, the next step was to find out what tool that
-could be used to carry these out successfully within the budget of the project.
-All of this was possible through a software called Mission Planner.
+The best way to extract the coordinates that allow the AGC to understand which
+area it should avoid is by drawing out polygon maps through the perimeters of
+the unallowed and hazardous locations. By doing this, it saves time and reduces
+computational speed as it does not require to extract every single point within
+the area (for accuracy) and the algorithm for the autonomous following would not
+have to go through so many data that would be costly in computational speed. For
+accuracy, the polygons drawn as the perimeter would need to be as close as possible
+to increase the points within the perimeter of the area that the AGC should avoid.
 
 The coordinate is then extracted from a feature of this software which allows it
 to be formatted as a text file. As mentioned, the waypoints were drawn as
 closely to each other as possible. Fig. (\ref{fig:mission_planner}) illustrates
-the Southampton Municipal Golf Course on Mission Planner. We found that Mission
-Planner and Google Maps were both identical and all coordinates match with
-each other on the maps. Prohibited zones are then created by drawing
-constructing a polygon formed by clicking points of the perimeter of a zone we
-do not with the AGC to trespass onto; the concept is demonstrated in Fig.
-(\ref{fig:polygon1}).
+the Southampton Municipal Golf Course on Mission Planner. The Mission Planner
+and Google Maps were found to be both identical and all coordinates match with
+each other on the maps. Prohibited zones are then created by drawing constructing
+a polygon formed by clicking points of the perimeter of a zone that the AGC should
+not trespass onto; the concept is demonstrated in Fig. (\ref{fig:polygon1}).
 
 \begin{figure}[H]
     \begin{center}
@@ -1654,10 +1672,9 @@ do not with the AGC to trespass onto; the concept is demonstrated in Fig.
     \label{fig:polygon1}
 \end{figure}
 
-Ultimately, the goal of this is to obtain all the coordinates of the perimeter
-of all unallowed and hazardous areas on the golf course. Subsequently, the
+Ultimately, the goal of course geo-mapping is to obtain all the coordinates of the
+perimeter of all unallowed and hazardous areas on the golf course. Subsequently, the
 coordinates would be extracted and used for the autonomous following system.
-
 
 \section{Electronics}
 \label{electronics}
@@ -2193,7 +2210,7 @@ the time as shown in Table (\ref{tab:guillermo_t2}).
     Lob Wedge      & 32       & 41.10   & 45.70  & 64        & 36.60    & 54.80   & 73.10  & 96        \\ \hline
     \end{tabular}%
     %}
-    \captionof{table}{Average shot distance with different clubs for men and women of different skill levels}
+    \captionof{table}{Average shot distance (in metres) with different clubs for men and women of different skill levels}
     \label{tab:guillermo_t1}
 \end{table}
     
