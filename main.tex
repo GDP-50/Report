@@ -149,21 +149,21 @@ breakdown of roles can be seen below in Table (\ref{tab:roles}).
 \end{table}
 
 \subsection{Ethical and Sustainability Considerations}
-An ethical concern pertains to whether or not this newly designed caddy follows the
-rules and regulations of golf. Although the implementation of the machine
+An ethical concern pertains to whether or not this newly designed caddy follows
+the rules and regulations of golf. Although the implementation of the machine
 learning algorithm is not allowed as this would be an unfair advantage in a
 professional game, the intention of this feature is focused on training and
-encouraging new talents that are keen in joining the sport. Besides that, all
-of designs and implementations are acceptable within the rules and regulations.
-Additionally, as we will be collecting large amounts of data on the golfer, we
-would need to ensure this is properly protected if made commercially available.
-In terms of sustainability, the usage of a rechargeable lithium battery
-encourages greener alternative to energy consumption. Besides that, the design
-of the AGC follows standards of current products on the market with slight
-adjustments in the dimensions which does not have any significant impact to the
-golfer, people around and its surrounding. Since the implementations of the
-design and systems are on an existing caddy, this has saved the team a lot of
-material resources and cost.  
+encouraging new talents that are keen in joining the sport. Besides that, all of
+designs and implementations are acceptable within the rules and regulations.
+Additionally, as large amounts of data will be collected on the golfer,
+assurances must be made that the data is properly protected if made commercially
+available. In terms of sustainability, the usage of a rechargeable lithium
+battery encourages greener alternative to energy consumption. Besides that, the
+design of the AGC follows standards of current products on the market with
+slight adjustments in the dimensions which does not have any significant impact
+to the golfer, people around and its surrounding. Since the implementations of
+the design and systems are on an existing caddy, this has saved the team a lot
+of material resources and cost.  
 
 \subsection{Design Process}
 The smart autonomous golf caddy consists of many sub-systems thus requires a
@@ -512,13 +512,13 @@ scanning the top frame using a scanning machine. as shown in
         \end{center}
     \end{Figure}
     \subsubsection{Golf Bag innovation}
-    The golf bag is another of our innovative creations as we manage to
-    create a fully-functioning golf bag with extremely low cost. Low cost is
-    achieved by reusing recycled items and using basic resources such as sheet metal,
-    plywood and acrylic. Metal are used to extend the golf bag as it is flexible and cheap.
-. Plywood is used as the support for
-    the release mechanism while acrylic is used for the new top base design of
-    the golf bag. The golf bag functionality is well designed and is able to fulfil the design requirements.
+    The golf bag is another of our innovative creations as a fully-functioning
+    golf bag with extremely low cost was produces. Low cost is achieved by reusing recycled
+    items and using basic resources such as sheet metal, plywood and acrylic.
+    Metal are used to extend the golf bag as it is flexible and cheap. . Plywood
+    is used as the support for the release mechanism while acrylic is used for
+    the new top base design of the golf bag. The golf bag functionality is well
+    designed and is able to fulfil the design requirements.
 
     
     \subsubsection{Golf Bag Infrastructure}
@@ -1235,7 +1235,7 @@ constructed for each segment as shown in Eqs. (\ref{eq:line_a} and
 to determine the location of the intersection as shown in Fig.
 (\ref{fig:segment_calculations}).
 
-After the intersection point is calculated we ensure that the intersection point
+After the intersection point is calculated it is ensured that the intersection point
 falls within the smallest rectangle bounded by one point from the first and
 second coordinates of either segment. This is done because the equation for a line
 is infinite, and any lines with non equal gradient will intersect, but it is
@@ -1304,25 +1304,26 @@ The pathfinding algorithm is only used if the control loop shown in Fig.
 (\ref{fig:control_loop}) determines that the AGC should move to the golfer but a
 direct route is not possible due to the presence of a hazard zone between them.
 Initially the A* pathfinding algorithm was researched as it is a well known
-algorithm with which we could choose some heuristic function to minimise, in our
-case that heuristic function would likely be the shortest distance to reach the
-golfer. A* is generally used for pathfinding on a discrete graph, we do not have
-a discrete graph available and so would have to construct one for each golf
-course or a local graph surrounding the hazard we wish to avoid. This adds
-unnecessary complexity in terms of implementation and computation to our system
-which we wish to avoid. Additionally, A* has time complexity of $O(b^d)$ if $d$
-is the shortest path length and $b$ is the branching factor, and the algorithm
-has high memory requirements as all generated nodes are kept in memory
-\cite{astar_2009}. It was decided we would not use A* algorithm; standard
-Djikstra's algorithm was also considered by the same short comings are present
-with us not having a finite graph. The next consideration was to simply ``pad''
-the perimeter of the hazard polygon and follow it all the way around until the
-AGC reaches the golfer. This concept is shown in the diagram below in Fig.
-(\ref{fig:padding}) where the red line denotes the path that would be taken by
-the AGC to avoid a hazard zone. Clearly this is an inefficient path the AGC will
-unnecessarily follow the contour of the polygon. Additionally, this method
-increases the risk that the AGC enters the hazard zone if our GPS system is not
-performing well, or if our GPS mapping of hazard zones is erronous.  
+algorithm with which some desired heuristic function to minimise can be chosen,
+in our case that heuristic function would likely be the shortest distance to
+reach the golfer. A* is generally used for pathfinding on a discrete graph, a
+discrete graph is not available and so one would have to be constructed one for
+each golf course or a local graph surrounding the hazard to be avoided. This
+adds unnecessary complexity in terms of implementation and computation to our
+system which should be avoided for reliability and maintainability.
+Additionally, A* has time complexity of $O(b^d)$ if $d$ is the shortest path
+length and $b$ is the branching factor, and the algorithm has high memory
+requirements as all generated nodes are kept in memory \cite{astar_2009}. It was
+decided that the A* algorithm would not be used; standard Djikstra's algorithm was also
+considered but the same short comings are present with no finite
+graph available. The next consideration was to simply ``pad'' the perimeter of the hazard
+polygon and follow it all the way around until the AGC reaches the golfer. This
+concept is shown in the diagram below in Fig. (\ref{fig:padding}) where the red
+line denotes the path that would be taken by the AGC to avoid a hazard zone.
+Clearly this is an inefficient path the AGC will unnecessarily follow the
+contour of the polygon. Additionally, this method increases the risk that the
+AGC enters the hazard zone if our GPS system is not performing well, or if our
+GPS mapping of hazard zones is erronous.  
 
 
 \begin{Figure}
@@ -1351,18 +1352,19 @@ determine where the AGC should go.
     \label{fig:pathfinding_flow}
 \end{figure}
 
-First the chord vector, $\overrightarrow{\mathbf{C}}$, is calculated with Eq. (\ref{eq:chord})
-where $\overrightarrow{\mathbf{G}}$ is the golfer position and $\overrightarrow{\mathbf{AGC}}$ is
-the AGC position. Also we calculate the angle, $\theta$, between
-$\overrightarrow{\mathbf{C}}$ and the Y-unit vector, $\hat{\mathbf{y}}$, using
-Eq. (\ref{eq:theta}).  The relevant polygon, golfer position, and AGC position are rotated
-about the z-axis with the center of rotation as the origin by $\theta$ using Eq.
-(\ref{eq:rotation_mat}) where $\overrightarrow{p}$ is a three dimensional point and
+First the chord vector, $\overrightarrow{\mathbf{C}}$, is calculated with Eq.
+(\ref{eq:chord}) where $\overrightarrow{\mathbf{G}}$ is the golfer position and
+$\overrightarrow{\mathbf{AGC}}$ is the AGC position. Also the angle, $\theta$,
+between $\overrightarrow{\mathbf{C}}$ and the Y-unit vector, $\hat{\mathbf{y}}$,
+is calculated using Eq. (\ref{eq:theta}).  The relevant polygon, golfer
+position, and AGC position are rotated about the z-axis with the center of
+rotation as the origin by $\theta$ using Eq. (\ref{eq:rotation_mat}) where
+$\overrightarrow{p}$ is a three dimensional point and
 $\overrightarrow{p^\prime}$ is the rotated point. The polygon is rotated by
-applying Eq. (\ref{eq:rotation_mat}) to each vertex. The purpose of the rotation was to aid the
-design process of the algorithm and make the code more readable, removing the
-necesscity for vector manipulations throuhout the algorithm instead using only
-simple arithmetic operations. This results in
+applying Eq. (\ref{eq:rotation_mat}) to each vertex. The purpose of the rotation
+was to aid the design process of the algorithm and make the code more readable,
+removing the necesscity for vector manipulations throuhout the algorithm instead
+using only simple arithmetic operations. This results in
 $\overrightarrow{\mathbf{C}^\prime}$ having constant $y$. The value of
 $y^\prime$ is incremented in one meter steps until no intersection between the
 translated chord vector, $\overrightarrow{\mathbf{C}^\prime_t}$, and the rotated
@@ -1387,7 +1389,7 @@ original coordinate system, and incrementing it by $x^\prime$ is equivelant to
 incrementing in the direction of $\overrightarrow{\mathbf{C}}$.
 
 \subsubsection{Target Reaching}
-From our GPS module we can acquire updated GPS data approximately once per
+From our GPS module updated GPS can be acquired approximately once per
 second. Between GPS readings, the enocders embedded in the EMG49 motors are used
 to calculate the position of the AGC extrapolating from the total rotation of
 the motors and the orientation of the AGC when the maneuver began. As soon as
@@ -1473,11 +1475,11 @@ second, resulting in a smoother and closer path being found.
 \begin{multicols}{3}
 
 \subsection{Communications}
-The EMG49 motors we are using are controlled by the MD25 motor controller board
+The EMG49 motors used are controlled by the MD25 motor controller board
 via serial communication. The communication interface for this was written
 in C and is capable of handling multiple serial devices; if more than one device
 is present the serial port can be closed and reopened rapidly. Currently the
-only device we have on the communications network is the MD49. The GPS in the
+only device on the communications network is the MD49. The GPS in the
 golfer's pod communicates to the main Raspberry Pi via Bluetooth, which is
 written in Python using the PyBluez library. The GPSs communicate with the
 Raspberry Pis via serial commuication implemented using the Pyserial library,
@@ -1612,7 +1614,7 @@ Fig. (\ref{fig:MyClubs}) shows the MyClubs GUI that allows the golfer to input t
 
 \subsubsection{Course Map}
 The course map was implemented on the GUI using the map system that was used on
-the simulator. We attempted to embed a map in a web app called folium which looks
+the simulator. An attempt was made to embed a map in a web app called folium which looks
 better than the map developed for the simulator, however, it does not allow us to
 retrieve coordinates for a point clicked on the map in real latitude / longitude
 coordinates or in screen coordinates. This shortfall makes it impossible to give
@@ -1694,17 +1696,17 @@ any overheating problems.
 
 
 \subsubsection{Motors}
-We chose to use the EMG49 motors for our prototype. We chose these motors by
-considering the top speed we wish the AGC to able to go, and how fast we want it
+The EMG49 motors were chosen for the prototype. These motors were selected by
+considering the desired top speed of the AGC, and the desired time for it
 to accelerate to that speed on a $10^\circ$ incline. The calculations shown
-below in Fig. (\ref{fig:motor_calcs}) show how we calculated the necessary
-torque and rpm we require from our motors.
+below in Fig. (\ref{fig:motor_calcs}) show how calculations of the necessary
+torque and rpm required from the motors.
 
 \begin{figure}[H]
     \begin{mdframed}
-        The top speed we chose for the AGC was 5.0 kilometers per hour,
+        The desired top speed for the AGC was 5.0 kilometers per hour,
         equivalent to average walking speed. The wheel radius, $W_r$ of the AGC
-        wheels is 0.115 meters. We can calculate RPM using Eq. (\ref{eq:rpm}):
+        wheels is 0.115 meters. Required RPM is calculated with Eq. (\ref{eq:rpm}):
         \begin{center}
             \begin{equation}
                 rpm = \frac{7.5 * \frac{1000}{3600}}{2\pi W_r} \cdot 60 \approx 115rpm
@@ -1816,7 +1818,7 @@ voltage is of 24V with a capacity of 6Ah. Initially, the trolley had EMG30
 motors rated at 12V and powered by a 12V 16Ah lithium battery inherited from the
 supplied trolley. However, the late upgrade in DC motors forced the group to
 change the battery to meet the required 24V the new motors needed. Lacking in
-budget, the only alternative was to use 32 AA batteries. During testing we found
+budget, the only alternative was to use 32 AA batteries. During testing it was found
 that this configuratin was unable to supply enough current to the motors,
 resulting in the motors unable to run at maximum speed. As out goal was simply
 to demonstrate the AGC abilities, it was not necessary for the AGC to operate at
@@ -1844,7 +1846,7 @@ powered with 24V so do not need a regulated voltage.
 The touchscreen used is a 5-inch DSI capacitive touch display. It was chosen
 because of its convenient connection to the raspberry pi, which only consist of
 a ribbon, and its affordable price. It also brings mounting holes and screws to
-fit it in a case as we have done in the AGC shown Fig. (\ref{fig:holder}). 
+fit it in a case as was done on the AGC shown Fig. (\ref{fig:holder}). 
 
 \subsection{Pod Electronics}
 The pod, which is used to make the trolley follow the user via GPS, contains
@@ -2291,10 +2293,10 @@ in the introduction.
 \paragraph{To follow the golfer automatically}
 The software that has been written is a complete system that will allow the AGC
 to autonomously follow the golfer around the course, while pathfinding around
-prohibited zones; given appropriate GPS data. The GPS data we have access to
-from our GPS modules is not accurate enough; they performed well in intial
-testing after they were purchased, but we were unable to acquire accurate enough
-data when carrying out a full system test. This project aim could be fully
+prohibited zones; given appropriate GPS data. The GPS data accessible from the
+current GPS modules is not accurate enough; they performed well in intial
+testing after they were purchased, but accurate enough data when carrying out a
+full system test could not be acquired. This project aim could be fully
 satisfied with the purchase of improved GPS modules. The simulator demonstrates
 the ability of the software to properly function with appropriate data.
 
@@ -2361,17 +2363,17 @@ Key innovative elements in our project include:
 \end{itemize}
 
 \subsubsection{Process}
-Throughout the project duration, as a team we have worked hard to ensure that we
-worked within an effective design process, allowing us to avoid time wasting on
-designs that could be easily identified as inneffective. At the beginning of the
-year we took time to ensure the project and the main aims were fully understood
-by each team member, working roles were designated and concepts produced for
-each element of the project. For any mechanical concept design, at least two
-team member would review the design to ensure no obvious oversights had occured.
-Before the process of integrating all separate elements onto the caddy began, we
-ensured all elements had been tested individually. For software aspects, each
-algorithm was tested independently to ensure functionality and robustness to
-edge case situations. 
+Throughout the project duration the worked hard to ensure that an effective
+design process was adhered to, allowing time wasting on designs that could be
+easily identified as inneffective to be avoided. At the beginning of the year
+time was taken to ensure the project and the main aims were fully understood by
+each team member, working roles were designated and concepts produced for each
+element of the project. For any mechanical concept design, at least two team
+member would review the design to ensure no obvious oversights had occured.
+Before the process of integrating all separate elements onto the caddy began, it
+was ensured that all elements had been individually tested. For software
+aspects, each algorithm was tested independently to ensure functionality and
+robustness to edge case situations. 
 
 
 \subsubsection{Communication}
