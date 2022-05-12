@@ -1093,7 +1093,7 @@ the double precision floating point is unnecessary, however the precision of the
 single precision floating point is too low as our GPS module is capable of
 providing more accurate GPS measurements as discussed in section
 \ref{electronics}. Therefore double precision floating point datatypes will be
-used to store GPS data, which requires us to use a 64-bit compatible operating
+used to store GPS data, which requires use of a 64-bit compatible operating
 system which is why the 64-bit Debian port was chosen. The higher precision
 achieved comes at the cost of slightly higher compte time for calculations,
 however as most of the algorithms onboard operate only on small amounts of data,
@@ -1104,8 +1104,8 @@ this effect is unnoticable when operating the AGC.
 This section discusses the software used to make the AGC follow the golfer. All
 of the control software apart from the elctronics specific code, such as motor
 controller communication, was written first in the OpenGL simulator environment that was
-built throughout the year. Building and using a simulator allowed us to write
-and test all the control software / algorithms that would be required to make
+built throughout the year. Building and using a simulator allowed writing
+and testing of all the control software / algorithms that would be required to make
 the AGC follow the golfer as intended while avoiding hazard regions.
 
 All of the control software tested in the simulator was written in C as this was
@@ -1528,7 +1528,7 @@ Python. As an initial design implementation, the team decided to use PyQt as the
 GUI because screen is able to showcase the GUI as an application through the
 Raspberry Pi as its processor. The main reason PyQt is used for this project is
 due to it being open source and provides many classes, methods and widgets. This
-allows us to make a rich app at no cost.  
+allows a rich app at not cost to be developed.  
 
 There are two methods known to create a GUI through PyQt: a: through hard coding
 i.e., manually coding the elements contained in the GUI and b: through a tool in
@@ -1616,8 +1616,8 @@ Fig. (\ref{fig:MyClubs}) shows the MyClubs GUI that allows the golfer to input t
 \subsubsection{Course Map}
 The course map was implemented on the GUI using the map system that was used on
 the simulator. An attempt was made to embed a map in a web app called folium which looks
-better than the map developed for the simulator, however, it does not allow us to
-retrieve coordinates for a point clicked on the map in real latitude / longitude
+better than the map developed for the simulator, however, it did not allow
+extraction of coordinates for a point clicked on the map in real latitude / longitude
 coordinates or in screen coordinates. This shortfall makes it impossible to give
 the golfer the ability to click a point on the map and see how far away it is
 from the AGC, whereas using the simulator app, it was possible to add that feature.
@@ -1691,9 +1691,9 @@ For the trolley microcontroller, the Raspberry Pi 4B with 4 GB of RAM will be
 used. Other affordable alternatives of microcontrollers are Arduino boards.
 However, the Raspberry Pi is chosen because of its superiority in processing
 power, its easy compatibility with touchscreen displays and in-built Wi-Fi
-module allowing us to work with APIs and remote access the system through SSH. The
-microcontroller will also have a set of heat sinks plus a fan that will avoid
-any overheating problems.
+module allowing the possibility to work with APIs and remotely access the system
+through SSH. The microcontroller will also have a set of heat sinks plus a fan
+that will avoid any overheating problems.
 
 
 \subsubsection{Motors}
@@ -1930,9 +1930,9 @@ never be perfect due to the mathematical models always being approximations to
 the real world. More importantly, the computational power and knowledge required
 to build such simulation is far out of the scope of this project. 
 
-On the other hand, using empirical data collected by us playing actual golf in a
+On the other hand, using empirical data collected by playing actual golf in a
 course would make the data as realistic as it can get. However, two main
-inconveniences stopped us from performing it. First, all the team members from
+inconveniences prevented this this option. First, all the team members from
 this GDP fit into the same demographic in terms of gender, age, and experience
 with golf. Hence, the collected data would have been too skewed against our
 averages making the extrapolation inaccurate. Secondly, even if the groups
