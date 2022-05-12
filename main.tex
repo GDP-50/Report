@@ -1103,10 +1103,12 @@ this effect is unnoticable when operating the AGC.
 \label{control_software}
 This section discusses the software used to make the AGC follow the golfer. All
 of the control software apart from the elctronics specific code, such as motor
-controller communication, was written first in the OpenGL simulator environment that was
-built throughout the year. Building and using a simulator allowed writing
-and testing of all the control software / algorithms that would be required to make
-the AGC follow the golfer as intended while avoiding hazard regions.
+controller communication, was written first in the OpenGL simulator environment
+that was built throughout the year. Building and using a simulator allowed
+writing and testing of all the control software / algorithms that would be
+required to make the AGC follow the golfer as intended while avoiding hazard
+regions. All control software can be found
+\href{https://github.com/GDP-50/Onboard-RasPi}{here on GitHub.}
 
 All of the control software tested in the simulator was written in C as this was
 easiest to use with OpenGL, however it was decided to change to PyQt5 for designing
